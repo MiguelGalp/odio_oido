@@ -14,7 +14,7 @@ click-repl==0.3.0
 cryptography==41.0.4
 dataclasses-json==0.5.14
 dominate==2.8.0
-Flask==2.5.5
+Flask==2.2.5
 Flask-Bootstrap==3.3.7.1
 Flask-Login==0.4.1
 Flask-SQLAlchemy==3.1.1
