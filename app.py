@@ -14,7 +14,7 @@ from dateutil.parser import parse
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://///Users/miguelgalperin/Documents/toxic_project/db/database.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
 db = SQLAlchemy(app)
 Bootstrap(app)
 scheduler = BackgroundScheduler()
