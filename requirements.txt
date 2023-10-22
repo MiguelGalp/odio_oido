@@ -4,7 +4,6 @@ APScheduler==3.10.4
 Authlib==0.15.6
 billiard==4.1.0
 blinker==1.6.3
-celery==5.3.4
 certifi==2023.7.22
 cffi==1.16.0
 charset-normalizer==3.3.0
