@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Flask App</title> 
+</head>
+
+<body>
+  {% extends "bootstrap/base.html" %}
+
+  {% block content %}
+  <div class="container">
+      <h1>Welcome to My Flask App</h1>
+      <p>This is a landing page for my Flask application.</p>
+  </div>
+  
+  <!-- Add a new section for displaying tweet activity -->
+  <div class="container">
+    <h2>Tweet Activity</h2>
+    <p id="tweet-activity">{{ tweet_activity }}</p>
+  </div>
+
+  <!-- Add a new section for displaying current toxicity -->
+  <div class="container">
+    <h2>Current Toxicity</h2>
+    <p id="current-toxicity">{{ toxicity }}</p>
+  </div>
+  
+  {% endblock %}
+  
+ 
+</body>
+
+</html>
