@@ -130,7 +130,12 @@ def tweet_activity_route():
 def index():
     tweet_activity_data = tweet_activity_route().get_json()
     toxicity_data = get_current_toxicity().get_json()
-    return render_template('index.html', tweet_activity=tweet_activity_data['message'], toxicity=toxicity_data['toxicity'])
+    tweet_activity = tweet_activity_data.get('message')
+    toxicity = toxicity_data.get('toxicity')
+    if tweet_activity is None or toxicity is None:
+        # Handle the error, e.g., by returning an error message or a default page
+        return render_template('error.html')
+    return render_template('index.html', tweet_activity=tweet_activity, toxicity=toxicity)
 # Only fetch once an hour to maintain measurement standards
 if __name__ == "__main__":
     if not app.debug or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
