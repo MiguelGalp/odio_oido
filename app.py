@@ -14,7 +14,7 @@ import logging
 
 
 load_dotenv()
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 db = SQLAlchemy(app)
 Bootstrap(app)
