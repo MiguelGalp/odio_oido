@@ -14,7 +14,7 @@ from dateutil.parser import parse
 
 load_dotenv()
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 db = SQLAlchemy(app)
 Bootstrap(app)
 scheduler = BackgroundScheduler()
