@@ -10,6 +10,7 @@ from flask_bootstrap import Bootstrap
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
+import logging
 
 
 load_dotenv()
@@ -85,10 +86,11 @@ def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
     total_increase_record = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
     if total_increase_record is None:
+        app.logger.warning("No TotalIncrease records found")
         return jsonify({"error": "No TotalIncrease records found"})
     # Retrieve the total tweet increase of last fetch
     total_tweet_increase = total_increase_record.total_tweet_increase
-    print("Number of TotalIncrease records:", len(TotalIncrease.query.all()))
+    app.logger.info(f"Number of TotalIncrease records: {len(TotalIncrease.query.all())}")
     # The app´s principal logic is represented here
     if total_tweet_increase < 3:
         return jsonify({"toxicity": "green"})
