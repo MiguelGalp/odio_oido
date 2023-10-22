@@ -79,7 +79,8 @@ def fetch_tweets_and_update_counts():
             # Print the total_tweet_increase whenever the fetch occurs
             print(f"Total Tweet Increase: {total_tweet_increase}")        
         except Exception as e:
-            return str(e)            
+            app.logger.error(str(e))
+            return str(e)           
 def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
     total_increase_record = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
