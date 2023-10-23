@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>My Flask App</title> 
+  <title>X Temp.</title> 
 </head>
 
 <body>
@@ -12,25 +12,29 @@
 
   {% block content %}
   <div class="container">
-      <h1>Welcome to My Flask App</h1>
-      <p>This is a landing page for my Flask application.</p>
+      <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">X Temp.</h4>
+      <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;">A real-time, inclusive, insight into Twitter by tracking and categorizing influential users.</h3>
   </div>
+
+  <div class="container">
+    <h4>--</h4>
+</div>
   
   <!-- Add a new section for displaying tweet activity -->
   <div class="container">
-    <h2>Tweet Activity</h2>
+    <h3>Tweet Activity</h3>
     <p id="tweet-activity">{{ tweet_activity }}</p>
   </div>
 
   <!-- Add a new section for displaying current toxicity -->
   <div class="container">
-    <h2>Current Toxicity</h2>
+    <h3>Current Temperature</h3>
     <p id="current-toxicity">{{ toxicity }}</p>
   </div>
 
   <!-- Add a new section for displaying current toxicity -->
   <div class="container">
-    <h2>Time ago</h2>
+    <h3>Time ago</h3>
     <p id="time_ago">{{ time_ago }}</p>
   </div>
   
