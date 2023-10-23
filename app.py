@@ -123,10 +123,11 @@ def tweet_activity_route():
         if increases[i][1] > 2 * sum(increase[1] for increase in increases[:i]):
             spike_times.append(increases[i][0])
     if spike_times:
-        message = f"Significant spikes in tweet activity occurred at the following times: {', '.join(str(time) for time in spike_times)}"
+        message = f"Spikes at the following times: {', '.join(time.strftime('%H:%M') for time in spike_times)}"
     else:
         message = "No significant spike in tweet activity in the last four hours."
     return jsonify({"message": message})
+
 @app.route('/')
 def index():
     tweet_activity_data = tweet_activity_route().get_json()
