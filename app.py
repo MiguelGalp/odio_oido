@@ -76,9 +76,8 @@ def fetch_tweets_and_update_counts():
             total_increase_record = TotalIncrease(timestamp=datetime.now(timezone.utc), total_tweet_increase=total_tweet_increase)
             db.session.add(total_increase_record)
             db.session.commit()
-            print("Fetch job running")
-            # Print the total_tweet_increase whenever the fetch occurs
-            print(f"Total Tweet Increase: {total_tweet_increase}")        
+            app.logger.info("Fetch job running")
+            app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")       
         except Exception as e:
             app.logger.error(str(e))
             return str(e)           
