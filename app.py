@@ -79,7 +79,7 @@ def fetch_tweets_and_update_counts():
             app.logger.info("Fetch job running")
             app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")       
         except Exception as e:
-            app.logger.error(str(e))
+            app.logger.error(f"Fetch job failed: {str(e)}")
             return str(e)           
 def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
