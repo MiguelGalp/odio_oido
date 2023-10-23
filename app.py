@@ -138,11 +138,14 @@ def index():
         return render_template('error.html')
     return render_template('index.html', tweet_activity=tweet_activity, toxicity=toxicity)
 # Only fetch once an hour to maintain measurement standards
+from app import fetch_tweets_and_update_counts
+
+def run_cron_job():
+    fetch_tweets_and_update_counts()
+
 if __name__ == "__main__":
-    if not app.debug or os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-        scheduler.add_job(func=fetch_tweets_and_update_counts, trigger="interval", minutes=30)
-        scheduler.start()
-    app.run(debug=True, use_reloader=False)
+    run_cron_job()
+
 
 
 
