@@ -3,11 +3,11 @@ from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import tweepy
 import os
-from apscheduler.schedulers.background import BackgroundScheduler
-from datetime import datetime
+
+
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-from apscheduler.schedulers.background import BackgroundScheduler
+
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 import logging
@@ -18,7 +18,7 @@ app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 db = SQLAlchemy(app)
 Bootstrap(app)
-scheduler = BackgroundScheduler()
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True, nullable=False)
@@ -133,10 +133,28 @@ def index():
     toxicity_data = get_current_toxicity().get_json()
     tweet_activity = tweet_activity_data.get('message')
     toxicity = toxicity_data.get('toxicity')
+        # Retrieve the most recent TotalIncrease record from the database
+    total_increase = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).limit(1).first()
+
+    # Calculate the time difference between the current time and the timestamp of the most recent TotalIncrease record
+    time_difference = datetime.now(timezone.utc) - total_increase.timestamp
+
+    # Convert the time difference to a human-readable format
+    if time_difference < timedelta(minutes=1):
+        time_ago = 'just now'
+    elif time_difference < timedelta(hours=1):
+        minutes_ago = int(time_difference.total_seconds() / 60)
+        time_ago = f'{minutes_ago} minute{"s" if minutes_ago != 1 else ""} ago'
+    elif time_difference < timedelta(days=1):
+        hours_ago = int(time_difference.total_seconds() / 3600)
+        time_ago = f'{hours_ago} hour{"s" if hours_ago != 1 else ""} ago'
+    else:
+        days_ago = time_difference.days
+        time_ago = f'{days_ago} day{"s" if days_ago != 1 else ""} ago'
     if tweet_activity is None or toxicity is None:
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
-    return render_template('index.html', tweet_activity=tweet_activity, toxicity=toxicity)
+    return render_template('index.html', tweet_activity=tweet_activity, toxicity=toxicity, time_ago=time_ago)
 # Only fetch once an hour to maintain measurement standards
 from app import fetch_tweets_and_update_counts
 
