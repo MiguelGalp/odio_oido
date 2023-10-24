@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>X Temp.</title> 
+  <title>X Temp.</title>
 </head>
 
 <body>
@@ -12,35 +12,43 @@
 
   {% block content %}
   <div class="container">
-      <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">X Temp.</h4>
-      <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;">Real-time insights into Twitter by tracking topics.</h3>
+    <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">X Temp.</h4>
+    <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;">Real-time insights into Twitter by
+      tracking topics.</h3>
   </div>
 
   <div class="container">
-    <h4>--</h4>
-</div>
-  
+    <h2>--</h2>
+  </div>
+
+  <!-- Add a new section for displaying current toxicity -->
+  <div class="container">
+    <h4>Current Temperature&nbsp;<sup>1</sup></h3>
+      <p id="current-toxicity" class="lead" style="margin-top: -6px">{{ toxicity }}</p>
+  </div>
+
+  <!-- Add a new section for displaying current toxicity -->
+  <div class="container">
+    <h4>Updated</h3>
+      <p id="time_ago" class="lead" style="margin-top: -6px">{{ time_ago }}</p>
+  </div>
+
   <!-- Add a new section for displaying tweet activity -->
   <div class="container">
-    <h3>Tweet Activity</h3>
-    <p id="tweet-activity">{{ tweet_activity }}</p>
+    <h4>Tweet Activity&nbsp;<sup>2</sup></h3>
+      <p id="tweet-activity" class="lead" style="margin-top: -6px">{{ tweet_activity }}</p>
   </div>
 
-  <!-- Add a new section for displaying current toxicity -->
   <div class="container">
-    <h3>Current Temperature</h3>
-    <p id="current-toxicity">{{ toxicity }}</p>
+    <h2>--</h2>
   </div>
-
-  <!-- Add a new section for displaying current toxicity -->
   <div class="container">
-    <h3>Time ago</h3>
-    <p id="time_ago">{{ time_ago }}</p>
-  </div>
-  
+  <small>1. Temperature is obtained by tracking tweet counts.</small>
+  <small>2. Tweet activity is sensitive to singular increases.</small>
+</div>
   {% endblock %}
-  
- 
+
+
 </body>
 
 </html>

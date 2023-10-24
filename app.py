@@ -92,11 +92,11 @@ def get_current_toxicity():
     app.logger.info(f"Number of TotalIncrease records: {len(TotalIncrease.query.all())}")
     # The app´s principal logic is represented here
     if total_tweet_increase < 3:
-        return jsonify({"toxicity": "green"})
+        return jsonify({"toxicity": "Green"})
     elif total_tweet_increase < 5:
-        return jsonify({"toxicity": "yellow"})
+        return jsonify({"toxicity": "Yellow"})
     else:
-        return jsonify({"toxicity": "red"})
+        return jsonify({"toxicity": "Red"})
 @app.route('/toxicity', methods=['GET'])
 def toxicity_route():
     return get_current_toxicity()
