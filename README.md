@@ -1,4 +1,4 @@
-# CS50x Final Project: A Discourse Temperature Tracker
+# CS50x Final Project. XTEMP: A Discourse Temperature Tracker For Twitter (ARGENTINA/POLITICS VERSION).
 
 This Flask app is designed to track the Twitter activity of specific users in real-time and determine the level of engagement based on the increase in tweets over a certain period of time. The app uses SQLAlchemy to interact with a PostgreSQL database and Tweepy to access the Twitter API.
 
@@ -16,7 +16,9 @@ TWITTER_ACCESS_TOKEN_SECRET=<your_access_token_secret>
 DATABASE_URL=<your_database_url>
 ```
 
-4. Run the app using `python app.py`.
+4. Connect your GitHub repo to Render to generate the [Cron Job]([https://link-url-here.org](https://render.com/docs/cronjobs))
+
+5. Run the app using `python app.py`.
 
 ## Usage
 
@@ -40,4 +42,6 @@ The app uses a PostgreSQL database to store information about users, their tweet
 
 The app includes a `run_cron_job()` function that fetches the latest tweet counts for the specified users and updates the database. This function is set to run every half hour to maintain measurement standards.
 
+## Deploy
 
+You can deploy your own XTemp. into Render. See [here](https://twitter-temperature.onrender.com/)
