@@ -60,13 +60,13 @@ def fetch_tweets_and_update_counts():
             total_tweet_increase = 0
 
             for user_id in users:
-                # Store needed values for tweets and users within the function´s scope
+                # Store needed values for tweets and users within the function's scope
                 user_data = api.get_user(user_id=user_id, user_fields=["public_metrics"])
-                db_user = User.query.filter_by(name=user_id).first()
+                db_user = User.query.filter_by(name=user_data.screen_name).first()
 
                 # Create user if needed
                 if db_user is None:
-                    db_user = User(name=user_id, tweet_count=0)
+                    db_user = User(name=user_data.screen_name, tweet_count=0)
                     db.session.add(db_user)
 
                 # Calculate difference between new and recorded tweet count
