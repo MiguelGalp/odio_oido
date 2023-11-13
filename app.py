@@ -55,27 +55,27 @@ def fetch_tweets_and_update_counts():
             # Create API object with v2 endpoint
             api = tweepy.Client(auth, wait_on_rate_limit=True)
 
-            # This is a SaaS app: we decide on the users following qualitative research
+            # Users to fetch tweets and update counts
             users = ["SergioChouza", "CarlosMaslaton"]
             total_tweet_increase = 0
 
-            for user_id in users:
-                # Store needed values for tweets and users within the function's scope
-                user_data = api.get_user(user_id=user_id, user_fields=["public_metrics"])
+            for username in users:
+                # Get user information
+                user_data = api.get_user(username=username, user_fields=["public_metrics"])
                 db_user = User.query.filter_by(name=user_data.screen_name).first()
 
-                # Create user if needed
+                # Create user if not found
                 if db_user is None:
                     db_user = User(name=user_data.screen_name, tweet_count=0)
                     db.session.add(db_user)
 
-                # Calculate difference between new and recorded tweet count
+                # Calculate tweet count increase
                 tweet_increase = user_data.public_metrics["tweet_count"] - db_user.tweet_count
 
-                # Update tweet increase within the users loop
+                # Update total tweet increase
                 total_tweet_increase += tweet_increase
 
-                # Record updated tweet count in db
+                # Update tweet count in the database
                 db_user.tweet_count = user_data.public_metrics["tweet_count"]
 
                 # Create a new FetchTime record for each user in each fetch
