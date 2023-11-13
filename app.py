@@ -56,7 +56,7 @@ def fetch_tweets_and_update_counts():
             api = tweepy.Client(auth, wait_on_rate_limit=True)
 
             # This is a SaaS app: we decide on the users following qualitative research
-            users = ["SergioChouza", "CarlosMaslaton"]
+            users = ["@SergioChouza", "@CarlosMaslaton"]
             total_tweet_increase = 0
 
             for user in users:
