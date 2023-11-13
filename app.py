@@ -61,7 +61,7 @@ def fetch_tweets_and_update_counts():
 
             for user in users:
                 # Store needed values for tweets and users within the function´s scope
-                user_data = api.get_user(user, user_fields=["public_metrics"])
+                user_data = api.get_user(user=user, user_fields=["public_metrics"])
                 db_user = User.query.filter_by(name=user).first()
 
                 # Create user if needed
