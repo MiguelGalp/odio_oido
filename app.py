@@ -59,14 +59,14 @@ def fetch_tweets_and_update_counts():
             users = ["20856420", "957455883679813634"]
             total_tweet_increase = 0
 
-            for user in users:
+            for user_id in users:
                 # Store needed values for tweets and users within the function´s scope
-                user_data = api.get_user(user=user, user_fields=["public_metrics"])
-                db_user = User.query.filter_by(name=user).first()
+                user_data = api.get_user(user_id=user_id, user_fields=["public_metrics"])
+                db_user = User.query.filter_by(name=user_id).first()
 
                 # Create user if needed
                 if db_user is None:
-                    db_user = User(name=user, tweet_count=0)
+                    db_user = User(name=user_id, tweet_count=0)
                     db.session.add(db_user)
 
                 # Calculate difference between new and recorded tweet count
@@ -101,7 +101,7 @@ def fetch_tweets_and_update_counts():
         except Exception as e:
             # Log the exception details
             app.logger.error(f"Error in fetch_tweets_and_update_counts: {str(e)}")
-            return str(e)      
+            return str(e)
 def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
     total_increase_record = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
