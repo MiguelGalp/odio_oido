@@ -100,10 +100,12 @@ def fetch_tweets_and_update_counts():
             app.logger.info("Fetch job running")
             app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")
 
+        except tweepy.TweepError as e:
+            app.logger.error(f"Tweepy error: {e.response.text}")
+            return str(e)
         except Exception as e:
-            # Log the exception details
             app.logger.error(f"Error in fetch_tweets_and_update_counts: {str(e)}")
-            return str(e)   
+            return str(e)
 def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
     total_increase_record = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
