@@ -48,14 +48,12 @@ def fetch_tweets_and_update_counts():
             access_token = os.getenv("TWITTER_ACCESS_TOKEN")
             access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
             
-            # Create API object with v2 endpoint
-            api = tweepy.Client(
-                consumer_key=consumer_key,
-                consumer_secret=consumer_secret,
-                access_token=access_token,
-                access_token_secret=access_token_secret,
-                wait_on_rate_limit=True
-            )
+            # Authenticate to Twitter
+            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+            auth.set_access_token(access_token, access_token_secret)
+            
+            # Create API object with v1 endpoint
+            api = tweepy.API(auth, wait_on_rate_limit=True)
 
             # This is a SaaS app: we decide on the users following qualitative research
             users = ["SergioChouza", "CarlosMaslaton"]
