@@ -41,6 +41,11 @@ except Exception as e:
     print(f"Database error: {str(e)}")
 import twint
 
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+
 def fetch_tweets_and_update_counts():
     with app.app_context():
         try:
@@ -48,21 +53,22 @@ def fetch_tweets_and_update_counts():
             users = ["SergioChouza", "CarlosMaslaton"]
             total_tweet_increase = 0
 
+            # Setup Chrome options
+            chrome_options = webdriver.ChromeOptions()
+            chrome_options.add_argument("--headless")  # Ensure GUI is off
+            chrome_options.add_argument("--no-sandbox")
+            chrome_options.add_argument("--disable-dev-shm-usage")
+
+            # Choose Chrome Browser
+            webdriver_service = Service(ChromeDriverManager().install())
+            driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
+
             for user in users:
-                # Create a Twint configuration
-                c = twint.Config()
-                c.Username = user
-                c.Limit = 100  # Adjust this value based on your needs
-                c.Pandas = True
+                driver.get(f"https://twitter.com/{user}")
 
-                # Run the search
-                twint.run.Search(c)
-
-                # Get the resulting DataFrame
-                Tweets_df = twint.storage.panda.Tweets_df
-                
                 # Get the tweet count
-                tweet_count = len(Tweets_df)
+                tweet_count_element = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[2]/div/div/div[1]/div/div[5]/div[2]/a/span[1]/span')
+                tweet_count = int(tweet_count_element.text.replace(',', ''))
 
                 # Get the user from the database
                 db_user = User.query.filter_by(name=user).first()
@@ -101,10 +107,14 @@ def fetch_tweets_and_update_counts():
             app.logger.info("Fetch job running")
             app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")
 
+            # Close the browser
+            driver.quit()
+
         except Exception as e:
             # Log the exception details
             app.logger.error(f"Error in fetch_tweets_and_update_counts: {str(e)}")
             return str(e)
+
 
 def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
