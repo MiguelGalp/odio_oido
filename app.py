@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-import tweepy
+import twint
 import os
 
 
@@ -39,29 +39,32 @@ try:
         db.create_all()
 except Exception as e:
     print(f"Database error: {str(e)}")
+import twint
+
 def fetch_tweets_and_update_counts():
     with app.app_context():
         try:
-            # Twitter API credentials
-            consumer_key = os.getenv("TWITTER_CONSUMER_KEY")
-            consumer_secret = os.getenv("TWITTER_CONSUMER_SECRET")
-            access_token = os.getenv("TWITTER_ACCESS_TOKEN")
-            access_token_secret = os.getenv("TWITTER_ACCESS_TOKEN_SECRET")
-            
-            # Authenticate to Twitter
-            auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-            auth.set_access_token(access_token, access_token_secret)
-            
-            # Create API object with v1 endpoint
-            api = tweepy.API(auth, wait_on_rate_limit=True)
-
             # This is a SaaS app: we decide on the users following qualitative research
             users = ["SergioChouza", "CarlosMaslaton"]
             total_tweet_increase = 0
 
             for user in users:
-                # Store needed values for tweets and users within the function´s scope
-                user_data = api.get_user(username=user)
+                # Create a Twint configuration
+                c = twint.Config()
+                c.Username = user
+                c.Limit = 100  # Adjust this value based on your needs
+                c.Pandas = True
+
+                # Run the search
+                twint.run.Search(c)
+
+                # Get the resulting DataFrame
+                Tweets_df = twint.storage.panda.Tweets_df
+                
+                # Get the tweet count
+                tweet_count = len(Tweets_df)
+
+                # Get the user from the database
                 db_user = User.query.filter_by(name=user).first()
 
                 # Create user if needed
@@ -70,13 +73,13 @@ def fetch_tweets_and_update_counts():
                     db.session.add(db_user)
 
                 # Calculate difference between new and recorded tweet count
-                tweet_increase = user_data.public_metrics["tweet_count"] - db_user.tweet_count
+                tweet_increase = tweet_count - db_user.tweet_count
 
                 # Update tweet increase within the users loop
                 total_tweet_increase += tweet_increase
 
                 # Record updated tweet count in db
-                db_user.tweet_count = user_data.public_metrics["tweet_count"]
+                db_user.tweet_count = tweet_count
 
                 # Create a new FetchTime record for each user in each fetch
                 fetch_time_record = FetchTime(
@@ -98,12 +101,11 @@ def fetch_tweets_and_update_counts():
             app.logger.info("Fetch job running")
             app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")
 
-        except tweepy.errors.TweepyException as e:
-            app.logger.error(f"Tweepy error: {e.response.text}")
-            return str(e)
         except Exception as e:
+            # Log the exception details
             app.logger.error(f"Error in fetch_tweets_and_update_counts: {str(e)}")
             return str(e)
+
 def get_current_toxicity():
     # Setup last fetch as the instance of db within this scope
     total_increase_record = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
