@@ -42,12 +42,6 @@ try:
         db.create_all()
 except Exception as e:
     print(f"Database error: {str(e)}")
-import twint
-
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
 
 def fetch_tweets_and_update_counts():
     with app.app_context():
