@@ -98,7 +98,7 @@ def fetch_tweets_and_update_counts():
             app.logger.info("Fetch job running")
             app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")
 
-        except tweepy.TweepError as e:
+        except tweepy.errors.TweepyException as e:
             app.logger.error(f"Tweepy error: {e.response.text}")
             return str(e)
         except Exception as e:
