@@ -67,7 +67,7 @@ async def fetch_tweets_and_update_engagement():
                 user_id = user.id
 
                 # Get the last 20 tweets for the user using twscrape
-                tweets = await gather(api.user_tweets(user_id, limit=20))
+                tweets = await gather(api.user_tweets(user_id, limit=20, raw=True))
 
                 # Initialize engagement metrics
                 total_likes = 0
