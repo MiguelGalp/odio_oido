@@ -162,15 +162,11 @@ def tweet_activity_route():
 
 @app.route('/')
 def index():
-    tweet_activity_data = tweet_activity_route().get_json()
-    toxicity_data = get_current_toxicity().get_json()
-    tweet_activity = tweet_activity_data.get('message')
-    toxicity = toxicity_data.get('toxicity')
-        # Retrieve the most recent TotalIncrease record from the database
-    total_increase = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).limit(1).first()
+    # Retrieve the most recent User record from the database
+    user = User.query.order_by(User.id.desc()).first()
 
-    # Calculate the time difference between the current time and the timestamp of the most recent TotalIncrease record
-    time_difference = datetime.now(timezone.utc) - total_increase.timestamp
+    # Calculate the time difference between the current time and the timestamp of the most recent User record
+    time_difference = datetime.now(timezone.utc) - user.timestamp
 
     # Convert the time difference to a human-readable format
     if time_difference < timedelta(minutes=1):
@@ -184,18 +180,23 @@ def index():
     else:
         days_ago = time_difference.days
         time_ago = f'{days_ago} day{"s" if days_ago != 1 else ""} ago'
-    if tweet_activity is None or toxicity is None:
+
+    if user is None:
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
-    return render_template('index.html', tweet_activity=tweet_activity, toxicity=toxicity, time_ago=time_ago)
+
+    return render_template('index.html', engagement=user.total_engagement, time_ago=time_ago)
+
 # Only fetch once an hour to maintain measurement standards
-from app import fetch_tweets_and_update_counts
+from app import fetch_tweets_and_update_engagement
 
 def run_cron_job():
-    fetch_tweets_and_update_counts()
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(fetch_tweets_and_update_engagement())
 
 if __name__ == "__main__":
     run_cron_job()
+
 
 
 
