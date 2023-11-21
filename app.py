@@ -76,10 +76,9 @@ async def fetch_tweets_and_update_engagement():
 
                 # Process engagement metrics for each tweet
                 for tweet in tweets:
-                    likes = tweet.likeCount
-                    retweets = tweet.retweetCount
-                    replies = tweet.replyCount
-
+                    likes = tweet["likeCount"]
+                    retweets = tweet["retweetCount"]
+                    replies = tweet["replyCount"]
                     # Update total engagement metrics
                     total_likes += likes
                     total_retweets += retweets
