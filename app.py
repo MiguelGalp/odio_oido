@@ -58,13 +58,16 @@ async def fetch_tweets_and_update_engagement():
     
     with app.app_context():
         try:
-            
             # List of users for whom you want to track engagement
-            users = ["SergioChouza", "CarlosMaslaton"]
+            usernames = ["SergioChouza", "CarlosMaslaton"]
 
-            for user in users:
+            for username in usernames:
+                # Get the user ID from the username
+                user = await api.user_by_login(username)
+                user_id = user.id
+
                 # Get the last 20 tweets for the user using twscrape
-                tweets = await gather(api.user_tweets(user, limit=20))
+                tweets = await gather(api.user_tweets(user_id, limit=20))
 
                 # Initialize engagement metrics
                 total_likes = 0
