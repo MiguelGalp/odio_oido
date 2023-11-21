@@ -20,13 +20,13 @@
     <p style="margin-top: 6px;">--</p>
   </div>
 
-  <!-- Add a new section for displaying current toxicity -->
+  <!-- Add a new section for displaying current engagement -->
   <div class="container">
-    <h4>Current Temperature&nbsp;<sup>1</sup></h3>
-      <p id="current-toxicity" class="lead" style="margin-top: -6px">{{ toxicity }}</p>
+    <h4>Current Engagement <sup>1</sup></h3>
+      <p id="current-engagement" class="lead" style="margin-top: -6px">{{ engagement }}</p>
   </div>
 
-  <!-- Add a new section for displaying current toxicity -->
+  <!-- Add a new section for displaying last update time -->
   <div class="container">
     <h4>Updated</h3>
       <p id="time_ago" class="lead" style="margin-top: -6px">{{ time_ago }}</p>
@@ -34,14 +34,14 @@
 
   <!-- Add a new section for displaying tweet activity -->
   <div class="container">
-    <h4>Tweet Activity&nbsp;<sup>2</sup></h3>
+    <h4>Tweet Activity <sup>2</sup></h3>
       <p id="tweet-activity" class="lead" style="margin-top: -6px">{{ tweet_activity }}</p>
   </div>
   <div class="container">
     <p style="margin-top: -6px">--</p>
   </div>
   <div class="container">
-  <small>1. Temperature is obtained by tracking tweet counts.</small>
+  <small>1. Engagement is obtained by tracking likes, retweets, and replies.</small>
   <small>2. Tweet activity is sensitive to singular increases.</small>
 </div>
   {% endblock %}
