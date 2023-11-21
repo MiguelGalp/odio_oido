@@ -1,17 +1,11 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
-
+import json
+import asyncio
 import os
-
-
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 import logging
@@ -26,7 +20,14 @@ Bootstrap(app)
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50), unique=True, nullable=False)
-    tweet_count = db.Column(db.Integer)
+class Tweet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', backref=db.backref('tweets', lazy=True))
+    content = db.Column(db.String(280))
+    likes = db.Column(db.Integer)
+    retweets = db.Column(db.Integer)
+    replies = db.Column(db.Integer)
 class FetchTime(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -44,74 +45,47 @@ try:
 except Exception as e:
     print(f"Database error: {str(e)}")
 
-def fetch_tweets_and_update_counts():
+async def fetch_tweets_and_update_engagement():
     with app.app_context():
         try:
-            # This is a SaaS app: we decide on the users following qualitative research
+            # Add your accounts
+            await api.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
+            await api.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
+            await api.pool.login_all()
+
+            # List of users for whom you want to track engagement
             users = ["SergioChouza", "CarlosMaslaton"]
-            total_tweet_increase = 0
-
-            # Setup Chrome options
-            chrome_options = webdriver.ChromeOptions()
-            chrome_options.add_argument("--headless")  # Ensure GUI is off
-            chrome_options.add_argument("--no-sandbox")
-            chrome_options.add_argument("--disable-dev-shm-usage")
-
-            # Choose Chrome Browser
-            webdriver_service = Service(ChromeDriverManager().install())
-            driver = webdriver.Chrome(service=webdriver_service, options=chrome_options)
 
             for user in users:
-                driver.get(f"https://twitter.com/{user}")
+                # Get the last 20 tweets for the user using twscrape
+                tweets = await twscrape.search(f"from:{user}", limit=20)
 
-                # Get the tweet count
-                tweet_count_element = driver.find_element(By.XPATH, '//*[@id="react-root"]/div/div/div[2]/main/div/div/div/div[1]/div/div[2]/div/div/div[1]/div/div[5]/div[2]/a/span[1]/span')
-                tweet_count = int(tweet_count_element.text.replace(',', ''))
+                # Process engagement metrics for each tweet
+                for tweet in tweets:
+                    likes = tweet["likeCount"]
+                    retweets = tweet["retweetCount"]
+                    replies = tweet["replyCount"]
 
-                # Get the user from the database
-                db_user = User.query.filter_by(name=user).first()
+                    # Create or update the tweet record in the database
+                    db_tweet = Tweet.query.filter_by(id=tweet["id"]).first()
+                    if db_tweet is None:
+                        db_tweet = Tweet(id=tweet["id"], user_id=user.id, content=tweet["content"], likes=likes, retweets=retweets, replies=replies)
+                        db.session.add(db_tweet)
+                    else:
+                        db_tweet.likes = likes
+                        db_tweet.retweets = retweets
+                        db_tweet.replies = replies
 
-                # Create user if needed
-                if db_user is None:
-                    db_user = User(name=user, tweet_count=0)
-                    db.session.add(db_user)
-
-                # Calculate difference between new and recorded tweet count
-                tweet_increase = tweet_count - db_user.tweet_count
-
-                # Update tweet increase within the users loop
-                total_tweet_increase += tweet_increase
-
-                # Record updated tweet count in db
-                db_user.tweet_count = tweet_count
-
-                # Create a new FetchTime record for each user in each fetch
-                fetch_time_record = FetchTime(
-                    user_id=db_user.id,
-                    last_fetched=datetime.now(timezone.utc),
-                    tweet_increase=tweet_increase
-                )
-                db.session.add(fetch_time_record)
-
-            # Create a new TotalIncrease record for each fetch
-            total_increase_record = TotalIncrease(
-                timestamp=datetime.now(timezone.utc),
-                total_tweet_increase=total_tweet_increase
-            )
-            db.session.add(total_increase_record)
             db.session.commit()
-
-            # Log the fetch details
-            app.logger.info("Fetch job running")
-            app.logger.info(f"Total Tweet Increase: {total_tweet_increase}")
-
-            # Close the browser
-            driver.quit()
 
         except Exception as e:
             # Log the exception details
-            app.logger.error(f"Error in fetch_tweets_and_update_counts: {str(e)}")
+            app.logger.error(f"Error in fetch_tweets_and_update_engagement: {str(e)}")
             return str(e)
+
+# Run the function
+loop = asyncio.get_event_loop()
+loop.run_until_complete(fetch_tweets_and_update_engagement())
 
 
 def get_current_toxicity():
