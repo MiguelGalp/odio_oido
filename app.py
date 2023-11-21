@@ -9,7 +9,8 @@ from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 import logging
-import twscrape
+from twscrape import API, gather
+from twscrape.logger import set_log_level
 
 
 load_dotenv()
@@ -48,6 +49,7 @@ except Exception as e:
     print(f"Database error: {str(e)}")
 
 async def fetch_tweets_and_update_engagement():
+    api = API()  # or API("path-to.db") - default is `accounts.db`
     with app.app_context():
         try:
             # Add your accounts
