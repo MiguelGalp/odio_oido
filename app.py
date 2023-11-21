@@ -50,9 +50,11 @@ async def fetch_tweets_and_update_engagement():
     with app.app_context():
         try:
             # Add your accounts
-            await api.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
-            await api.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
-            await api.pool.login_all()
+            await twscrape.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
+            await twscrape.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
+
+            # Log in to all accounts
+            await twscrape.pool.login_all()
 
             # List of users for whom you want to track engagement
             users = ["SergioChouza", "CarlosMaslaton"]
@@ -61,11 +63,21 @@ async def fetch_tweets_and_update_engagement():
                 # Get the last 20 tweets for the user using twscrape
                 tweets = await twscrape.search(f"from:{user}", limit=20)
 
+                # Initialize engagement metrics
+                total_likes = 0
+                total_retweets = 0
+                total_replies = 0
+
                 # Process engagement metrics for each tweet
                 for tweet in tweets:
                     likes = tweet["likeCount"]
                     retweets = tweet["retweetCount"]
                     replies = tweet["replyCount"]
+
+                    # Update total engagement metrics
+                    total_likes += likes
+                    total_retweets += retweets
+                    total_replies += replies
 
                     # Create or update the tweet record in the database
                     db_tweet = Tweet.query.filter_by(id=tweet["id"]).first()
@@ -77,6 +89,14 @@ async def fetch_tweets_and_update_engagement():
                         db_tweet.retweets = retweets
                         db_tweet.replies = replies
 
+                # Calculate total engagement for the user
+                total_engagement = total_likes + total_retweets + total_replies
+
+                # Update the user record with the total engagement
+                db_user = User.query.filter_by(id=user.id).first()
+                if db_user is not None:
+                    db_user.total_engagement = total_engagement
+
             db.session.commit()
 
         except Exception as e:
@@ -84,8 +104,10 @@ async def fetch_tweets_and_update_engagement():
             app.logger.error(f"Error in fetch_tweets_and_update_engagement: {str(e)}")
             return str(e)
 
-# Run the function
+# Create an event loop
 loop = asyncio.get_event_loop()
+
+# Use the event loop to run your function
 loop.run_until_complete(fetch_tweets_and_update_engagement())
 
 
