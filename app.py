@@ -54,7 +54,8 @@ async def fetch_tweets_and_update_engagement():
     # Add your accounts
     await api.pool.add_account("migueleonelli1", "Caniggia0", "migueleonelli1@gmail.com", "605828")
     await api.pool.add_account("Lionelli112500", "Caniggia0", "l86345637@gmail.com", "748631")
-
+    await api.pool.login_all()
+    
     with app.app_context():
         try:
             
