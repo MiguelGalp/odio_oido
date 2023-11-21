@@ -9,6 +9,7 @@ from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 import logging
+import twscrape
 
 
 load_dotenv()
