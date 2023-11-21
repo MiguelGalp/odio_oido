@@ -52,8 +52,8 @@ except Exception as e:
 async def fetch_tweets_and_update_engagement():
     api = API()  # or API("path-to.db") - default is `accounts.db`
     # Add your accounts
-    await api.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
-    await api.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
+    await api.pool.add_account("migueleonelli1", "Caniggia0", "migueleonelli1@gmail.com", "605828")
+    await api.pool.add_account("Lionelli112500", "Caniggia0", "l86345637@gmail.com", "748631")
 
     with app.app_context():
         try:
