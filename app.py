@@ -51,15 +51,16 @@ except Exception as e:
 
 async def fetch_tweets_and_update_engagement():
     api = API()  # or API("path-to.db") - default is `accounts.db`
+    # Add your accounts
+    await twscrape.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
+    await twscrape.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
+
+    # Log in to all accounts
+    await twscrape.pool.login_all()
+
     with app.app_context():
         try:
-            # Add your accounts
-            await twscrape.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
-            await twscrape.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
-
-            # Log in to all accounts
-            await twscrape.pool.login_all()
-
+            
             # List of users for whom you want to track engagement
             users = ["SergioChouza", "CarlosMaslaton"]
 
