@@ -52,8 +52,8 @@ except Exception as e:
 async def fetch_tweets_and_update_engagement():
     api = API()  # or API("path-to.db") - default is `accounts.db`
     # Add your accounts
-    await api.pool.add_account("migueleonelli1", "Caniggia0", "migueleonelli1@gmail.com", "605828")
-    await api.pool.add_account("Lionelli112500", "Caniggia0", "l86345637@gmail.com", "748631")
+    await api.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
+    await api.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
     await api.pool.login_all()
     
     with app.app_context():
@@ -80,21 +80,26 @@ async def fetch_tweets_and_update_engagement():
                     retweets = tweet.retweetCount
                     replies = tweet.replyCount
 
-                    # Update total engagement metrics
-                    total_likes += likes
-                    total_retweets += retweets
-                    total_replies += replies
+                # Update total engagement metrics
+                total_likes += likes
+                total_retweets += retweets
+                total_replies += replies
 
-                    # Create or update the tweet record in the database
-                    db_tweet = Tweet.query.filter_by(id=tweet.id).first()
-               
-                    if db_tweet is None:
-                        db_tweet = Tweet(id=tweet.id, user_id=user.id, likes=likes, retweets=retweets, replies=replies)
-                        db.session.add(db_tweet)
-                    else:
-                        db_tweet.likes = likes
-                        db_tweet.retweets = retweets
-                        db_tweet.replies = replies
+                # Create or update the tweet record in the database
+                db_tweet = Tweet.query.filter_by(id=tweet.id).first()
+                if db_tweet is None:
+                 # Ensure the user exists in the user table
+                    db_user = User.query.filter_by(id=user_id).first()
+                    if db_user is None:
+                        db_user = User(id=user_id)
+                        db.session.add(db_user)
+
+                    db_tweet = Tweet(id=tweet.id, user_id=user_id, content=tweet.content, likes=likes, retweets=retweets, replies=replies)
+                    db.session.add(db_tweet)
+                else:
+                    db_tweet.likes = likes
+                    db_tweet.retweets = retweets
+                    db_tweet.replies = replies
 
                 # Calculate total engagement for the user
                 total_engagement = total_likes + total_retweets + total_replies
