@@ -59,7 +59,7 @@ async def fetch_tweets_and_update_engagement():
     with app.app_context():
         try:
             # List of users for whom you want to track engagement
-            usernames = ["SergioChouza", "CarlosMaslaton"]
+            usernames = ["SergioChouza"]
 
             for username in usernames:
                 # Get the user ID from the username
@@ -67,7 +67,7 @@ async def fetch_tweets_and_update_engagement():
                 user_id = user.id
 
                 # Get the last 20 tweets for the user using twscrape
-                tweets = await gather(api.user_tweets(user_id, limit=20, raw=True))
+                tweets = await gather(api.user_tweets(user_id, limit=20))
 
                 # Initialize engagement metrics
                 total_likes = 0
@@ -76,18 +76,20 @@ async def fetch_tweets_and_update_engagement():
 
                 # Process engagement metrics for each tweet
                 for tweet in tweets:
-                    likes = tweet["likeCount"]
-                    retweets = tweet["retweetCount"]
-                    replies = tweet["replyCount"]
+                    likes = tweet.likeCount
+                    retweets = tweet.retweetCount
+                    replies = tweet.replyCount
+
                     # Update total engagement metrics
                     total_likes += likes
                     total_retweets += retweets
                     total_replies += replies
 
                     # Create or update the tweet record in the database
-                    db_tweet = Tweet.query.filter_by(id=tweet["id"]).first()
+                    db_tweet = Tweet.query.filter_by(id=tweet.id).first()
+               
                     if db_tweet is None:
-                        db_tweet = Tweet(id=tweet["id"], user_id=user.id, content=tweet["content"], likes=likes, retweets=retweets, replies=replies)
+                        db_tweet = Tweet(id=tweet.id, user_id=user.id, likes=likes, retweets=retweets, replies=replies)
                         db.session.add(db_tweet)
                     else:
                         db_tweet.likes = likes
