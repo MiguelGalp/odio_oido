@@ -105,7 +105,11 @@ def index():
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
 
+    # Refresh the user object to get the latest state from the database
+    db.session.refresh(user)
+
     return render_template('index.html', engagement=user.total_engagement)
+
 
 
 
