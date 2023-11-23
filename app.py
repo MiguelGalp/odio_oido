@@ -101,15 +101,14 @@ def index():
     # Ensure the session is up-to-date with the latest state of the database
     db.session.commit()
 
-    # Retrieve the most recent User record from the database
-    user = User.query.order_by(User.id.desc()).first()
+    # Retrieve the most recent User records from the database
+    users = User.query.order_by(User.id.desc()).limit(2).all()
 
-    if user is None:
+    if len(users) < 2:
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
 
-    return render_template('index.html', engagement=user.total_engagement)
-
+    return render_template('index.html', engagement1=users[0].total_engagement, engagement2=users[1].total_engagement)
 
 
 
