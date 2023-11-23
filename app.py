@@ -125,15 +125,7 @@ def index():
 
     return render_template('index.html', engagement=user.total_engagement, time_ago=time_ago)
 
-# Only fetch once an hour to maintain measurement standards
-from app import fetch_tweets_and_update_engagement
 
-def run_cron_job():
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(fetch_tweets_and_update_engagement())
-
-if __name__ == "__main__":
-    run_cron_job()
 
 
 
