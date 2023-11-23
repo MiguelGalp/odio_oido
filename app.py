@@ -52,14 +52,14 @@ except Exception as e:
 async def fetch_tweets_and_update_engagement():
     api = API()  # or API("path-to.db") - default is `accounts.db`
     # Add your accounts
-    await api.pool.add_account("Mglamour2465", "Caniggia0", "mikeglamour8@gmail.com", "445841")
-    await api.pool.add_account("MoleculePe43018", "Caniggia0", "postmolecule@gmail.com", "166112")
+    await api.pool.add_account("Poli637021", "Caniggia0", "mgalperinverto@newhaven.edu", "204460")
+    await api.pool.add_account("Lionelli112500", "Caniggia0", "l86345637@gmail.com", "748631")
     await api.pool.login_all()
     
     with app.app_context():
         try:
             # List of users for whom you want to track engagement
-            usernames = ["SergioChouza"]
+            usernames = ["CarlosMaslaton"]
 
             for username in usernames:
                 # Get the user ID from the username
@@ -67,7 +67,7 @@ async def fetch_tweets_and_update_engagement():
                 user_id = user.id
 
                 # Get the last 20 tweets for the user using twscrape
-                tweets = await gather(api.user_tweets(user_id, limit=20))
+                tweets = await gather(api.user_tweets(user_id, limit=10))
 
                 # Initialize engagement metrics
                 total_likes = 0
@@ -94,7 +94,7 @@ async def fetch_tweets_and_update_engagement():
                         db_user = User(id=user_id)
                         db.session.add(db_user)
 
-                    db_tweet = Tweet(id=tweet.id, user_id=user_id, content=tweet.content, likes=likes, retweets=retweets, replies=replies)
+                    db_tweet = Tweet(id=tweet.id, user_id=user_id, likes=likes, retweets=retweets, replies=replies)
                     db.session.add(db_tweet)
                 else:
                     db_tweet.likes = likes
@@ -104,9 +104,12 @@ async def fetch_tweets_and_update_engagement():
                 # Calculate total engagement for the user
                 total_engagement = total_likes + total_retweets + total_replies
 
-                # Update the user record with the total engagement
-                db_user = User.query.filter_by(id=user.id).first()
-                if db_user is not None:
+                # Ensure the user exists in the user table
+                db_user = User.query.filter_by(id=user_id).first()
+                if db_user is None:
+                    db_user = User(id=user_id, name=username, total_engagement=total_engagement)
+                    db.session.add(db_user)
+                else:
                     db_user.total_engagement = total_engagement
 
             db.session.commit()
