@@ -1,17 +1,15 @@
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-import json
-import asyncio
+
 import os
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 import logging
-import twscrape
-from twscrape import API, gather
-from twscrape.logger import set_log_level
+
+
 
 
 load_dotenv()
