@@ -2,6 +2,7 @@ Gunicorn
 amqp==5.1.1
 APScheduler==3.10.4
 Authlib==0.15.6
+flask_babelex==0.9.4
 billiard==4.1.0
 blinker==1.6.3
 certifi==2023.7.22
