@@ -72,7 +72,7 @@ def engagement_route():
 def tweet_activity_route():
     # Fetch the last four hours of Tweet records
     four_hours_ago = datetime.now(timezone.utc) - timedelta(hours=4)
-    records = Tweet.query.filter(Tweet.timestamp >= four_hours_ago).all()
+    records = TotalIncrease.query.filter(TotalIncrease.timestamp >= four_hours_ago).all()
     # Ensure all timestamps are timezone-aware
     for record in records:
         if record.timestamp.tzinfo is None or record.timestamp.tzinfo.utcoffset(record.timestamp) is None:
