@@ -68,34 +68,6 @@ def get_current_engagement():
 def engagement_route():
     return get_current_engagement()
 
-@app.route('/tweet_activity', methods=['GET'])
-def tweet_activity_route():
-    # Fetch the last four hours of Tweet records
-    four_hours_ago = datetime.now(timezone.utc) - timedelta(hours=4)
-    records = TotalIncrease.query.filter(TotalIncrease.timestamp >= four_hours_ago).all()
-    # Ensure all timestamps are timezone-aware
-    for record in records:
-        if record.timestamp.tzinfo is None or record.timestamp.tzinfo.utcoffset(record.timestamp) is None:
-            record.timestamp = record.timestamp.replace(tzinfo=timezone.utc)
-    # Calculate the total engagement for each hour
-    engagements = []
-    for i in range(4):
-        start_time = datetime.now(timezone.utc) - timedelta(hours=i+1)
-        end_time = datetime.now(timezone.utc) - timedelta(hours=i)
-        engagement = sum((record.likes + record.retweets + record.replies) for record in records if start_time <= record.timestamp < end_time)
-        engagements.append((start_time, engagement))
-    # Check for any spikes in tweet activity
-    spike_times = []
-    for i in range(1, 4):
-        if engagements[i][1] > 2 * sum(engagement[1] for engagement in engagements[:i]):
-            spike_times.append(engagements[i][0])
-    if spike_times:
-        message = f"Spikes at the following times: {', '.join(time.strftime('%H:%M') for time in spike_times)}"
-    else:
-        message = "No significant spike in tweet activity in the last four hours."
-    return jsonify({"message": message})
-
-
 @app.route('/')
 def index():
     # Ensure the session is up-to-date with the latest state of the database
