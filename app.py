@@ -86,6 +86,13 @@ def index():
     # Convert the total_increase records into a list of dictionaries
     data = [{"timestamp": format_datetime(ti.timestamp), "total_tweet_engagement": ti.total_tweet_engagement} for ti in total_increases]
 
+    # Retrieve the timestamp of the most recent TotalIncrease record
+    last_fetch = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
+    if last_fetch is not None:
+        last_fetch = last_fetch.timestamp
+    else:
+        last_fetch = "No fetches yet"
+
     if len(users) < 2:
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
