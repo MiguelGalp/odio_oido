@@ -47,8 +47,8 @@
   <div class="container">
     <h4>Heat Map</h4>
     <canvas id="heatmap"></canvas>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
+window.onload = function() {
     // Register the matrix controller with Chart.js
     Chart.register(Chart.controllers.MatrixController);
 
@@ -57,23 +57,25 @@
 
     // Create your heat map
     var heatmap = new Chart(ctx, {
-      type: 'matrix',  // Use the matrix type for a heat map
-      data: {
-        datasets: [{
-            label: 'Heat Map',
-            data: {{ data|tojson }},  // Pass your data here
-            backgroundColor: function(context) {
-                var value = context.dataset.data[context.dataIndex].v;
-                var alpha = value / 100000;  // Scale the alpha value based on your data
-                return 'rgba(255, 0, 0, ' + alpha + ')';
-            },
-        }]
-    },
-    options: {
-        // Add any options you need here
-    }
-});
-    </script>
+        type: 'matrix',  // Use the matrix type for a heat map
+        data: {
+            datasets: [{
+                label: 'Heat Map',
+                data: {{ data|tojson }},  // Pass your data here
+                backgroundColor: function(context) {
+                    var value = context.dataset.data[context.dataIndex].v;
+                    var alpha = value / 100000;  // Scale the alpha value based on your data
+                    return 'rgba(255, 0, 0, ' + alpha + ')';
+                },
+            }]
+        },
+        options: {
+            // Add any options you need here
+        }
+    });
+};
+</script>
+
 
   </div>
 
