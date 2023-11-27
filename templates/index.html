@@ -5,9 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>X Temp.</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
-  <script src="https://unpkg.com/chartjs-chart-matrix"></script>
-  <script src="https://unpkg.com/chartjs-chart-matrix"></script>
 </head>
 
 <body>
@@ -39,44 +36,8 @@
       <p id="current-engagement-3" class="lead" style="margin-top: -6px">{{ engagement3 }}</p>
   </div>
   <div class="container">
-  <small>1. Engagement is obtained by tracking likes, retweets, and replies.</small>
-  <small>2. Last fetch happened at: {{ last_fetch }}</small>
-</div>
-
-  <!-- Add a new section for the heat map -->
-  <div class="container">
-    <h4>Heat Map</h4>
-    <canvas id="heatmap"></canvas>
-    <script>
-window.onload = function() {
-    // Register the matrix controller with Chart.js
-    Chart.register(Chart.controllers.MatrixController);
-
-    // Get the context of the canvas element
-    var ctx = document.getElementById('heatmap').getContext('2d');
-
-    // Create your heat map
-    var heatmap = new Chart(ctx, {
-        type: 'matrix',  // Use the matrix type for a heat map
-        data: {
-            datasets: [{
-                label: 'Heat Map',
-                data: {{ data|tojson }},  // Pass your data here
-                backgroundColor: function(context) {
-                    var value = context.dataset.data[context.dataIndex].v;
-                    var alpha = value / 100000;  // Scale the alpha value based on your data
-                    return 'rgba(255, 0, 0, ' + alpha + ')';
-                },
-            }]
-        },
-        options: {
-            // Add any options you need here
-        }
-    });
-};
-</script>
-
-
+    <small>1. Engagement is obtained by tracking likes, retweets, and replies.</small>
+    <small>2. Last fetch happened at: {{ last_fetch }}</small>
   </div>
 
   {% endblock %}
