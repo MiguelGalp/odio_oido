@@ -76,14 +76,21 @@ def index():
     # Retrieve the most recent User records from the database
     users = User.query.order_by(User.id.desc()).limit(3).all()
 
-    # Retrieve the timestamp of the most recent TotalIncrease record
-    last_fetch = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first().timestamp
+    # Get the current time and 12 hours ago
+    now = datetime.now()
+    twelve_hours_ago = now - timedelta(hours=12)
+
+    # Retrieve the total_increase records from the last 12 hours
+    total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp.between(twelve_hours_ago, now)).order_by(TotalIncrease.timestamp.asc()).all()
+
+    # Convert the total_increase records into a list of dictionaries
+    data = [{"timestamp": format_datetime(ti.timestamp), "total_tweet_engagement": ti.total_tweet_engagement} for ti in total_increases]
 
     if len(users) < 2:
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
 
-    return render_template('index.html', engagement1=users[0].total_engagement, engagement2=users[1].total_engagement, engagement3=users[2].total_engagement, last_fetch=format_datetime(last_fetch))
+    return render_template('index.html', engagement1=users[0].total_engagement, engagement2=users[1].total_engagement, engagement3=users[2].total_engagement, last_fetch=format_datetime(last_fetch), data=data)
 
 
 
