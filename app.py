@@ -39,7 +39,7 @@ class FetchTime(db.Model):
 class TotalIncrease(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     timestamp = db.Column(db.DateTime(timezone=True))
-    total_tweet_increase = db.Column(db.Integer)
+    total_tweet_engagement = db.Column(db.Integer)
 try:
     with app.app_context():
         # Create the database tables
