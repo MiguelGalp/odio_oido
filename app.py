@@ -48,21 +48,35 @@ except Exception as e:
     print(f"Database error: {str(e)}")
 
 def get_current_engagement():
-    # Setup last fetch as the instance of db within this scope
-    last_tweet = Tweet.query.order_by(Tweet.id.desc()).first()
-    if last_tweet is None:
-        app.logger.warning("No Tweet records found")
-        return jsonify({"error": "No Tweet records found"})
-    # Retrieve the engagement metrics of last tweet
-    total_engagement = last_tweet.likes + last_tweet.retweets + last_tweet.replies
-    app.logger.info(f"Total engagement of last tweet: {total_engagement}")
-    # The app´s principal logic is represented here
-    if total_engagement < 100:
-        return jsonify({"engagement": "Green"})
-    elif total_engagement < 500:
-        return jsonify({"engagement": "Yellow"})
-    else:
-        return jsonify({"engagement": "Red"})
+    # Get all users
+    users = User.query.all()
+    if not users:
+        app.logger.warning("No User records found")
+        return jsonify({"error": "No User records found"})
+
+    # Number of followers for each user
+    followers = [89000.0, 330000.0, 1300000.0]
+
+    # Initialize a list to store user engagement
+    user_engagements = []
+
+    # Calculate total engagement for all users
+    for i, user in enumerate(users):
+        total_engagement = user.total_engagement / len(user.tweets)
+        normalized_engagement = total_engagement / followers[i]
+        app.logger.info(f"Normalized engagement of user {user.name}: {normalized_engagement}")
+
+        # Add the user and their engagement to the list
+        user_engagements.append((user.name, normalized_engagement))
+
+    # Sort the list by engagement in descending order
+    user_engagements.sort(key=lambda x: x[1], reverse=True)
+
+    # Convert the list to a dictionary
+    user_ranking = {name: engagement for name, engagement in user_engagements}
+
+    # Return the user ranking
+    return jsonify(user_ranking)
 
 @app.route('/engagement', methods=['GET'])
 def engagement_route():
