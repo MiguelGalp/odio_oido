@@ -7,6 +7,7 @@ from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
+from collections import OrderedDict
 import logging
 
 
@@ -76,8 +77,8 @@ def get_current_engagement():
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
-    # Convert the sorted list to a dictionary while maintaining order
-    user_ranking = {}
+    # Create an ordered dictionary while maintaining order
+    user_ranking = OrderedDict()
     for name, engagement in user_engagements:
         user_ranking[name] = engagement
 
