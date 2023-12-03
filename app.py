@@ -83,7 +83,7 @@ def get_current_engagement():
         user_ranking[name] = engagement
 
     # Return the user ranking
-    return jsonify(user_ranking)
+    return jsonify(user_engagements)
 
 @app.route('/engagement', methods=['GET'])
 def engagement_route():
