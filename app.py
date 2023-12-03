@@ -62,7 +62,11 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        total_engagement = user.total_engagement / len(user.tweets)
+        if len(user.tweets) == 20:
+            total_engagement = user.total_engagement
+        else:
+            total_engagement = user.total_engagement / len(user.tweets)
+        
         normalized_engagement = total_engagement / followers[i]
         app.logger.info(f"Normalized engagement of user {user.name}: {normalized_engagement}")
 
@@ -74,7 +78,7 @@ def get_current_engagement():
 
     # Convert the list to a dictionary
     user_ranking = {name: engagement for name, engagement in user_engagements}
-
+    
     # Return the user ranking
     return jsonify(user_ranking)
 
