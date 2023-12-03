@@ -76,9 +76,11 @@ def get_current_engagement():
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
-    # Convert the list to a dictionary
-    user_ranking = {name: engagement for name, engagement in user_engagements}
-    
+    # Convert the sorted list to a dictionary while maintaining order
+    user_ranking = {}
+    for name, engagement in user_engagements:
+        user_ranking[name] = engagement
+
     # Return the user ranking
     return jsonify(user_ranking)
 
