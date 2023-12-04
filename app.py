@@ -70,7 +70,7 @@ def get_current_engagement():
             total_engagement = user.total_engagement / len(user.tweets)
         
         # Adjust the normalization factor
-        adjusted_followers = math.log(followers[i] + 1)
+        adjusted_followers = math.sqrt(followers[i] + 1)
         normalized_engagement = total_engagement / adjusted_followers
         app.logger.info(f"Normalized engagement of user {user.name}: {normalized_engagement}")
 
