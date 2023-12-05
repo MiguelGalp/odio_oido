@@ -51,13 +51,13 @@ except Exception as e:
 
 def get_current_engagement():
     # Get all users
-    users = User.query.all()
+    users = User.query.order_by(User.id).all()
     if not users:
         app.logger.warning("No User records found")
         return jsonify({"error": "No User records found"})
 
     # Number of followers for each user
-    followers = [330000.0, 89000.0, 1300000.0, 3300000.0, 330000.0, 125000.0]
+    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 89000.0]
 
     # Initialize a list to store user engagement
     user_engagements = []
