@@ -57,7 +57,7 @@ def get_current_engagement():
         return jsonify({"error": "No User records found"})
 
     # Number of followers for each user
-    followers = [89000.0, 330000.0, 1300000.0]
+    followers = [89000.0, 330000.0, 1300000.0, 3300000.0, 330000.0, 125000.0]
 
     # Initialize a list to store user engagement
     user_engagements = []
@@ -98,7 +98,7 @@ def index():
     db.session.commit()
 
     # Retrieve the most recent User records from the database
-    users = User.query.order_by(User.id.desc()).limit(3).all()
+    users = User.query.order_by(User.id.desc()).limit(6).all()
 
     # Get the current time and 12 hours ago
     now = datetime.now()
