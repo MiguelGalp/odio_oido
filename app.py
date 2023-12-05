@@ -64,15 +64,9 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        average_engagement = user.total_engagement / 20
         
-        # Adjust the normalization factor
-        adjusted_followers = math.sqrt(followers[i] + 1)
-        normalized_engagement = average_engagement / adjusted_followers
-        app.logger.info(f"Normalized engagement of user {user.name}: {normalized_engagement}")
-
         # Add the user and their engagement to the list
-        user_engagements.append((user.name, normalized_engagement))
+        user_engagements.append((user.name, user.total_engagement))
 
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
