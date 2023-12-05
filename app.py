@@ -51,7 +51,7 @@ except Exception as e:
 
 def get_current_engagement():
     # Get all users
-    users = User.query.order_by(User.id.desc()).limit(5).all()
+    users = User.query.order_by(User.id.asc()).limit(5).all()
     if not users:
         app.logger.warning("No User records found")
         return jsonify({"error": "No User records found"})
@@ -89,7 +89,7 @@ def index():
     db.session.commit()
 
     # Retrieve the most recent User records from the database
-    users = User.query.order_by(User.id.desc()).limit(5).all()
+    users = User.query.order_by(User.id.asc()).limit(5).all()
 
     # Get the current time and 12 hours ago
     now = datetime.now()
