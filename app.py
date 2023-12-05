@@ -105,7 +105,7 @@ def index():
     twelve_hours_ago = now - timedelta(hours=12)
 
     # Retrieve the total_increase records from the last 12 hours
-    total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp.between(twelve_hours_ago, now)).order_by(TotalIncrease.timestamp.asc()).all()
+    total_increases = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).limit(12).all()
 
     # Get the total engagement of all users
     engagements = [user.total_engagement for user in users]
