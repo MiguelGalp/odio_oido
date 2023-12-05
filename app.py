@@ -57,7 +57,7 @@ def get_current_engagement():
         return jsonify({"error": "No User records found"})
 
     # Number of followers for each user
-    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 89000.0]
+    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 100000.0]
 
     # Initialize a list to store user engagement
     user_engagements = []
