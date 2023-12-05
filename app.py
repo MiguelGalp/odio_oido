@@ -64,10 +64,7 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        if len(user.tweets) == 10:
-            total_engagement = user.total_engagement
-        else:
-            total_engagement = user.total_engagement / len(user.tweets)
+        average_engagement = user.total_engagement / 10
         
         # Adjust the normalization factor
         adjusted_followers = math.sqrt(followers[i] + 1)
