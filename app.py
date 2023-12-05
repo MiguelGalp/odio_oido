@@ -64,7 +64,7 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        if len(user.tweets) == 20:
+        if len(user.tweets) == 10:
             total_engagement = user.total_engagement
         else:
             total_engagement = user.total_engagement / len(user.tweets)
