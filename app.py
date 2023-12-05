@@ -68,7 +68,7 @@ def get_current_engagement():
         
         # Adjust the normalization factor
         adjusted_followers = math.sqrt(followers[i] + 1)
-        normalized_engagement = total_engagement / adjusted_followers
+        normalized_engagement = average_engagement / adjusted_followers
         app.logger.info(f"Normalized engagement of user {user.name}: {normalized_engagement}")
 
         # Add the user and their engagement to the list
