@@ -64,7 +64,6 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        total_engagement = user.total_engagement
         average_engagement = user.total_engagement / 10
         
         # Adjust the normalization factor
