@@ -20,29 +20,52 @@
     <p style="margin-top: 6px;">--</p>
   </div>
 
-  <!-- Add a new section for displaying current engagement of the first user -->
+  <!-- Add a new section for displaying current engagement of all users -->
   <div class="container">
-    <h4>Current Engagement of User "Politics"</h3>
-      <p id="current-engagement-1" class="lead" style="margin-top: -6px">{{ engagement1 }}</p>
-  </div>
-
-<!-- Add a new section for displaying current engagement of the second user -->
-  <div class="container">
-    <h4>Current Engagement of User "Culture"</h3>
-      <p id="current-engagement-2" class="lead" style="margin-top: -6px">{{ engagement2 }}</p>
-  </div>
-  <div class="container">
-    <h4>Current Engagement of User "Economy"</h3>
-      <p id="current-engagement-3" class="lead" style="margin-top: -6px">{{ engagement3 }}</p>
-  </div>
-  <div class="container">
-    <small>1. Engagement is obtained by tracking likes, retweets, and replies.</small>
-    <small>2. Last fetch happened at: {{ last_fetch }}</small>
+    <div class="row">
+      <div class="col-md-6">
+        {% for i in range(6) %}
+          <h4>Current Engagement of User {{ i+1 }}</h4>
+          <p id="current-engagement-{{ i+1 }}" class="lead" style="margin-top: -6px">{{ engagements[i] }}</p>
+        {% endfor %}
+        <small>1. Engagement is obtained by tracking likes, retweets, and replies.</small>
+        <small>2. Last fetch happened at: {{ last_fetch }}</small>
+      </div>
+      <div class="col-md-6">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Timestamp</th>
+              <th scope="col">Total Tweet Engagement</th>
+              <th scope="col">Evaluation</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for record in data %}
+              <tr>
+                <td>{{ record.timestamp }}</td>
+                <td>{{ record.total_tweet_engagement }}</td>
+                <td>
+                  {% if record.total_tweet_engagement < 300000 %}
+                    Below average engagement
+                  {% elif record.total_tweet_engagement < 350000 %}
+                    Normal engagement
+                  {% else %}
+                    Peak engagement
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   {% endblock %}
 
 </body>
+
 
 
 </html>
