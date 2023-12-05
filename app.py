@@ -107,6 +107,9 @@ def index():
     # Retrieve the total_increase records from the last 12 hours
     total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp.between(twelve_hours_ago, now)).order_by(TotalIncrease.timestamp.asc()).all()
 
+    # Get the total engagement of all users
+    engagements = [user.total_engagement for user in users]
+    
     # Convert the total_increase records into a list of dictionaries
     data = [{"timestamp": format_datetime(ti.timestamp), "total_tweet_engagement": ti.total_tweet_engagement} for ti in total_increases]
 
@@ -121,8 +124,7 @@ def index():
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
 
-    return render_template('index.html', engagement1=users[0].total_engagement, engagement2=users[1].total_engagement, engagement3=users[2].total_engagement, last_fetch=format_datetime(last_fetch), data=data)
-
+    return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), data=data)
 
 
 
