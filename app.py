@@ -92,6 +92,13 @@ def index():
     # Retrieve the most recent User records from the database
     users = User.query.order_by(User.id.asc()).limit(6).all()
 
+    # Get the current time and 12 hours ago
+    now = datetime.now()
+    twelve_hours_ago = now - timedelta(hours=12)
+
+    # Retrieve the total_increase records from the last 12 hours
+    total_increases = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).limit(12).all()
+
     # Retrieve the last total_tweet_engagement value
     total_tweet_engagement = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first().total_tweet_engagement
 
