@@ -89,6 +89,8 @@ def index():
     # Ensure the session is up-to-date with the latest state of the database
     db.session.commit()
 
+    # Constant to increase the number of repetitions
+    CONSTANT_FACTOR = 10
     # Retrieve the most recent User records from the database
     users = User.query.order_by(User.id.asc()).limit(6).all()
 
@@ -107,11 +109,11 @@ def index():
 
     # Initialize the new list
     new_list = []
-
+    
     # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
     for i, user in enumerate(users):
         weight = user.total_engagement / total_tweet_engagement
-        repetitions = int(weight * len(users))
+        repetitions = int(weight * len(users) * CONSTANT_FACTOR)
         new_list.extend([phrases[i]] * repetitions)
 
     # Get the total engagement of all users
