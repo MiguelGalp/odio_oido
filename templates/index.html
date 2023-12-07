@@ -25,9 +25,11 @@
     <div class="row">
       <div class="col-md-12">
         <h4>Current Phrases</h4>
+        <p class="lead">
         {% for phrase in new_list %}
-          <p class="lead">{{ phrase }}</p>
+          {{ phrase }}
         {% endfor %}
+        </p>
         <small>Last fetch happened at: {{ last_fetch }}</small>
       </div>
     </div>
@@ -36,6 +38,7 @@
   {% endblock %}
 
 </body>
+
 
 
 
