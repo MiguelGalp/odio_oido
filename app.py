@@ -92,12 +92,20 @@ def index():
     # Retrieve the most recent User records from the database
     users = User.query.order_by(User.id.asc()).limit(6).all()
 
-    # Get the current time and 12 hours ago
-    now = datetime.now()
-    twelve_hours_ago = now - timedelta(hours=12)
+    # Retrieve the last total_tweet_engagement value
+    total_tweet_engagement = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first().total_tweet_engagement
 
-    # Retrieve the total_increase records from the last 12 hours
-    total_increases = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).limit(12).all()
+    # Define the phrases
+    phrases = ["El barrabrava que te cuida", "Profesor Doolittle desde la Torre de Cristal", "La cocinera del dolor", "El rey de los tuertos", "Lo negro absoluto", "La nada misma"]
+
+    # Initialize the new list
+    new_list = []
+
+    # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
+    for i, user in enumerate(users):
+        weight = user.total_engagement / total_tweet_engagement
+        repetitions = int(weight * len(users))
+        new_list.extend([phrases[i]] * repetitions)
 
     # Get the total engagement of all users
     engagements = [user.total_engagement for user in users]
@@ -116,7 +124,8 @@ def index():
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
 
-    return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), data=data)
+    return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), data=data, new_list=new_list)
+
 
 
 
