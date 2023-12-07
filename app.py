@@ -105,13 +105,16 @@ def index():
     # Get the user ranking
     user_ranking = get_current_engagement()
 
+    # Create a list of user names
+    user_names = [user.name for user in users]
+
     # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
     for user in user_ranking:
         weight = user[1] / total_tweet_engagement
         repetitions = weight * len(users) * CONSTANT_FACTOR
         full_repetitions = int(repetitions)
         partial_repetition = repetitions - full_repetitions
-        phrase = phrases[users.index(user[0])]
+        phrase = phrases[user_names.index(user[0])]
         new_list.extend([phrase] * full_repetitions)
         if partial_repetition > 0:
             cut_off = int(len(phrase) * partial_repetition)
@@ -132,6 +135,7 @@ def index():
         return render_template('error.html')
 
     return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), new_list=new_list)
+
 
 
 
