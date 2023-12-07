@@ -20,44 +20,15 @@
     <p style="margin-top: 6px;">--</p>
   </div>
 
-  <!-- Add a new section for displaying current engagement of all users -->
+  <!-- Add a new section for displaying the list of phrases -->
   <div class="container">
     <div class="row">
-      <div class="col-md-6">
-        {% for i in range(6) %}
-          <h4>Current Engagement of User {{ i+1 }}</h4>
-          <p id="current-engagement-{{ i+1 }}" class="lead" style="margin-top: -6px">{{ engagements[i] }}</p>
+      <div class="col-md-12">
+        <h4>Current Phrases</h4>
+        {% for phrase in new_list %}
+          <p class="lead">{{ phrase }}</p>
         {% endfor %}
-        <small>1. Engagement is obtained by tracking likes, retweets, and replies.</small>
-        <small>2. Last fetch happened at: {{ last_fetch }}</small>
-      </div>
-      <div class="col-md-6">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Timestamp</th>
-              <th scope="col">Total Tweet Engagement</th>
-              <th scope="col">Evaluation</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for record in data %}
-              <tr>
-                <td>{{ record.timestamp }}</td>
-                <td>{{ record.total_tweet_engagement }}</td>
-                <td>
-                  {% if record.total_tweet_engagement < 300000 %}
-                    Below average engagement
-                  {% elif record.total_tweet_engagement < 350000 %}
-                    Normal engagement
-                  {% else %}
-                    Peak engagement
-                  {% endif %}
-                </td>
-              </tr>
-            {% endfor %}
-          </tbody>
-        </table>
+        <small>Last fetch happened at: {{ last_fetch }}</small>
       </div>
     </div>
   </div>
@@ -65,6 +36,7 @@
   {% endblock %}
 
 </body>
+
 
 
 
