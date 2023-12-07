@@ -73,11 +73,9 @@ def get_current_engagement():
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
-    # Create an ordered dictionary while maintaining order
-    user_ranking = OrderedDict(user_engagements)
+    # Return the sorted list of tuples
+    return user_engagements
 
-    # Return the user ranking
-    return jsonify(user_ranking)
 
 
 @app.route('/engagement', methods=['GET'])
@@ -91,15 +89,9 @@ def index():
 
     # Constant to increase the number of repetitions
     CONSTANT_FACTOR = 10
+
     # Retrieve the most recent User records from the database
     users = User.query.order_by(User.id.asc()).limit(6).all()
-
-    # Get the current time and 12 hours ago
-    now = datetime.now()
-    twelve_hours_ago = now - timedelta(hours=12)
-
-    # Retrieve the total_increase records from the last 12 hours
-    total_increases = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).limit(12).all()
 
     # Retrieve the last total_tweet_engagement value
     total_tweet_engagement = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first().total_tweet_engagement
@@ -109,19 +101,25 @@ def index():
 
     # Initialize the new list
     new_list = []
-    
+
+    # Get the user ranking
+    user_ranking = get_current_engagement()
+
     # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
-    for i, user in enumerate(users):
-        weight = user.total_engagement / total_tweet_engagement
-        repetitions = int(weight * len(users) * CONSTANT_FACTOR)
-        new_list.extend([phrases[i]] * repetitions)
+    for user in user_ranking:
+        weight = user[1] / total_tweet_engagement
+        repetitions = weight * len(users) * CONSTANT_FACTOR
+        full_repetitions = int(repetitions)
+        partial_repetition = repetitions - full_repetitions
+        phrase = phrases[users.index(user[0])]
+        new_list.extend([phrase] * full_repetitions)
+        if partial_repetition > 0:
+            cut_off = int(len(phrase) * partial_repetition)
+            new_list.append(phrase[:cut_off])
 
     # Get the total engagement of all users
     engagements = [user.total_engagement for user in users]
     
-    # Convert the total_increase records into a list of dictionaries
-    data = [{"timestamp": format_datetime(ti.timestamp), "total_tweet_engagement": ti.total_tweet_engagement} for ti in total_increases]
-
     # Retrieve the timestamp of the most recent TotalIncrease record
     last_fetch = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
     if last_fetch is not None:
@@ -133,7 +131,8 @@ def index():
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
 
-    return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), data=data, new_list=new_list)
+    return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), new_list=new_list)
+
 
 
 
