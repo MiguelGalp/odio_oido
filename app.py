@@ -105,7 +105,7 @@ def index():
     total_tweet_engagement = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first().total_tweet_engagement
 
     # Define the phrases
-    phrases = ["La nada misma", "El barrabrava que te cuida", "La cocinera del dolor", "El rey de los tuertos", "Lo negro absoluto", "Profesor Doolittle desde la Torre de Cristal"]
+    phrases = ["El rey de los tuertos", "La cocinera del dolor", "Profesor Doolittle desde la Torre de Cristal", "La nada misma", "Lo negro absoluto", "El barrabrava que te cuida"]
 
     # Initialize the new list
     new_list = []
