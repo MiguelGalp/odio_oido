@@ -69,16 +69,16 @@ def get_current_engagement():
         
         # Add the user and their normalized engagement to the list
         user_engagements.append((user.name, normalized_engagement))
+
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
     # Create an ordered dictionary while maintaining order
-    user_ranking = OrderedDict()
-    for name, engagement in user_engagements:
-        user_ranking[name] = engagement
+    user_ranking = OrderedDict(user_engagements)
 
     # Return the user ranking
-    return jsonify(user_engagements)
+    return jsonify(user_ranking)
+
 
 @app.route('/engagement', methods=['GET'])
 def engagement_route():
