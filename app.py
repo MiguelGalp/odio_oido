@@ -133,7 +133,7 @@ def index():
     if len(users) < 2:
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
-
+    print(new_list)
     return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), new_list=new_list)
 
 
