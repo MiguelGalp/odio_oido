@@ -112,7 +112,7 @@ def index():
     for user in user_ranking:
         weight = (user[1] / total_tweet_engagement) * CONSTANT_FACTOR
         repetitions = max(1, int(weight * len(users) * CONSTANT_FACTOR))
-        partial_repetition = weight * len(users) - repetitions
+        partial_repetition = weight * len(users) * CONSTANT_FACTOR - repetitions
         phrase = phrases[user_names.index(user[0])]
         new_list.extend([phrase] * repetitions)
         if partial_repetition > 0:
