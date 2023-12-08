@@ -111,7 +111,7 @@ def index():
     # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
     for user in user_ranking:
         weight = (user[1] / total_tweet_engagement) * CONSTANT_FACTOR
-        repetitions = int(weight * len(users))
+        repetitions = max(1, int(weight * len(users) * CONSTANT_FACTOR))
         partial_repetition = weight * len(users) - repetitions
         phrase = phrases[user_names.index(user[0])]
         new_list.extend([phrase] * repetitions)
@@ -135,6 +135,10 @@ def index():
         # Handle the error, e.g., by returning an error message or a default page
         return render_template('error.html')
     print(new_list)
+    print(f"Weight for {user[0]}: {weight}")
+    print(f"Repetitions for {user[0]}: {repetitions}")
+    print(f"Partial repetition for {user[0]}: {partial_repetition}")
+
     return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), new_list=new_list)
 
 
