@@ -109,16 +109,16 @@ def index():
     user_names = [user.name for user in users]
 
     # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
-    for user in user_ranking:
-        weight = user[1] / total_tweet_engagement
-        repetitions = weight * len(users) * CONSTANT_FACTOR
-        full_repetitions = int(repetitions)
-        partial_repetition = repetitions - full_repetitions
+    for i, user in enumerate(users):
+        weight = (user.total_engagement / total_tweet_engagement) * CONSTANT_FACTOR
+        repetitions = int(weight * len(users))
+        partial_repetition = weight * len(users) - repetitions
         phrase = phrases[user_names.index(user[0])]
-        new_list.extend([phrase] * full_repetitions)
+        new_list.extend([phrase] * repetitions)
         if partial_repetition > 0:
             cut_off = int(len(phrase) * partial_repetition)
             new_list.append(phrase[:cut_off])
+
 
     # Get the total engagement of all users
     engagements = [user.total_engagement for user in users]
