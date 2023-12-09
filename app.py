@@ -88,7 +88,7 @@ def index():
     db.session.commit()
 
     # Constant to increase the number of repetitions
-    CONSTANT_FACTOR = 10000
+    CONSTANT_FACTOR = 1000
 
     # Retrieve the most recent User records from the database
     users = User.query.order_by(User.id.asc()).limit(6).all()
