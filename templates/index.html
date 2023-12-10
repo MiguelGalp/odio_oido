@@ -21,7 +21,7 @@
         {% set now = datetime.now(pytz.timezone('America/Montevideo')) %}
         {% set time_diff = now - last_total_increase.timestamp %}
         {% set minutes_diff = time_diff.total_seconds() // 60 %}
-        <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone</kbd></h5>
+        <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone:</kbd></h5>
     {% else %}
         <h5>Compuestos del odio hace ... minutos</h5>
     {% endif %}
@@ -50,7 +50,15 @@
 </div>
 
 <div class="container">
-    <h5>Picos de intensidad en el discurso:</h5>
+    <h4><b>¿ES "PELIGROSO" ENTRAR?</b><span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h4>
+</div>
+
+  <div class="container">
+    <h5><b>¿PODEMOS VER UN EJEMPLO?</b></h5>
+</div>
+
+<div class="container">
+    <h4>Picos de intensidad en el discurso:</h4>
     {% if peak_occurrences %}
         {% for timestamp, engagement in peak_occurrences %}
             <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
@@ -58,10 +66,6 @@
     {% else %}
         <p>Sin picos en las últimas 6 horas</p>
     {% endif %}
-</div>
-
-<div class="container">
-    <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h5>
 </div>
 {% endblock %}
 
