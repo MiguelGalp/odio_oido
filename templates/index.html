@@ -7,6 +7,7 @@
   <title>X Temp.</title>
 </head>
 
+<body>
 {% extends "bootstrap/base.html" %}
 
 {% block content %}
@@ -22,7 +23,23 @@
 <div class="container">
     <h5>User Engagements:</h5>
     {% for user, engagement in user_engagements %}
-        <p>{{ user }}: {{ "%.2f"|format(engagement) }}</p>
+        {% if user == 'YaniLatorre' %}
+            {% set user = 'Violence' %}
+        {% elif user == 'SergioChouza' %}
+            {% set user = 'Manipulation' %}
+        {% elif user == 'AtilioBorón' %}
+            {% set user = 'Venality' %}
+        {% elif user == 'CarlosMaslatón' %}
+            {% set user = 'Banality' %}
+        {% elif user == 'JorgeRial' %}
+            {% set user = 'Deception' %}
+        {% elif user == 'AlexCaniggia' %}
+            {% set user = 'Solipsism' %}
+        {% endif %}
+        <div style="width: 100%; background-color: #f3f3f3; border: 1px solid #ccc;">
+            <div style="height: 20px; width: {{ "%.2f"|format(engagement*100) }}%; background-color: #007bff;"></div>
+        </div>
+        <p>{{ user }}</p>
     {% endfor %}
 </div>
 
@@ -38,4 +55,5 @@
 </div>
 {% endblock %}
 
+</body>
 </html>
