@@ -50,7 +50,9 @@
 </div>
 
 <div class="container">
-    <h4><b>¿ES "PELIGROSO" ENTRAR?</b><span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h4>
+    <h4><b>¿ES "PELIGROSO" ENTRAR?</b>
+      <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone:</kbd></h5>
+      <span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h4>
 </div>
 
   <div class="container">
