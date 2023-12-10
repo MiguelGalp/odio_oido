@@ -27,7 +27,7 @@
         {% set minutes_diff = time_diff.total_seconds() // 60 %}
         <h5>Compuestos del odio hace {{ minutes_diff }} minutos</h5>
     {% else %}
-        <h5>Compuestos del odio hace ...</h5>
+        <h5>Compuestos del odio hace ... minutos</h5>
     {% endif %}
     {% for user, engagement in user_engagements %}
         {% if user == 'yanilatorre' %}
