@@ -82,6 +82,9 @@ def index():
     # Get current engagement
     user_engagements = get_current_engagement()
 
+    # Fetch the latest TotalIncrease
+    last_total_increase = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
+    
     # Get total increases in the last 6 hours
     six_hours_ago = datetime.now() - timedelta(hours=6)
     total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp >= six_hours_ago).order_by(TotalIncrease.timestamp.desc()).all()
@@ -104,7 +107,7 @@ def index():
     else:
         engagement_level = "Above Average"
 
-    return render_template('index.html', user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level)
+    return render_template('index.html', user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
 
 
 
