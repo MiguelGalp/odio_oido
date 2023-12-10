@@ -21,7 +21,7 @@
         {% set now = datetime.now(pytz.timezone('America/Montevideo')) %}
         {% set time_diff = now - last_total_increase.timestamp %}
         {% set minutes_diff = time_diff.total_seconds() // 60 %}
-        <h5><kbv>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone</kbv></h5>
+        <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone</kbd></h5>
     {% else %}
         <h5>Compuestos del odio hace ... minutos</h5>
     {% endif %}
