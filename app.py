@@ -84,25 +84,28 @@ def index():
 
     # Get total increases in the last 6 hours
     six_hours_ago = datetime.now() - timedelta(hours=6)
-    total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp >= six_hours_ago).order_by(TotalIncrease.timestamp.desc()).first()
+    total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp >= six_hours_ago).order_by(TotalIncrease.timestamp.desc()).all()
 
-    # Get the total tweet engagement from the latest record
-    total_tweet_engagement = total_increases.total_tweet_engagement if total_increases else 0
+    # Calculate the average engagement over the past 6 hours
+    average_engagement = sum([increase.total_tweet_engagement for increase in total_increases]) / len(total_increases) if total_increases else 0
 
     # Check for peak occurrences
     peak_occurrences = []
-    if total_increases and total_increases.total_tweet_engagement > total_increases.total_tweet_engagement:
-        peak_occurrences.append((total_increases.timestamp, total_increases.total_tweet_engagement))
+    for increase in total_increases:
+        if increase.total_tweet_engagement > average_engagement * 1.5:  # 1.5 is an example threshold for "significant" increase
+            peak_occurrences.append((increase.timestamp, increase.total_tweet_engagement))
 
     # Determine if the total tweet engagement is below average, average, or above average
-    if total_tweet_engagement < 500000:
+    latest_engagement = total_increases[0].total_tweet_engagement if total_increases else 0
+    if latest_engagement < 500000:
         engagement_level = "Below Average"
-    elif total_tweet_engagement < 600000:
+    elif latest_engagement < 600000:
         engagement_level = "Average"
     else:
         engagement_level = "Above Average"
 
     return render_template('index.html', user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level)
+
 
 
 
