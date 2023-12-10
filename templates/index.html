@@ -21,23 +21,23 @@
         {% set now = datetime.now(pytz.timezone('America/Montevideo')) %}
         {% set time_diff = now - last_total_increase.timestamp %}
         {% set minutes_diff = time_diff.total_seconds() // 60 %}
-        <h5>Compuestos del odio hace {{ minutes_diff }} minutos</h5>
+        <h5><kbv>En X/Twitter y {{ minutes_diff }} minutos al odio lo hace:</kbv></h5>
     {% else %}
         <h5>Compuestos del odio hace ... minutos</h5>
     {% endif %}
     {% for user, engagement in user_engagements %}
         {% if user == 'yanilatorre' %}
-            {% set user = 'Violencia' %}
+            {% set user = 'La violencia' %}
         {% elif user == 'SergioChouza' %}
-            {% set user = 'Manipulación' %}
+            {% set user = 'La manipulación' %}
         {% elif user == 'atilioboron' %}
-            {% set user = 'Venalidad' %}
+            {% set user = 'La venalidad' %}
         {% elif user == 'CarlosMaslaton' %}
-            {% set user = 'Banalidad' %}
+            {% set user = 'La banalidad' %}
         {% elif user == 'rialjorge' %}
-            {% set user = 'Engaño' %}
+            {% set user = 'El engaño' %}
         {% elif user == 'alexcaniggia' %}
-            {% set user = 'Solipsismo' %}
+            {% set user = 'El solipsismo' %}
         {% endif %}
         {% if engagement > 1 %}
             {% set engagement = 1 %}
