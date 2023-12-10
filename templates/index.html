@@ -69,7 +69,7 @@
     <p style="margin-top: 6px;">⎼⎼⎼⎼</p>
 </div>
 <div class="container">
-    <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Baja' %}red{% elif engagement_level == 'Promedio' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
+    <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h5>
 </div>
 {% endblock %}
 
