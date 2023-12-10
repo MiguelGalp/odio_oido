@@ -13,7 +13,7 @@
 {% block content %}
 <div class="container">
     <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">Miss Subtítulos</h4>
-    <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;"><b>Mapeamos el discurso del odio en twitter en tiempo real</b></h3>
+    <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;"><b>Traducimos el discurso del odio, en tiempo real</b></h3>
 </div>
 
 <div class="container">
@@ -21,7 +21,7 @@
 </div>
 
 <div class="container">
-     <h5>Componentes del odio a las {{ last_total_increase.timestamp.strftime('%Y-%m-%d %H:%M:%S') if last_total_increase else '...' }}</h5>
+     <h5>Twitter a las {{ last_total_increase.timestamp.strftime('%Y-%m-%d %H:%M:%S') if last_total_increase else '...' }}</h5>
     {% for user, engagement in user_engagements %}
         {% if user == 'yanilatorre' %}
             {% set user = 'Violencia' %}
@@ -53,12 +53,12 @@
             <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
         {% endfor %}
     {% else %}
-        <p>No peak occurrences in the past 6 hours.</p>
+        <p>Sin picos en las últimas 6 horas</p>
     {% endif %}
 </div>
 
 <div class="container">
-    <h5>Engagement Level: <span style="color: {% if engagement_level == 'Below Average' %}red{% elif engagement_level == 'Average' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
+    <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Below Average' %}red{% elif engagement_level == 'Average' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
 </div>
 {% endblock %}
 
