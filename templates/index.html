@@ -23,18 +23,21 @@
 <div class="container">
     <h5>User Engagements:</h5>
     {% for user, engagement in user_engagements %}
-        {% if user == 'YaniLatorre' %}
+        {% if user == 'yanilatorre' %}
             {% set user = 'Violence' %}
         {% elif user == 'SergioChouza' %}
             {% set user = 'Manipulation' %}
-        {% elif user == 'AtilioBorón' %}
+        {% elif user == 'atilioboron' %}
             {% set user = 'Venality' %}
-        {% elif user == 'CarlosMaslatón' %}
+        {% elif user == 'CarlosMaslaton' %}
             {% set user = 'Banality' %}
-        {% elif user == 'JorgeRial' %}
+        {% elif user == 'rialjorge' %}
             {% set user = 'Deception' %}
-        {% elif user == 'AlexCaniggia' %}
+        {% elif user == 'alexcaniggia' %}
             {% set user = 'Solipsism' %}
+        {% endif %}
+        {% if engagement > 1 %}
+            {% set engagement = 1 %}
         {% endif %}
         <div style="width: 100%; background-color: #f3f3f3; border: 1px solid #ccc;">
             <div style="height: 20px; width: {{ "%.2f"|format(engagement*100) }}%; background-color: #007bff;"></div>
@@ -45,15 +48,20 @@
 
 <div class="container">
     <h5>Peak Occurrences:</h5>
-    {% for timestamp, engagement in peak_occurrences %}
-        <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
-    {% endfor %}
+    {% if peak_occurrences %}
+        {% for timestamp, engagement in peak_occurrences %}
+            <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No peak occurrences in the past 6 hours.</p>
+    {% endif %}
 </div>
 
 <div class="container">
     <h5>Engagement Level: <span style="color: {% if engagement_level == 'Below Average' %}red{% elif engagement_level == 'Average' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
 </div>
 {% endblock %}
+
 
 </body>
 </html>
