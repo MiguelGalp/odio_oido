@@ -21,7 +21,7 @@
 </div>
 
 <div class="container">
-     <h5>Peso relativo de los componentes del odio a las {{ last_fetch_time.last_fetched.strftime('%Y-%m-%d %H:%M:%S') if last_fetch_time else '...' }}</h5>
+     <h5>Componentes del odio a las {{ last_total_increase.timestamp.strftime('%Y-%m-%d %H:%M:%S') if last_total_increase else '...' }}</h5>
     {% for user, engagement in user_engagements %}
         {% if user == 'yanilatorre' %}
             {% set user = 'Violencia' %}
