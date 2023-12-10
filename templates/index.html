@@ -21,7 +21,7 @@
         {% set now = datetime.now(pytz.timezone('America/Montevideo')) %}
         {% set time_diff = now - last_total_increase.timestamp %}
         {% set minutes_diff = time_diff.total_seconds() // 60 %}
-        <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone:</kbd></h5>
+        <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás):</kbd></h5>
     {% else %}
         <h5>Compuestos del odio hace ... minutos</h5>
     {% endif %}
@@ -50,13 +50,13 @@
 </div>
 
 <div class="container">
-    <h4><b>¿ES "PELIGROSO" ENTRAR?</b>
-      <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás) al odio lo compone:</kbd></h5>
+    <h3><b>¿ES "PELIGROSO" ENTRAR?</b></h3>
+      <h5><kbd>Nuestro recomendación según la temperatura del discurso</kbd></h5>
       <span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h4>
 </div>
 
   <div class="container">
-    <h4><b>¿PODEMOS VER UN EJEMPLO?</b></h4>
+    <h3><b>¿CUÁL SERÍA UN EJEMPLO?</b></h3>
 </div>
 
 <div class="container">
