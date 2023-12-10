@@ -56,7 +56,7 @@
     <p style="margin-top: 6px;">⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼</p>
 </div>
 <div class="container">
-    <h5>Peak Occurrences:</h5>
+    <h5>Picos de intensidad en el discurso:</h5>
     {% if peak_occurrences %}
         {% for timestamp, engagement in peak_occurrences %}
             <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
@@ -69,7 +69,7 @@
     <p style="margin-top: 6px;">⎼⎼⎼⎼</p>
 </div>
 <div class="container">
-    <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Below Average' %}red{% elif engagement_level == 'Average' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
+    <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Baja' %}red{% elif engagement_level == 'Promedio' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
 </div>
 {% endblock %}
 
