@@ -12,8 +12,8 @@
 
 {% block content %}
 <div class="container">
-    <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">X Temp.</h4>
-    <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;"><b>Real-time political temperature (TWITTER/AR).</b></h3>
+    <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">Miss Subtítulos</h4>
+    <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;"><b>Analizamos el discurso del odio en twitter para mapearlo</b></h3>
 </div>
 
 <div class="container">
@@ -21,20 +21,20 @@
 </div>
 
 <div class="container">
-    <h5>User Engagements:</h5>
+    <h5>Compuestos del odio a las ...</h5>
     {% for user, engagement in user_engagements %}
         {% if user == 'yanilatorre' %}
-            {% set user = 'Violence' %}
+            {% set user = 'Violencia' %}
         {% elif user == 'SergioChouza' %}
-            {% set user = 'Manipulation' %}
+            {% set user = 'Manipulación' %}
         {% elif user == 'atilioboron' %}
-            {% set user = 'Venality' %}
+            {% set user = 'Venalidad' %}
         {% elif user == 'CarlosMaslaton' %}
-            {% set user = 'Banality' %}
+            {% set user = 'Banalidad' %}
         {% elif user == 'rialjorge' %}
-            {% set user = 'Deception' %}
+            {% set user = 'Engaño' %}
         {% elif user == 'alexcaniggia' %}
-            {% set user = 'Solipsism' %}
+            {% set user = 'Solipsismo' %}
         {% endif %}
         {% if engagement > 1 %}
             {% set engagement = 1 %}
