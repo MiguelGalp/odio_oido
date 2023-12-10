@@ -17,10 +17,6 @@
 </div>
 
 <div class="container">
-    <p style="margin-top: 6px;">⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼</p>
-</div>
-
-<div class="container">
      {% if last_total_increase %}
         {% set now = datetime.now(pytz.timezone('America/Montevideo')) %}
         {% set time_diff = now - last_total_increase.timestamp %}
@@ -52,9 +48,7 @@
         <p>{{ user }}</p>
     {% endfor %}
 </div>
-<div class="container">
-    <p style="margin-top: 6px;">⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼</p>
-</div>
+
 <div class="container">
     <h5>Picos de intensidad en el discurso:</h5>
     {% if peak_occurrences %}
@@ -65,9 +59,7 @@
         <p>Sin picos en las últimas 6 horas</p>
     {% endif %}
 </div>
-<div class="container">
-    <p style="margin-top: 6px;">⎼⎼⎼⎼</p>
-</div>
+
 <div class="container">
     <h5>Temperatura del discurso: <span style="color: {% if engagement_level == 'Baja' %}green{% elif engagement_level == 'Promedio' %}orange{% else %}red{% endif %};">{{ engagement_level }}</span></h5>
 </div>
