@@ -107,7 +107,7 @@ def index():
     else:
         engagement_level = "Above Average"
 
-    return render_template('index.html', user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
+    return render_template('index.html', datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
 
 
 
