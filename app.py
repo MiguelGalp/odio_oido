@@ -11,9 +11,6 @@ from collections import OrderedDict
 import logging
 import math
 
-
-
-
 load_dotenv()
 app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
@@ -76,70 +73,36 @@ def get_current_engagement():
     # Return the sorted list of tuples
     return user_engagements
 
-
-
 @app.route('/engagement', methods=['GET'])
 def engagement_route():
     return get_current_engagement()
 
 @app.route('/')
 def index():
-    # Ensure the session is up-to-date with the latest state of the database
-    db.session.commit()
+    # Get current engagement
+    user_engagements = get_current_engagement()
 
-    # Constant to increase the number of repetitions
-    CONSTANT_FACTOR = 1000
+    # Get total increases in the last 6 hours
+    six_hours_ago = datetime.now() - timedelta(hours=6)
+    total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp >= six_hours_ago).order_by(TotalIncrease.timestamp.desc()).first()
 
-    # Retrieve the most recent User records from the database
-    users = User.query.order_by(User.id.asc()).limit(6).all()
+    # Get the total tweet engagement from the latest record
+    total_tweet_engagement = total_increases.total_tweet_engagement if total_increases else 0
 
-    # Retrieve the last total_tweet_engagement value
-    total_tweet_engagement = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first().total_tweet_engagement
+    # Check for peak occurrences
+    peak_occurrences = []
+    if total_increases and total_increases.total_tweet_engagement > total_increases.total_tweet_engagement:
+        peak_occurrences.append((total_increases.timestamp, total_increases.total_tweet_engagement))
 
-    # Define the phrases
-    phrases = ["El rey de los tuertos", "La cocinera del dolor", "Profesor Doolittle desde la Torre de Cristal", "La nada misma", "Lo negro absoluto", "El barrabrava que te cuida"]
-
-    # Initialize the new list
-    new_list = []
-
-    # Get the user ranking
-    user_ranking = get_current_engagement()
-
-    # Create a list of user names
-    user_names = [user.name for user in users]
-
-    # For each user, repeat their corresponding phrase according to their relative weight in the total engagement
-    for user in user_ranking:
-        weight = (user[1] / total_tweet_engagement) * CONSTANT_FACTOR
-        repetitions = max(1, int(weight * len(users) * CONSTANT_FACTOR))
-        partial_repetition = weight * len(users) * CONSTANT_FACTOR - repetitions
-        phrase = phrases[user_names.index(user[0])]
-        new_list.extend([phrase] * repetitions)
-        if partial_repetition > 0:
-            cut_off = int(len(phrase) * partial_repetition)
-            new_list.append(phrase[:cut_off])
-
-
-
-    # Get the total engagement of all users
-    engagements = [user.total_engagement for user in users]
-    
-    # Retrieve the timestamp of the most recent TotalIncrease record
-    last_fetch = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
-    if last_fetch is not None:
-        last_fetch = last_fetch.timestamp
+    # Determine if the total tweet engagement is below average, average, or above average
+    if total_tweet_engagement < 500000:
+        engagement_level = "Below Average"
+    elif total_tweet_engagement < 600000:
+        engagement_level = "Average"
     else:
-        last_fetch = "No fetches yet"
+        engagement_level = "Above Average"
 
-    if len(users) < 2:
-        # Handle the error, e.g., by returning an error message or a default page
-        return render_template('error.html')
-    print(new_list)
-    print(f"Weight for {user[0]}: {weight}")
-    print(f"Repetitions for {user[0]}: {repetitions}")
-    print(f"Partial repetition for {user[0]}: {partial_repetition}")
-
-    return render_template('index.html', engagements=engagements, last_fetch=format_datetime(last_fetch), new_list=new_list)
+    return render_template('index.html', user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level)
 
 
 
