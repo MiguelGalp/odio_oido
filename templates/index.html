@@ -7,40 +7,35 @@
   <title>X Temp.</title>
 </head>
 
-<body>
-  {% extends "bootstrap/base.html" %}
+{% extends "bootstrap/base.html" %}
 
-  {% block content %}
-  <div class="container">
+{% block content %}
+<div class="container">
     <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">X Temp.</h4>
     <h3 class="text-uppercase display-2 font-weight-bold" style="margin-top: -7px;"><b>Real-time political temperature (TWITTER/AR).</b></h3>
-  </div>
+</div>
 
-  <div class="container">
+<div class="container">
     <p style="margin-top: 6px;">--</p>
-  </div>
+</div>
 
-  <!-- Add a new section for displaying the list of phrases -->
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <h4>Current Phrases</h4>
-        <p class="lead">
-        {% for phrase in new_list %}
-          {{ phrase }}
-        {% endfor %}
-        </p>
-        <small>Last fetch happened at: {{ last_fetch }}</small>
-      </div>
-    </div>
-  </div>
+<div class="container">
+    <h5>User Engagements:</h5>
+    {% for user, engagement in user_engagements %}
+        <p>{{ user }}: {{ "%.2f"|format(engagement) }}</p>
+    {% endfor %}
+</div>
 
-  {% endblock %}
+<div class="container">
+    <h5>Peak Occurrences:</h5>
+    {% for timestamp, engagement in peak_occurrences %}
+        <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
+    {% endfor %}
+</div>
 
-</body>
-
-
-
-
+<div class="container">
+    <h5>Engagement Level: <span style="color: {% if engagement_level == 'Below Average' %}red{% elif engagement_level == 'Average' %}orange{% else %}green{% endif %};">{{ engagement_level }}</span></h5>
+</div>
+{% endblock %}
 
 </html>
