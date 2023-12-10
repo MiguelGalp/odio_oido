@@ -102,11 +102,11 @@ def index():
     # Determine if the total tweet engagement is below average, average, or above average
     latest_engagement = total_increases[0].total_tweet_engagement if total_increases else 0
     if latest_engagement < 500000:
-        engagement_level = "Baja"
+        engagement_level = "NO"
     elif latest_engagement < 600000:
-        engagement_level = "Promedio"
+        engagement_level = "?"
     else:
-        engagement_level = "Alta"
+        engagement_level = "SÍ"
 
     return render_template('index.html', datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
 
