@@ -18,7 +18,7 @@
 
 <div class="container">
     {% if last_total_increase %}
-      {% set now = datetime.now(pytz.timezone('America/Montevideo')) + timedelta(minutes=180) %}
+      {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
       {% set time_diff = now - last_total_increase.timestamp %}
       {% set minutes_diff = time_diff.total_seconds() // 60 %}
       <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás):</kbd></h5>
