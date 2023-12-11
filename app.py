@@ -111,8 +111,13 @@ def index():
     # Get the tweet with hate speech content
     hate_tweet = Tweet.query.filter(Tweet.content.isnot(None)).order_by(Tweet.id.desc()).first()
 
-    return render_template('index.html', hate_tweet=hate_tweet, timedelta=timedelta, datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
+    # Check if a hate tweet was found
+    if hate_tweet is not None:
+        hate_tweet_content = hate_tweet.content
+    else:
+        hate_tweet_content = None
 
+    return render_template('index.html', hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
 
 
 
