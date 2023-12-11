@@ -107,9 +107,11 @@ def index():
         engagement_level = "?"
     else:
         engagement_level = "SÍ"
+    
+    # Get the tweet with hate speech content
+    hate_tweet = Tweet.query.filter(Tweet.content.isnot(None)).order_by(Tweet.id.desc()).first()
 
-    return render_template('index.html', datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
-
+    return render_template('index.html', hate_tweet=hate_tweet, datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
 
 
 
