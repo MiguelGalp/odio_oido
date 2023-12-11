@@ -18,9 +18,8 @@
 
 <div class="container">
     {% if last_total_increase %}
-      {% set now = datetime.now(pytz.timezone('America/Montevideo')) %}
-      {% set last_total_increase_time = last_total_increase.timestamp.astimezone(pytz.timezone('America/Montevideo')) %}
-      {% set time_diff = now - last_total_increase_time %}
+      {% set now = datetime.now(pytz.timezone('America/Montevideo')) + timedelta(minutes=180) %}
+      {% set time_diff = now - last_total_increase.timestamp %}
       {% set minutes_diff = time_diff.total_seconds() // 60 %}
       <h5><kbd>En X/Twitter ({{ minutes_diff }} minutos atrás):</kbd></h5>
     
@@ -52,7 +51,7 @@
 </div>
 
 <div class="container">
-  <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">Miss Subtítulos Insiste</h4>  
+  <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">Miss Subtítulos Insiste:</h4>  
   <h3 style="margin-top: -7px;"><b>¿ES "PELIGROSO" ENTRAR?</b></h3>
     <h5><kbd>Nuestro recomendación según la temperatura del discurso</kbd></h5>
     <h4>
@@ -64,7 +63,7 @@
 
 
   <div class="container">
-    <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">Miss Subtítulos Cuestiona</h4>  
+    <h4 class="pt-4 text-muted" style="margin-top: 30px; margin-left: 2px;">Miss Subtítulos Duda:</h4>  
     <h3 style="margin-top: -7px;"><b>¿CUÁL SERÍA UN EJEMPLO?</b></h3>
 </div>
 
