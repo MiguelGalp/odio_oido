@@ -42,13 +42,9 @@ body {
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
   margin-right: calc(var(--bs-gutter-x) * -15);
-  margin-left: calc(var(--bs-gutter-x) * 1);
+  margin-left: calc(var(--bs-gutter-x) * -15);
 }
 
-
-.center-helper {
-  margin-left: 10px !important;
-}
 
 .card-custom-width {
   width: 95%;
@@ -66,8 +62,9 @@ body {
 }
 
 .soft-background {
-  padding: 100px 50px 100px 50px;
+  padding: 50px 25px 50px 250px;
   background-color: #f7f7f8ff;
+  margin-left:270px !important;
 }
 
 .hard-background  {
