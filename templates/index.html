@@ -1,124 +1,112 @@
 {% extends "bootstrap/base.html" %}
 
+{% block title %}Discursos del odio en X{% endblock %}
+
 {% block styles %}
 {{ super() }}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/customCSS.css') }}">
-<script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
-    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
-    crossorigin="anonymous"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var masonryGrid = document.querySelector('.grid');
-        var masonryInstance = new Masonry(masonryGrid, {
-            itemSelector: '.grid-item',
-            percentPosition: true,
-            gutter: 10
-        });
-    });
-</script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
-<div class="container">
-    <div class="mt-5 mx-3 mb-4">
-
-        <span class="fw-bold display-6 mb-n1">
-            ODIO OÍDO
-        </span>
-        <div class="fw-bold lead display-4">
-            Notas sobre el discurso en <em>x</em>
-        </div>
-
-    </div>
-
-    <div class="row" data-masonry='{"percentPosition": true }'>
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body bg-[#aaaaaa]">
-                    {% if last_total_increase %}
-                    {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
-                    {% set time_diff = now - last_total_increase.timestamp %}
-                    {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                    <div class="mb-2"><kbd>Escuchamos <mark>{{ minutes_diff }}</mark> minutos atrás:</kbd></div>
-                    {% else %}
-                    <h5>Compuestos del odio hace ... minutos</h5>
-                    {% endif %}
-                    {% for user, engagement in user_engagements %}
-                    {% if user == 'yanilatorre' %}
-                    {% set user = 'La violencia' %}
-                    {% elif user == 'SergioChouza' %}
-                    {% set user = 'La manipulación' %}
-                    {% elif user == 'atilioboron' %}
-                    {% set user = 'La venalidad' %}
-                    {% elif user == 'CarlosMaslaton' %}
-                    {% set user = 'La banalidad' %}
-                    {% elif user == 'rialjorge' %}
-                    {% set user = 'El engaño' %}
-                    {% elif user == 'alexcaniggia' %}
-                    {% set user = 'El solipsismo' %}
-                    {% endif %}
-                    {% if engagement > 1 %}
-                    {% set engagement = 1 %}
-                    {% endif %}
-                    <div style="width: 100%; background-color: #f3f3f3; border: 1px solid #ccc;">
-                        <div
-                            style="height: 10px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #ff9b9b;">
+<div class="container soft-background">
+    <div class="row no-padding">
+        <div class="col-6 center-help">
+            <div class="left-content">
+                <div class="row no-padding">
+                    <div class="offset-md-2 col-md-5">
+                        <div class="card card-custom-width">
+                            <div class="card-body rounded new-background">
+                                {% if last_total_increase %}
+                                {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180)
+                                %}
+                                {% set time_diff = now - last_total_increase.timestamp %}
+                                {% set minutes_diff = time_diff.total_seconds() // 60 %}
+                                <div class="mb-2"><kbd>Escuchamos <mark>{{ minutes_diff }}</mark> minutos atrás:</kbd>
+                                </div>
+                                {% else %}
+                                <h5>Compuestos del odio hace ... minutos</h5>
+                                {% endif %}
+                                {% for user, engagement in user_engagements %}
+                                {% if user == 'yanilatorre' %}
+                                {% set user = 'La violencia' %}
+                                {% elif user == 'SergioChouza' %}
+                                {% set user = 'La manipulación' %}
+                                {% elif user == 'atilioboron' %}
+                                {% set user = 'La venalidad' %}
+                                {% elif user == 'CarlosMaslaton' %}
+                                {% set user = 'La banalidad' %}
+                                {% elif user == 'rialjorge' %}
+                                {% set user = 'El engaño' %}
+                                {% elif user == 'alexcaniggia' %}
+                                {% set user = 'El solipsismo' %}
+                                {% endif %}
+                                {% if engagement > 1 %}
+                                {% set engagement = 1 %}
+                                {% endif %}
+                                <div style="width: 95%; background-color: #f4f4f4; border: 1px solid #ecc9c9ff;">
+                                    <div
+                                        style="height: 18px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #e5a3a3ff; ">
+                                    </div>
+                                </div>
+                                <p>{{ user }}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="card card-custom-width new-background">
+                                <div class="card-body">
+                                    {% if peak_occurrences %}
+                                    <i class="bi bi-graph-up d-inline"></i>
+                                    {% for timestamp, engagement in peak_occurrences %}
+                                    <p class="d-inline mx-1">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
+                                    {% endfor %}
+                                    {% else %}
+                                    <i class="bi bi-graph-up d-inline"></i>
+                                    <p class="d-inline mx-1">Sin picos en las últimas 6 horas</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-md-5">
+                        <div class="card card-custom-width">
+                            <div class="card-body">
+                                <figure>
+                                    <blockquote class="blockquote">
+                                        <p class="fs-6">
+                                            {{ hate_tweet_content }}
+                                        </p>
+                                    </blockquote>
+                                    <figcaption class="blockquote-footer mt-1">
+                                        Tweet Random
+                                    </figcaption>
+                                </figure>
+                            </div>
                         </div>
                     </div>
-                    <p>{{ user }}</p>
-                    {% endfor %}
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <figure>
-                        <blockquote class="blockquote">
-                            <p class="fs-6">
-                                {{ hate_tweet_content }}
-                            </p>
-                        </blockquote>
-                        <figcaption class="blockquote-footer mt-1">
-                            Tweet Random
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="card-body">
-                    <p class="">{% if peak_occurrences %}
-                        {% for timestamp, engagement in peak_occurrences %}
-                    <p>{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
-                    {% endfor %}
-                    {% else %}
-                    <p>Sin picos en las últimas 6 horas</p>
-                    {% endif %}</p>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="col-4">
-            <div class="card">
-                <div class="custom-height">
-                    <img src="https://source.unsplash.com/Bv_PMxkprVQ" class="rounded img-fluid" />
-
-                    <p><kbd>Nuestro recomendación <mark>de uso</mark> según la temperatura del discurso</kbd></p>
-                    <h4>
-                        <span class="label label-info badge-pill"
-                            style="font-size: 1.5rem; background-color: {% if engagement_level == 'Baja' %}#AAAAAA{% elif engagement_level == 'Promedio' %}#AAAAAA{% else %}#AAAAAA{% endif %}; color: white;">
-                            {{ engagement_level }}
-                        </span>
-                    </h4>
-
-                </div>
+                
             </div>
         </div>
 
-
-
-
+        <div class="col-md-4 ms-4">
+            <!-- Your right-side content goes here -->
+            <div class="right-content">
+                <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->
+                <div class="hero-text" style="font-size: 148px; font-weight: 700; line-height:75%;">
+                    ODIO <span style="display: inline-block; transform: scaleX(-1);">ODIO</span>
+                </div>
+                <!-- Subtext below hero text -->
+                <div class="subtext ms-4 mt-3 w-80 negative-letter-spacing" style="font-size: 18px; line-height:90%;">
+                    HATE-SPEECH EN X: SUS COMPONENTES
+                    RANKEADOS DESDE UNA PERSPECTIVA DE DISCURSO PERFORMATIVO: ¿QUÉ EFECTO
+                    PRODUCEN ESTOS TEXTOS?
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}

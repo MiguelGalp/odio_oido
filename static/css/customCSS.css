@@ -1,11 +1,25 @@
-
 @font-face {
   font-family: 'Geist';
   src: url('../fonts/GeistVariableVF.ttf') format('truetype');
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: 'Geist', fallback;
+  display: flex;
+  align-items: center;
+  /* This will vertically center the flex child (your container) */
+  justify-content: center;
+  /* This will horizontally center the flex child if needed */
+  min-height: 100vh;
+  /* Use min-height to ensure it at least covers the viewport height */
+  margin: 0;
+  /* Remove default margin */
 }
 
 .card {
@@ -21,10 +35,39 @@ body {
   margin-bottom: 5px;
 }
 
-.custom-height {
-  height: 200px !important; /* Set the desired fixed height */
-  max-width: 100% !important;
-  display: block !important; /* Prevent inline default spacing */
-  object-fit: cover !important; /* Ensure the image covers the area without stretching */
+
+.center-helper {
+  margin-left: 10px !important;
 }
 
+.card-custom-width {
+  width: 95%;
+  margin: 0 auto;
+  /* Center the card within the column */
+}
+
+.negative-letter-spacing {
+  letter-spacing: -0.05em; /* Example of a negative letter-spacing value */
+}
+
+.no-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.soft-background {
+  padding: 100px 50px 100px 50px;
+  background-color: #f7f7f8ff;
+}
+
+.hard-background  {
+  background-color: #ecc9c9ff;
+}
+
+.new-background  {
+  background-color: #e7e7e7ff;
+}
+
+.slide-background {
+  background-color: #b7b7b7ff;
+}
