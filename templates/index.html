@@ -10,12 +10,12 @@
 {% endblock %}
 
 {% block content %}
-<div class="container soft-background">
+<div class="container soft-background ms-20">
     <div class="row no-padding">
         <div class="col-6 center-help">
             <div class="left-content">
                 <div class="row no-padding">
-                    <div class="offset-md-2 col-md-5">
+                    <div class="offset-md-1 col-md-5">
                         <div class="card card-custom-width">
                             <div class="card-body rounded new-background">
                                 {% if last_total_increase %}
@@ -45,9 +45,9 @@
                                 {% if engagement > 1 %}
                                 {% set engagement = 1 %}
                                 {% endif %}
-                                <div style="width: 95%; background-color: #f4f4f4; border: 1px solid #ecc9c9ff;">
+                                <div style="width: 95%; background-color: #f4f4f4; border: 1px solid #ccc;">
                                     <div
-                                        style="height: 18px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #e5a3a3ff; ">
+                                        style="height: 18px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #aaaaaa; ">
                                     </div>
                                 </div>
                                 <p>{{ user }}</p>
@@ -71,12 +71,12 @@
                         </div>
                         
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-3">
                         <div class="card card-custom-width">
                             <div class="card-body">
                                 <figure>
                                     <blockquote class="blockquote">
-                                        <p class="fs-6">
+                                        <p class="fs-5">
                                             {{ hate_tweet_content }}
                                         </p>
                                     </blockquote>
@@ -92,7 +92,7 @@
             </div>
         </div>
 
-        <div class="col-md-4 ms-4">
+        <div class="col-md-4">
             <!-- Your right-side content goes here -->
             <div class="right-content">
                 <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->
@@ -100,9 +100,9 @@
                     ODIO <span style="display: inline-block; transform: scaleX(-1);">ODIO</span>
                 </div>
                 <!-- Subtext below hero text -->
-                <div class="subtext ms-4 mt-3 w-80 negative-letter-spacing" style="font-size: 18px; line-height:90%;">
+                <div class="subtext ms-4 mt-3 w-50 negative-letter-spacing" style="font-size: 18px; line-height:90%;">
                     HATE-SPEECH EN X: SUS COMPONENTES
-                    RANKEADOS DESDE UNA PERSPECTIVA DE DISCURSO PERFORMATIVO: ¿QUÉ EFECTO
+                    RANKEADOS DESDE EL DISCURSO EN TANTO QUE PERFORMANCE: ¿QUÉ EFECTO
                     PRODUCEN ESTOS TEXTOS?
                 </div>
             </div>

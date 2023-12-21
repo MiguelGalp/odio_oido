@@ -32,7 +32,17 @@ body {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-  margin-bottom: 5px;
+  margin-bottom: 10px !important;
+}
+
+.row {
+  --bs-gutter-x: 1.5rem;
+  --bs-gutter-y: 0;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(var(--bs-gutter-y) * -1);
+  margin-right: calc(var(--bs-gutter-x) * -15);
+  margin-left: calc(var(--bs-gutter-x) * 1);
 }
 
 
@@ -70,4 +80,10 @@ body {
 
 .slide-background {
   background-color: #b7b7b7ff;
+}
+
+@media (min-width: 1200px) {
+  .container-xl, .container-lg, .container-md, .container-sm, .container {
+      max-width: 1340px; /* Removed the '!' */
+  }
 }
