@@ -14,20 +14,20 @@
     <div class="row no-padding">
         <div class="col-6 center-help">
             <div class="left-content">
-                <div class="row no-padding">
-                    <div class="offset-md-1 col-md-3">
-                        <div class="card card-custom-width">
-                            <div class="card-body rounded bg-gray">
-                                {% if last_total_increase %}
-                                {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180)
-                                %}
-                                {% set time_diff = now - last_total_increase.timestamp %}
-                                {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                                <div class="mb-2"><kbd>Escuchamos <mark>{{ minutes_diff }}</mark> minutos atrás:</kbd>
-                                </div>
-                                {% else %}
-                                <h5>Compuestos del odio hace ... minutos</h5>
-                                {% endif %}
+                <div class="row">
+                    <div class="offset-md-2 col-md-5">
+                        <!-- Time difference calculation -->
+                        {% if last_total_increase %}
+                        {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
+                        {% set time_diff = now - last_total_increase.timestamp %}
+                        {% set minutes_diff = time_diff.total_seconds() // 60 %}
+                        <div class="pb-1 mb-3 purple-bg rounded-3 w-50"><mark class="ms-1 rounded-2">{{ minutes_diff }} minutos atrás</mark>
+                        </div>
+                        {% else %}
+                        <h5>Compuestos del odio hace ... minutos</h5>
+                        {% endif %}
+                        <div class="card">
+                            <div class="card-body rounded bg-yellow">
                                 {% for user, engagement in user_engagements %}
                                 {% if user == 'yanilatorre' %}
                                 {% set user = 'La violencia' %}
@@ -45,38 +45,41 @@
                                 {% if engagement > 1 %}
                                 {% set engagement = 1 %}
                                 {% endif %}
-                                <div style="width: 95%; background-color: #f4f4f4; border: 1px solid #ccc;">
+                                <div class="p-1" style="width: 95%; background-color: #f4f4f4; border: 1px solid #ccc;">
                                     <div
-                                        style="height: 18px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #aaaaaa; ">
+                                        style="height: 9.4px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #ac6e8c; ">
                                     </div>
                                 </div>
-                                <p>{{ user }}</p>
+                                <p class="text-uppercase fw-bold">{{ user }}</p>
                                 {% endfor %}
                             </div>
                         </div>
                         <div class="">
-                            <div class="card card-custom-width new-background">
-                                <div class="card-body">
-                                    {% if peak_occurrences %}
-                                    <i class="bi bi-graph-up d-inline"></i>
-                                    {% for timestamp, engagement in peak_occurrences %}
-                                    <p class="d-inline mx-1">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{ engagement }}</p>
-                                    {% endfor %}
-                                    {% else %}
-                                    <i class="bi bi-graph-up d-inline"></i>
-                                    <p class="d-inline mx-1">Sin picos en las últimas 6 horas</p>
-                                    {% endif %}
+                            <div class="card mt-4 green-bg">
+                                <div class="pb-1 ms-1 green-bg rounded-2 w-90">
+                                    <mark class="border rounded-3">
+                                        {% if peak_occurrences %}
+                                        <i class="bi bi-graph-up d-inline"></i>
+                                        {% for timestamp, engagement in peak_occurrences %}
+                                        <p class="d-inline mx-1">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{
+                                            engagement }}</p>
+                                        {% endfor %}
+                                        {% else %}
+                                        <i class="bi bi-graph-up d-inline"></i>
+                                        <p class="d-inline mx-1">Sin picos en las últimas 6 horas</p>
+                                        {% endif %}
+                                    </mark>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
-                    <div class="col-md-3">
-                        <div class="card card-custom-width">
-                            <div class="card-body bg-gray">
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body blue-bg" style="border-radius: 0.25rem !important;">
                                 <figure>
                                     <blockquote class="blockquote">
-                                        <p class="fs-5 line-clamp text-uppercase">
+                                        <p class="fs-5 line-clamp text-uppercase text-white">
                                             {{ hate_tweet_content }}
                                         </p>
                                     </blockquote>
@@ -88,7 +91,6 @@
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div>
 
@@ -100,9 +102,9 @@
                     ODIO <span class="flipped-text">ODIO</span>
                 </div>
                 <!-- Subtext below hero text -->
-                <div class="subtext ms-4 mt-3 w-50 negative-letter-spacing" style="font-size: 18px; line-height:97%; color: #0f0f0f;">
-                    HATE-SPEECH EN X: SUS COMPONENTES
-                    RANKEADOS: ANÁLISIS DEL DISCURSO COMO PERFORMANCE ¿QUÉ EFECTO
+                <div class="subtext ms-4 mt-3 w-75 negative-letter-spacing fw-bold"
+                    style="font-size: 18px; line-height:97%; color: #0f0f0f;">
+                    ANÁLISIS DEL HATE-SPEECH EN X: ¿QUÉ EFECTO
                     PRODUCEN ESTOS TEXTOS?
                 </div>
             </div>

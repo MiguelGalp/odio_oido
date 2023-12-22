@@ -22,6 +22,10 @@ body {
   /* Remove default margin */
 }
 
+.p {
+  margin-bottom: 0rem !important;
+}
+
 .card {
   position: relative;
   display: flex;
@@ -31,20 +35,9 @@ body {
   background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.25rem;
+  border-radius: 0.5rem !important;
   margin-bottom: 10px !important;
 }
-
-.row {
-  --bs-gutter-x: 1.5rem;
-  --bs-gutter-y: 0;
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: calc(var(--bs-gutter-y) * -1);
-  margin-right: calc(var(--bs-gutter-x) * -15);
-  margin-left: calc(var(--bs-gutter-x) * -10);
-}
-
 
 .card-custom-width {
   width: 95%;
@@ -61,17 +54,16 @@ body {
   padding-right: 0 !important;
 }
 
-.position-background {
-  padding: 50px 0px;
-  background-color: #ad8302;
-  margin-left: 300px !important; /* This will apply to screens larger than 1280px by default */
+.blue-bg {
+  background-color: #205ea6;
 }
 
-/* Override for screens smaller than 1280px wide */
-@media (max-width: 1279px) {
-  .position-background {
-    margin-left: 230px !important; /* Adapted margin-left for smaller screens */
-  }
+.green-bg {
+  background-color: #66800c;
+}
+
+.purple-bg {
+  background-color: #5e419d;
 }
 
 .hard-background  {
@@ -91,7 +83,7 @@ body {
 }
 
 .margin-hero {
-  margin-left: -3vw;
+  margin-left: 0vw;
 }
 
 .line-clamp {
@@ -134,9 +126,13 @@ body {
   background-color: #e1dfd1;
 }
 
+.bg-yellow {
+  background-color: #ad8302;
+}
+
 .blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
-  border-left: 5px solid #212529;
+  border-left: 5px solid #aaa;
 }

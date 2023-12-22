@@ -161,7 +161,7 @@ h6,
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0rem;
 }
 
 abbr[title],
@@ -223,8 +223,11 @@ small,
 
 mark,
 .mark {
-  padding: 0.2em;
+  padding: 0.15rem 0.3rem;
   background-color: #fcf8e3;
+  border-left: 1px solid black;
+  font-size: 0.875em; 
+  font-family: var(--bs-font-monospace);
 }
 
 sub,
@@ -616,7 +619,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #6c757d;
+  color: #aaa;
 }
 
 .blockquote-footer::before {
