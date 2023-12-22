@@ -34,8 +34,9 @@
   --melon: #fbc3b0ff;
   --salmon-pink: #ff9b9bff;
   --melon-2: #e5a3a3ff;
-  --soft-bg: #f7f7f7;
-  --hard-bg: #aaaaaa;
+  --soft-bg: #af312a;
+  --hard-bg: #b7b5ac;
+  --black-text: #0f0f0f;
 
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
@@ -61,7 +62,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
-  background-color: #fff;
+  background-color: #fffcf0;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }

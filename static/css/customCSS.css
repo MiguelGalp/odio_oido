@@ -42,7 +42,7 @@ body {
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
   margin-right: calc(var(--bs-gutter-x) * -15);
-  margin-left: calc(var(--bs-gutter-x) * -15);
+  margin-left: calc(var(--bs-gutter-x) * -10);
 }
 
 
@@ -53,7 +53,7 @@ body {
 }
 
 .negative-letter-spacing {
-  letter-spacing: -0.05em; /* Example of a negative letter-spacing value */
+  letter-spacing: -0.03em; /* Example of a negative letter-spacing value */
 }
 
 .no-padding {
@@ -61,10 +61,17 @@ body {
   padding-right: 0 !important;
 }
 
-.soft-background {
-  padding: 50px 25px 50px 250px;
-  background-color: #f7f7f8ff;
-  margin-left:270px !important;
+.position-background {
+  padding: 50px 0px;
+  background-color: #ad8302;
+  margin-left: 300px !important; /* This will apply to screens larger than 1280px by default */
+}
+
+/* Override for screens smaller than 1280px wide */
+@media (max-width: 1279px) {
+  .position-background {
+    margin-left: 230px !important; /* Adapted margin-left for smaller screens */
+  }
 }
 
 .hard-background  {
@@ -79,8 +86,57 @@ body {
   background-color: #b7b7b7ff;
 }
 
-@media (min-width: 1200px) {
-  .container-xl, .container-lg, .container-md, .container-sm, .container {
-      max-width: 1340px; /* Removed the '!' */
+.hate-text {
+  color: #af312a !important;
+}
+
+.margin-hero {
+  margin-left: -3vw;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 10; /* Replace '3' with the number of lines you want to clamp to */
+}
+
+.hero-text {
+  font-size: 148px; 
+  font-weight: 700; 
+  line-height: 75%;
+}
+
+/* Flipped text styles */
+.flipped-text {
+  display: inline-block;
+  transform: scaleX(-1);
+}
+
+/* Media query for screens from 768px to 960px */
+@media (min-width: 768px) and (max-width: 960px) {
+  .hero-text {
+      font-size: 120px; 
+      /* Adjust the font size as needed for the specified screen width range */
   }
+}
+
+.bg-orange {
+  background-color: #bc5215;
+}
+
+.bg-red {
+  background-color: #af312a;
+}
+
+.bg-gray {
+  background-color: #e1dfd1;
+}
+
+.blockquote {
+  padding: 10px 20px;
+  margin: 0 0 20px;
+  font-size: 17.5px;
+  border-left: 5px solid #212529;
 }

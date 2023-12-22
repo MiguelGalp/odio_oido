@@ -10,14 +10,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container soft-background ms-20">
+<div class="container position-background">
     <div class="row no-padding">
         <div class="col-6 center-help">
             <div class="left-content">
                 <div class="row no-padding">
-                    <div class="offset-md-1 col-md-5">
+                    <div class="offset-md-1 col-md-3">
                         <div class="card card-custom-width">
-                            <div class="card-body rounded new-background">
+                            <div class="card-body rounded bg-gray">
                                 {% if last_total_increase %}
                                 {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180)
                                 %}
@@ -73,10 +73,10 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card card-custom-width">
-                            <div class="card-body">
+                            <div class="card-body bg-gray">
                                 <figure>
                                     <blockquote class="blockquote">
-                                        <p class="fs-5">
+                                        <p class="fs-5 line-clamp text-uppercase">
                                             {{ hate_tweet_content }}
                                         </p>
                                     </blockquote>
@@ -94,15 +94,15 @@
 
         <div class="col-md-4">
             <!-- Your right-side content goes here -->
-            <div class="right-content">
+            <div class="right-content margin-hero">
                 <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->
-                <div class="hero-text" style="font-size: 148px; font-weight: 700; line-height:75%;">
-                    ODIO <span style="display: inline-block; transform: scaleX(-1);">ODIO</span>
+                <div class="hero-text hate-text ">
+                    ODIO <span class="flipped-text">ODIO</span>
                 </div>
                 <!-- Subtext below hero text -->
-                <div class="subtext ms-4 mt-3 w-50 negative-letter-spacing" style="font-size: 18px; line-height:90%;">
+                <div class="subtext ms-4 mt-3 w-50 negative-letter-spacing" style="font-size: 18px; line-height:97%; color: #0f0f0f;">
                     HATE-SPEECH EN X: SUS COMPONENTES
-                    RANKEADOS DESDE EL DISCURSO EN TANTO QUE PERFORMANCE: ¿QUÉ EFECTO
+                    RANKEADOS: ANÁLISIS DEL DISCURSO COMO PERFORMANCE ¿QUÉ EFECTO
                     PRODUCEN ESTOS TEXTOS?
                 </div>
             </div>
