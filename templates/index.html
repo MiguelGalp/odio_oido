@@ -13,21 +13,24 @@
 <div class="container position-background">
     <div class="row no-padding">
         <div class="col-6 center-help">
+            <div class="row">
+                <!-- Time difference calculation -->
+                {% if last_total_increase %}
+                {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
+                {% set time_diff = now - last_total_increase.timestamp %}
+                {% set minutes_diff = time_diff.total_seconds() // 60 %}
+                <div class="offset-2 rounded-3 w-50"><mark class="ms-2 rounded-2">{{ minutes_diff }} minutos atrás</mark>
+                </div>
+                {% else %}
+                <h5>Compuestos del odio hace ... minutos</h5>
+                {% endif %}
+            </div>
             <div class="left-content">
                 <div class="row">
-                    <div class="offset-md-2 col-md-5">
-                        <!-- Time difference calculation -->
-                        {% if last_total_increase %}
-                        {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
-                        {% set time_diff = now - last_total_increase.timestamp %}
-                        {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                        <div class="pb-1 mb-3 purple-bg rounded-3 w-50"><mark class="ms-1 rounded-2">{{ minutes_diff }} minutos atrás</mark>
-                        </div>
-                        {% else %}
-                        <h5>Compuestos del odio hace ... minutos</h5>
-                        {% endif %}
+                    <div class="offset-md-2 col-md-5 ">
+                        
                         <div class="card">
-                            <div class="card-body rounded bg-yellow">
+                            <div class="card-body rounded" style="background-color: #af312a;">
                                 {% for user, engagement in user_engagements %}
                                 {% if user == 'yanilatorre' %}
                                 {% set user = 'La violencia' %}
@@ -45,19 +48,18 @@
                                 {% if engagement > 1 %}
                                 {% set engagement = 1 %}
                                 {% endif %}
-                                <div class="p-1" style="width: 95%; background-color: #f4f4f4; border: 1px solid #ccc;">
+                                <div class="p-1" style="width: 95%; background-color: #af312a; border: 1px solid #000;">
                                     <div
-                                        style="height: 9.4px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #ac6e8c; ">
+                                        style="height: 22px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #000; ">
                                     </div>
                                 </div>
-                                <p class="text-uppercase fw-bold">{{ user }}</p>
+                                <p class="text-uppercase text-custom fw-bold">{{ user }}</p>
                                 {% endfor %}
                             </div>
                         </div>
-                        <div class="">
-                            <div class="card mt-4 green-bg">
-                                <div class="pb-1 ms-1 green-bg rounded-2 w-90">
-                                    <mark class="border rounded-3">
+                        <div class="row w-75 ms-2">
+                            
+                                    <mark class="rounded-3 w-50">
                                         {% if peak_occurrences %}
                                         <i class="bi bi-graph-up d-inline"></i>
                                         {% for timestamp, engagement in peak_occurrences %}
@@ -66,20 +68,18 @@
                                         {% endfor %}
                                         {% else %}
                                         <i class="bi bi-graph-up d-inline"></i>
-                                        <p class="d-inline mx-1">Sin picos en las últimas 6 horas</p>
+                                        <p class="d-inline mx-1">Sin picos</p>
                                         {% endif %}
-                                    </mark>
-                                </div>
-                            </div>
+                                    </mark>       
                         </div>
 
                     </div>
                     <div class="col-md-5">
                         <div class="card">
-                            <div class="card-body blue-bg" style="border-radius: 0.25rem !important;">
+                            <div class="card-body" style="border-radius: 0.25rem !important; background-color: #af312a !important;">
                                 <figure>
                                     <blockquote class="blockquote">
-                                        <p class="fs-5 line-clamp text-uppercase text-white">
+                                        <p class="fs-5 line-clamp text-uppercase text-custom fw-bold">
                                             {{ hate_tweet_content }}
                                         </p>
                                     </blockquote>
@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 mt-4">
             <!-- Your right-side content goes here -->
             <div class="right-content margin-hero">
                 <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->

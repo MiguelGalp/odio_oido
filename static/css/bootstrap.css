@@ -209,6 +209,7 @@ dd {
 
 blockquote {
   margin: 0 0 1rem;
+  min-height: 220px !important;
 }
 
 b,
@@ -225,7 +226,6 @@ mark,
 .mark {
   padding: 0.15rem 0.3rem;
   background-color: #fcf8e3;
-  border-left: 1px solid black;
   font-size: 0.875em; 
   font-family: var(--bs-font-monospace);
 }
@@ -619,7 +619,7 @@ progress {
   margin-top: -1rem;
   margin-bottom: 1rem;
   font-size: 0.875em;
-  color: #aaa;
+  color: #1c1c1c;
 }
 
 .blockquote-footer::before {

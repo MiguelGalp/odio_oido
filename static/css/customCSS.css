@@ -32,11 +32,10 @@ body {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5rem !important;
-  margin-bottom: 10px !important;
+
 }
 
 .card-custom-width {
@@ -70,8 +69,8 @@ body {
   background-color: #ecc9c9ff;
 }
 
-.new-background  {
-  background-color: #e7e7e7ff;
+.dark-red-bg  {
+  background-color: #7A221D;
 }
 
 .slide-background {
@@ -80,6 +79,10 @@ body {
 
 .hate-text {
   color: #af312a !important;
+}
+
+.text-custom {
+  color: #1c1c1c;
 }
 
 .margin-hero {
@@ -134,5 +137,5 @@ body {
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
-  border-left: 5px solid #aaa;
+  border-left: 5px solid #1c1c1c;
 }
