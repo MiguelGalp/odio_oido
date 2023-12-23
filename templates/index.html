@@ -11,23 +11,23 @@
 
 {% block content %}
 <div class="container position-background">
-    <div class="row no-padding">
-        <div class="col-6 center-help">
-            <div class="row">
+    <div class="row no-padding flex-column-reverse flex-lg-row">
+        <div class="col-12 col-lg-6 offset-lg-1 center-help order-1 order-lg-1">
+            <div class="row no-padding">
                 <!-- Time difference calculation -->
                 {% if last_total_increase %}
                 {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
                 {% set time_diff = now - last_total_increase.timestamp %}
                 {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                <div class="offset-2 rounded-3 w-50"><mark class="ms-2 rounded-2">{{ minutes_diff }} minutos atrás</mark>
+                <div class="offset-0 offset-md-0 offset-lg-1 rounded-3 w-50"><mark class="ms-3 rounded-2">{{ minutes_diff }} minutos atrás</mark>
                 </div>
                 {% else %}
                 <h5>Compuestos del odio hace ... minutos</h5>
                 {% endif %}
             </div>
             <div class="left-content">
-                <div class="row">
-                    <div class="offset-md-2 col-md-5 ">
+                <div class="row no-padding">
+                    <div class="offset-md-0 offset-lg-1 col-md-6 ">
                         
                         <div class="card">
                             <div class="card-body rounded" style="background-color: #af312a;">
@@ -57,18 +57,18 @@
                                 {% endfor %}
                             </div>
                         </div>
-                        <div class="row w-75 ms-2">
+                        <div class="row w-75 ms-3">
                             
-                                    <mark class="rounded-3 w-50">
+                                    <mark class="rounded-3 custom-width py-0 mt-1">
                                         {% if peak_occurrences %}
                                         <i class="bi bi-graph-up d-inline"></i>
                                         {% for timestamp, engagement in peak_occurrences %}
-                                        <p class="d-inline mx-1">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{
+                                        <p class="d-inline">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{
                                             engagement }}</p>
                                         {% endfor %}
                                         {% else %}
                                         <i class="bi bi-graph-up d-inline"></i>
-                                        <p class="d-inline mx-1">Sin picos</p>
+                                        <p class="d-inline">sin picos</p>
                                         {% endif %}
                                     </mark>       
                         </div>
@@ -94,9 +94,9 @@
             </div>
         </div>
 
-        <div class="col-md-4 mt-4">
+        <div class="col-12 col-md-4 mt-4 order-2 order-lg-2">
             <!-- Your right-side content goes here -->
-            <div class="right-content margin-hero">
+            <div class="right-content custom-margin-top">
                 <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->
                 <div class="hero-text hate-text ">
                     ODIO <span class="flipped-text">ODIO</span>
@@ -104,8 +104,8 @@
                 <!-- Subtext below hero text -->
                 <div class="subtext ms-4 mt-3 w-75 negative-letter-spacing fw-bold"
                     style="font-size: 18px; line-height:97%; color: #0f0f0f;">
-                    ANÁLISIS DEL HATE-SPEECH EN X: ¿QUÉ EFECTO
-                    PRODUCEN ESTOS TEXTOS?
+                    ANÁLISIS DEL HATE-SPEECH EN X: ¿QUÉ EFECTOS
+                    PRODUCEN ESTOS DISCURSOS?
                 </div>
             </div>
         </div>

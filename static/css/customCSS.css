@@ -38,10 +38,14 @@ body {
 
 }
 
-.card-custom-width {
-  width: 95%;
-  margin: 0 auto;
-  /* Center the card within the column */
+.custom-width {
+  width: 80px;
+}
+
+@media (max-width: 767.98px) {
+  .custom-margin-top {
+    margin-top: 100px !important; /* replace with your desired margin-top */
+  }
 }
 
 .negative-letter-spacing {
@@ -110,7 +114,7 @@ body {
 }
 
 /* Media query for screens from 768px to 960px */
-@media (min-width: 768px) and (max-width: 960px) {
+@media (min-width: 768px) and (max-width: 1280px) {
   .hero-text {
       font-size: 120px; 
       /* Adjust the font size as needed for the specified screen width range */
@@ -137,5 +141,5 @@ body {
   padding: 10px 20px;
   margin: 0 0 20px;
   font-size: 17.5px;
-  border-left: 5px solid #1c1c1c;
+  border-left: 10px solid #1c1c1c !important;
 }

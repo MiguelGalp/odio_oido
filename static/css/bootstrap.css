@@ -225,7 +225,7 @@ small,
 mark,
 .mark {
   padding: 0.15rem 0.3rem;
-  background-color: #fcf8e3;
+  background-color: #fbf4d1;
   font-size: 0.875em; 
   font-family: var(--bs-font-monospace);
 }
