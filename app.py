@@ -55,7 +55,7 @@ def get_current_engagement():
         app.logger.warning("No User records found")
         return jsonify({"error": "No User records found"})
 
-    # Number of followers for each user
+    # Number of followers for each user --> ordered by user id (?)
     followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 100000.0]
 
     # Initialize a list to store user engagement
@@ -63,12 +63,18 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        # Normalize the engagement value according to the number of followers
-        normalized_engagement = user.total_engagement / followers[i]
-        
+        # Get the number of tweets for the user
+        num_tweets = Tweet.query.filter_by(user_id=user.id).count()
+
+        # Normalize the engagement value according to the number of followers and number of tweets
+        if num_tweets > 0:
+            normalized_engagement = float((user.total_engagement / num_tweets) / followers[i])
+        else:
+            normalized_engagement = 0.0
+
         # Add the user and their normalized engagement to the list
         user_engagements.append((user.name, normalized_engagement))
-
+ 
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
@@ -118,7 +124,7 @@ def index():
     else:
         hate_tweet_content = None
 
-    return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase)
+    return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, user_engagements=user_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase, min=min)
 
 
 

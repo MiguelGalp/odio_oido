@@ -49,9 +49,7 @@
                                 {% set engagement = 1 %}
                                 {% endif %}
                                 <div class="p-1" style="width: 95%; background-color: #af312a; border: 1px solid #000;">
-                                    <div
-                                        style="height: 22px; width: {{ '%.2f'|format(engagement * 100) }}%; background-color: #000; ">
-                                    </div>
+                                    <div style="height: 22px; width: {{ '%.2f'|format(min(engagement * 100000, 100)) }}%; background-color: #000; "></div>
                                 </div>
                                 <p class="text-uppercase text-custom fw-bold">{{ user }}</p>
                                 {% endfor %}
