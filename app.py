@@ -77,11 +77,6 @@ def get_current_engagement():
         else:
             normalized_engagement = float((user.total_engagement / len(recent_tweets)) / followers[i])
 
-        # Print timestamps for recent_tweets
-        # Print timestamps of recent_tweets
-        for tweet in recent_tweets:
-            print(f"Tweet Timestamp: {tweet.timestamp}")
-
         # Add the user and their normalized engagement to the list
         user_engagements.append((user.name, normalized_engagement))
 
