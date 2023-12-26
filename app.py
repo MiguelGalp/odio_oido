@@ -31,6 +31,7 @@ class Tweet(db.Model):
     likes = db.Column(db.Integer)
     retweets = db.Column(db.Integer)
     replies = db.Column(db.Integer)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
 class FetchTime(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -49,6 +50,9 @@ except Exception as e:
     print(f"Database error: {str(e)}")
 
 def get_current_engagement():
+    # Get the datetime for 6 hours ago
+    six_hours_ago = datetime.utcnow() - timedelta(hours=6)
+
     # Get all users
     users = User.query.order_by(User.id.asc()).limit(6).all()
     if not users:
@@ -63,18 +67,26 @@ def get_current_engagement():
 
     # Calculate total engagement for all users
     for i, user in enumerate(users):
-        # Get the number of tweets for the user
-        num_tweets = Tweet.query.filter_by(user_id=user.id).count()
+        # Get the recent tweets for the user
+        recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= six_hours_ago).all()
 
-        # Normalize the engagement value according to the number of followers and number of tweets
-        if num_tweets > 0:
-            normalized_engagement = float((user.total_engagement / num_tweets) / followers[i])
-        else:
+        print(recent_tweets)
+        # Normalize the engagement value according to the number of followers and number of recent tweets
+        if not recent_tweets:
             normalized_engagement = 0.0
+        else:
+            normalized_engagement = float((user.total_engagement / len(recent_tweets)) / followers[i])
+
+        # Print timestamps for recent_tweets
+        # Print timestamps of recent_tweets
+        for tweet in recent_tweets:
+            print(f"Tweet Timestamp: {tweet.timestamp}")
 
         # Add the user and their normalized engagement to the list
         user_engagements.append((user.name, normalized_engagement))
- 
+
+    
+
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
