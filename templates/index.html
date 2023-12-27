@@ -12,14 +12,14 @@
 {% block content %}
 <div class="container position-background">
     <div class="row no-padding flex-column-reverse flex-lg-row">
-        <div class="col-12 col-lg-6 offset-lg-1 center-help order-1 order-lg-1">
+        <div class="col-12 col-lg-6 offset-md-1  center-help order-1 order-lg-1">
             <div class="row no-padding">
                 <!-- Time difference calculation -->
                 {% if last_total_increase %}
                 {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
                 {% set time_diff = now - last_total_increase.timestamp %}
                 {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                <div class="offset-0 offset-md-0 offset-lg-1 rounded-3 w-50"><mark class="ms-3 rounded-2">{{ minutes_diff }} minutos atrás</mark>
+                <div class="offset-0 offset-md-0 rounded-3 w-50"><mark class="ms-3 rounded-2">{{ minutes_diff }} minutos atrás</mark>
                 </div>
                 {% else %}
                 <h5>Compuestos del odio hace ... minutos</h5>
@@ -27,10 +27,10 @@
             </div>
             <div class="left-content">
                 <div class="row no-padding">
-                    <div class="offset-md-0 offset-lg-1 col-md-6 ">
+                    <div class="offset-md-0 col-md-7">
                         
                         <div class="card">
-                            <div class="card-body rounded" style="background-color: #af312a;">
+                            <div class="card-body rounded" style="background-color: #fffcf0;">
                                 {% for user, engagement in user_engagements %}
                                 {% if user == 'yanilatorre' %}
                                 {% set user = 'La violencia' %}
@@ -48,7 +48,7 @@
                                 {% if engagement > 1 %}
                                 {% set engagement = 1 %}
                                 {% endif %}
-                                <div class="p-1" style="width: 95%; background-color: #af312a; border: 1px solid #000;">
+                                <div class="p-1" style="background-color: #fffcf0; border: 1px solid #000;">
                                     <div style="height: 22px; width: {{ '%.2f'|format(min(engagement * 10000, 100)) }}%; background-color: #000; "></div>
                                 </div>
                                 <p class="text-uppercase text-custom fw-bold">{{ user }}</p>
@@ -72,9 +72,9 @@
                         </div>
 
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-4 offset-md-1">
                         <div class="card">
-                            <div class="card-body" style="border-radius: 0.25rem !important; background-color: #af312a !important;">
+                            <div class="card-body" style="border-radius: 0.25rem !important; background-color: #fffcf0 !important;">
                                 <figure>
                                     <blockquote class="blockquote">
                                         <p class="fs-5 line-clamp text-uppercase text-custom fw-bold">
@@ -92,9 +92,9 @@
             </div>
         </div>
 
-        <div class="col-12 col-md-4 mt-4 order-2 order-lg-2">
+        <div class="col-12 col-md-4 offset-md-0 order-2 order-lg-2">
             <!-- Your right-side content goes here -->
-            <div class="right-content custom-margin-top">
+            <div class="right-content mt-4 custom-margin-top">
                 <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->
                 <div class="hero-text hate-text ">
                     ODIO <span class="flipped-text">ODIO</span>
@@ -102,8 +102,7 @@
                 <!-- Subtext below hero text -->
                 <div class="subtext ms-4 mt-3 w-75 negative-letter-spacing fw-bold"
                     style="font-size: 18px; line-height:97%; color: #0f0f0f;">
-                    ANÁLISIS DEL HATE-SPEECH EN X: ¿QUÉ EFECTOS
-                    PRODUCEN ESTOS DISCURSOS?
+                    INFLUENCIA EN TIEMPO REAL: LAS ÚLTIMAS 24 HORAS DE X EN LIKES, RETWEETS Y REPLIES. 
                 </div>
             </div>
         </div>

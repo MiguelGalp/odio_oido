@@ -51,7 +51,7 @@ except Exception as e:
 
 def get_current_engagement():
     # Get the datetime for 6 hours ago
-    six_hours_ago = datetime.utcnow() - timedelta(hours=6)
+    a_day_ago = datetime.utcnow() - timedelta(hours=24)
 
     # Get all users
     users = User.query.order_by(User.id.asc()).limit(6).all()
@@ -68,7 +68,7 @@ def get_current_engagement():
     # Calculate total engagement for all users
     for i, user in enumerate(users):
         # Get the recent tweets for the user
-        recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= six_hours_ago).all()
+        recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
 
         print(recent_tweets)
         # Normalize the engagement value according to the number of followers and number of recent tweets
@@ -110,7 +110,7 @@ def index():
     # Check for peak occurrences
     peak_occurrences = []
     for increase in total_increases:
-        if increase.total_tweet_engagement > average_engagement * 1.5:  # 1.5 is an example threshold for "significant" increase
+        if increase.total_tweet_engagement > average_engagement * 1.1:  # 1.5 is an example threshold for "significant" increase
             peak_occurrences.append((increase.timestamp, increase.total_tweet_engagement))
 
     # Determine if the total tweet engagement is below average, average, or above average
