@@ -49,8 +49,34 @@ try:
 except Exception as e:
     print(f"Database error: {str(e)}")
 
+def calculate_engagement(tweet):
+    likes = tweet.likes
+    retweets = tweet.retweets
+    replies = tweet.replies
+    
+    # Define weights based on the importance you assign to each metric
+    weights = {'likes': 1, 'retweets': 2, 'replies': 1.5}
+    
+    engagement_score = likes*weights['likes'] + retweets*weights['retweets'] + replies*weights['replies']
+    
+    return engagement_score
+
+def calculate_normalized_engagement(total_engagement, num_tweets, followers, time_window=24):
+    # Calculate the average tweets per hour
+    avg_tweets_per_hour = num_tweets / time_window
+    
+    # Define a weight for the time factor based on your specific needs
+    time_weight = 0.5
+    
+    # Adjust the total engagement with the time factor
+    adjusted_engagement = total_engagement * (1 + time_weight * avg_tweets_per_hour)
+    
+    normalized_engagement = float(adjusted_engagement / followers)
+    
+    return normalized_engagement
+
 def get_current_engagement():
-    # Get the datetime for 6 hours ago
+    # Get the datetime for 24 hours ago
     a_day_ago = datetime.utcnow() - timedelta(hours=24)
 
     # Get all users
@@ -69,24 +95,25 @@ def get_current_engagement():
     for i, user in enumerate(users):
         # Get the recent tweets for the user
         recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
-
-        print(recent_tweets)
+        
+        # Calculate total engagement for each tweet
+        total_engagement = sum([calculate_engagement(tweet) for tweet in recent_tweets])
+        
         # Normalize the engagement value according to the number of followers and number of recent tweets
         if not recent_tweets:
             normalized_engagement = 0.0
         else:
-            normalized_engagement = float((user.total_engagement / len(recent_tweets)) / followers[i])
+            normalized_engagement = calculate_normalized_engagement(total_engagement, len(recent_tweets), followers[i])
 
         # Add the user and their normalized engagement to the list
         user_engagements.append((user.name, normalized_engagement))
-
-    
 
     # Sort the list by engagement in descending order
     user_engagements.sort(key=lambda x: x[1], reverse=True)
 
     # Return the sorted list of tuples
     return user_engagements
+
 
 @app.route('/engagement', methods=['GET'])
 def engagement_route():

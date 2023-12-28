@@ -102,9 +102,10 @@ body {
 }
 
 .hero-text {
-  font-size: 148px; 
-  font-weight: 700; 
+  font-size: 124px; 
+  font-weight: 900; 
   line-height: 75%;
+  
 }
 
 /* Flipped text styles */
