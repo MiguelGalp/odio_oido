@@ -20,11 +20,64 @@ body {
   /* Use min-height to ensure it at least covers the viewport height */
   margin: 0;
   /* Remove default margin */
-  scale: 150%;
+  scale: 135%;
 }
 
 .p {
   margin-bottom: 0rem !important;
+}
+
+.pic-size {
+  width: 350px;
+  height: 350px
+}
+
+@media (max-width: 1400px) {
+  .pic-size {
+    width: 300px;
+  height: 300px
+  }
+}
+
+@media (max-width: 992px) {
+  .pic-size {
+    width: 250px;
+  height: 250px;
+  }
+}
+
+
+.pic-margin {
+  margin-left: -125px;
+  margin-top: 7px;
+}
+
+@media (max-width: 1700px) {
+  .pic-margin {
+    margin-left: -125px;
+  margin-top: 7px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .pic-margin {
+    margin-left: -90px;
+  margin-top: 7px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .pic-margin {
+    margin-left: -40px;
+  margin-top: 7px;
+  }
+}
+
+@media (max-width: 992px) {
+  .pic-margin {
+    margin-left: 15px;
+  margin-top: 7px;
+  }
 }
 
 .card {
@@ -40,21 +93,20 @@ body {
 
 .custom-position-content {
   position: relative;
-  left: 30px;
-  top: 5vh;
+  left: -115px;
 }
 
 @media (max-width: 1200px) {
   .custom-position-content {
     position: relative;
-    left: -25px;
+    left: -175px;
   }
 }
 
 @media (max-width: 992px) {
   .custom-position-content {
     position: relative;
-    left: -40px;
+    left: -170px;
   }
 }
 

@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
     <div class="row custom-position-content">
         <div class="col-12 col-md-1 offset-md-3 avatar-margin ">
@@ -28,7 +29,8 @@
                 {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
                 {% set time_diff = now - last_total_increase.timestamp %}
                 {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                <div class="offset-0 offset-md-0 rounded-3" style="width: 75%"><mark class="ms-3 rounded-2">{{ minutes_diff }} minutos
+                <div class="offset-0 offset-md-0 rounded-3" style="width: 75%"><mark class="ms-3 rounded-2">{{
+                        minutes_diff }} minutos
                         atrás</mark>
                 </div>
                 {% else %}
@@ -67,34 +69,39 @@
                 <mark class="rounded-3 py-0 mt-1" style="width: 48%">
                     {% if peak_occurrences %}
                     <i class="bi bi-graph-up d-inline"></i>
-                    {% for timestamp, engagement in peak_occurrences %}
-                    <p class="d-inline" style="width: 100%">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{
-                        engagement }}</p>
-                    {% endfor %}
+                    {% set timestamp, engagement = peak_occurrences[0] %}
+                    <p class="d-inline" style="width: 100%">{{ timestamp.strftime('%B %d, %Y at %I:%M %p') }}: {{ engagement }}</p>
                     {% else %}
                     <i class="bi bi-graph-up d-inline"></i>
                     <p class="d-inline">sin picos</p>
                     {% endif %}
                 </mark>
             </div>
-            <p class="mx-4 my-3" style="width: 80%; line-height: 9px;"><sup>1</sup> Es un hecho establecido hace tiempo que un
+            
+            <p class="mx-4 my-3" style="width: 80%; line-height: 9px;"><sup>1</sup> Es un hecho establecido hace
+                tiempo que un
                 lector se distraerá.
             </p>
         </div>
         <div class="col-12 col-md-3" style="">
+            <div class="hero-text hate-text-color" style="margin-top: 13px; scale: 103%;">
+                ODIO<span class="flipped-text">ODIO </span>
+            </div>
+            <div class="row text-uppercase custom-width" style="font-weight: 900; letter-spacing: -0.5px; margin-top: 8px; margin-left: -3px; line-height: 9px;">
+                <p>
+                    <span style="display: inline-block; margin-right: -10px;">Interacciones según seguidores</span><br>
+                    <span style="display: inline-block; margin-right: 10px;">y tweets (en un ciclo de vida de 24hs). Engagements y</span><br>
+                    <span style="display: inline-block; margin-right: 20px;"> una suerte de espejo-venganza --o una </span><br>
+                    <span style="display: inline-block; margin-right: 30px;">advertencia:</span>
+                    <span style="display: inline-block; margin-right: 30px;">es gente</span><br>
+                    <span style="display: inline-block; margin-right: 40px;">tóxica.</span>
+                </p>
+            </div>
             
-                <div class="hero-text hate-text-color" style="margin-left: -10px; margin-top: 13px; scale: 103%;">
-                    ODIO<span class="flipped-text">ODIO </span>
-                </div>
-
-                <div class="row text-uppercase custom-width" style="font-weight: 900; letter-spacing: -0.3px; margin-top: 8px;">
-                    Interacciones según seguidores y tweets (en un ciclo de vida de 24hs).
-
-
-                    "Engagements" y
-
-                    una suerte de espejo-venganza --o una auto-advertencia: es gente muy, muy, tóxica (1)
             
+        </div>
+        <div class="col-12 col-md-2">
+            <img src="./static/public/avatar.png" alt="MG"  class="pic-margin pic-size" />
         </div>
     </div>
 </div>
