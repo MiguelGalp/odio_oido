@@ -41,6 +41,7 @@ body {
 .custom-position-content {
   position: relative;
   left: 30px;
+  top: 5vh;
 }
 
 @media (max-width: 1200px) {
