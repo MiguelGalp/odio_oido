@@ -11,55 +11,64 @@
 
 {% block content %}
 <div class="container">
-    <div class="col-12 col-md-5 offset-md-4">
-        
+    <div class="row custom-position-content">
+        <div class="col-12 col-md-1 offset-md-3 avatar-margin ">
+            <div class="text-center" style="margin-top: 20px;">
+                <img src="./static/public/avatar.png" alt="MG" width="28" height="28" />
+                <br>
+                <br>
+                <img src="./static/public/avatar.png" alt="MG" width="28" height="28" />
+            </div>
+        </div>
+
+        <div class="col-12 col-md-3 col-lg-3 col-xl-2" style="margin-left: -40px;">
             <div class="row">
                 <!-- Time difference calculation -->
                 {% if last_total_increase %}
                 {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
                 {% set time_diff = now - last_total_increase.timestamp %}
                 {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                <div class="offset-0 offset-md-0 rounded-3 w-50"><mark class="ms-3 rounded-2">{{ minutes_diff }} minutos
+                <div class="offset-0 offset-md-0 rounded-3" style="width: 75%"><mark class="ms-3 rounded-2">{{ minutes_diff }} minutos
                         atrás</mark>
                 </div>
                 {% else %}
-                <h5>Compuestos del odio hace ... minutos</h5>
+                <h6>Compuestos del odio hace ... minutos</h6>
                 {% endif %}
             </div>
-            <div class="card position-background">
+            <div class="card position-background" style="width:95%">
                 <div class="card-body rounded" style="background-color: #fffcf0;">
                     {% for user, engagement in user_engagements %}
                     {% if user == 'yanilatorre' %}
-                    {% set user = 'La violencia en acto (Verdaderas apologías del odio)' %}
+                    {% set user = 'Ms. Odio' %}
                     {% elif user == 'SergioChouza' %}
-                    {% set user = 'Auto-percibidos influencers (La prepotencia)' %}
+                    {% set user = 'El Capanga' %}
                     {% elif user == 'atilioboron' %}
-                    {% set user = 'Dicen mentira por verdad (¿Auto-engaño? ¿Lo sabrán?)' %}
+                    {% set user = 'Profesor Nada' %}
                     {% elif user == 'CarlosMaslaton' %}
-                    {% set user = 'Lograron la anomía, el vacío (El mérito de la parca)' %}
+                    {% set user = 'Un Payaso' %}
                     {% elif user == 'rialjorge' %}
-                    {% set user = 'Maestros de la manipulación (Al servicio de la $$$)' %}
+                    {% set user = 'El Pastor del mal' %}
                     {% elif user == 'alexcaniggia' %}
-                    {% set user = 'Imágenes que me (sobre) excitan -- Todo es demasiado' %}
+                    {% set user = 'Rey de copas' %}
                     {% endif %}
                     {% if engagement > 1 %}
                     {% set engagement = 1 %}
                     {% endif %}
                     <div class="p-1" style="background-color: #fffcf0; border: 1px solid #000;">
                         <div
-                            style="height: 22px; width: {{ '%.2f'|format(min(engagement * 1000, 100)) }}%; background-color: #000; ">
+                            style="height: 8px; width: {{ '%.2f'|format(min(engagement * 10000, 100)) }}%; background-color: #000; ">
                         </div>
                     </div>
-                    <p class="text-uppercase text-custom fw-bold">{{ user }}</p>
-                    {% endfor %}
+                    <p class="text-uppercase" style="font-weight: 900;">{{ user }}</h6>
+                        {% endfor %}
                 </div>
             </div>
-            <div class="row w-75 ms-3">
-                <mark class="rounded-3 custom-width py-0 mt-1">
+            <div class="row ms-3">
+                <mark class="rounded-3 py-0 mt-1" style="width: 45%">
                     {% if peak_occurrences %}
                     <i class="bi bi-graph-up d-inline"></i>
                     {% for timestamp, engagement in peak_occurrences %}
-                    <p class="d-inline">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{
+                    <p class="d-inline" style="width: 100%">{{ timestamp.strftime('%Y-%m-%d %H:%M:%S') }}: {{
                         engagement }}</p>
                     {% endfor %}
                     {% else %}
@@ -67,20 +76,26 @@
                     <p class="d-inline">sin picos</p>
                     {% endif %}
                 </mark>
-            
-        </div>
-        <div class="row mt-4">
-            <div class="col-12 col-md-6">
-                <!-- Hero text "ODIO ODIO" with the second "ODIO" flipped -->
-                <div class="hero-text hate-text ">
-                    ODIO <span class="flipped-text">ODIO</span>
-                </div>
-                <!-- Subtext below hero text -->
-                <div class="subtext ms-4 mt-3 negative-letter-spacing fw-bold"
-                    style="font-size: 18px; line-height:97%; color: #0f0f0f;">
-                    UN MAPA EMOCIONAL Y PERSONAL DE LA INFLUENCIA DE X. ES EN TIEMPO REAL: UN RANKING CRÍTICO DE MI TL.
-                </div>
             </div>
+            <p class="mx-4 my-3" style="width: 80%"><sup>1</sup> Es un hecho establecido hace demasiado tiempo que un
+                lector se distraerá.
+            </p>
+        </div>
+        <div class="col-12 col-md-3" style="">
+            
+                <div class="hero-text hate-text-color" style="margin-left: -10px; margin-top: 13px; scale: 103%;">
+                    ODIO<span class="flipped-text">ODIO </span>
+                </div>
+
+                <div class="row text-uppercase custom-width" style="font-weight: 900; letter-spacing: -0.3px; margin-top: 8px;">
+                    Interacciones según seguidores y tweets (en un ciclo de vida de 24hs).
+
+
+                    "Engagements" rankeados.
+
+                    Una suerte de espejo-venganza --y una auto-advertencia: no ODIARLOS (?)
+                </div>
+            
         </div>
     </div>
 </div>

@@ -57,7 +57,11 @@ def calculate_engagement(tweet):
     # Define weights based on the importance you assign to each metric
     weights = {'likes': 1, 'retweets': 2, 'replies': 1.5}
     
-    engagement_score = likes*weights['likes'] + retweets*weights['retweets'] + replies*weights['replies']
+    # Calculate the time decay factor based on the age of the tweet
+    hours_since_tweet = (datetime.utcnow() - tweet.timestamp).total_seconds() / 3600
+    decay_factor = 0.5 ** (hours_since_tweet / 3)  # Half-life of 3 hours
+    
+    engagement_score = (likes*weights['likes'] + retweets*weights['retweets'] + replies*weights['replies']) * decay_factor
     
     return engagement_score
 
@@ -79,6 +83,9 @@ def get_current_engagement():
     # Get the datetime for 24 hours ago
     a_day_ago = datetime.utcnow() - timedelta(hours=24)
 
+    # Define the maximum possible engagement score
+    max_possible_engagement = 100000.0 
+
     # Get all users
     users = User.query.order_by(User.id.asc()).limit(6).all()
     if not users:
@@ -96,15 +103,17 @@ def get_current_engagement():
         # Get the recent tweets for the user
         recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
         
-        # Calculate total engagement for each tweet
-        total_engagement = sum([calculate_engagement(tweet) for tweet in recent_tweets])
+        # Calculate total engagement and max engagement for each tweet
+        engagements = [calculate_engagement(tweet) for tweet in recent_tweets]
+        total_engagement = sum(engagements)
+        max_engagement = max(engagements) if engagements else 0
         
         # Normalize the engagement value according to the number of followers and number of recent tweets
         if not recent_tweets:
             normalized_engagement = 0.0
         else:
-            normalized_engagement = calculate_normalized_engagement(total_engagement, len(recent_tweets), followers[i])
-
+            normalized_engagement = calculate_normalized_engagement(total_engagement, max_engagement, len(recent_tweets), followers[i]) / max_possible_engagement
+        
         # Add the user and their normalized engagement to the list
         user_engagements.append((user.name, normalized_engagement))
 
