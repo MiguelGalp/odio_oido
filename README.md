@@ -1,6 +1,6 @@
-# Análisis de Compromiso en Twitter
+# Análisis de Interacciones en Twitter
 
-Este proyecto tiene como objetivo analizar y clasificar el compromiso de los usuarios de Twitter. Se recogen los tweets de los usuarios y se calcula una puntuación de compromiso basada en varios factores como los likes, retweets y respuestas que reciben sus tweets.
+Este proyecto tiene como objetivo analizar y clasificar las interacciones de los usuarios de Twitter. Se recogen los tweets de los usuarios y se calcula una puntuación de compromiso basada en varios factores como los likes, retweets y respuestas que reciben sus tweets.
 
 ## Tecnología 🛠️
 
