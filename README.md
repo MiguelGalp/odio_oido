@@ -1,6 +1,6 @@
 # CS50x Final Project. XTEMP: A Discourse Temperature Tracker For Twitter (ARGENTINA/POLITICS VERSION).
 
-This Flask app is designed to track the Twitter activity of specific users in real-time and determine the level of engagement based on the increase in tweets over a certain period of time. The app uses SQLAlchemy to interact with a PostgreSQL database and Tweepy to access the Twitter API.
+This Flask app is designed to track the Twitter activity of specific users in real-time and determine the level of engagement based on tracking likes, retweets and replies. The app uses SQLAlchemy to interact with a PostgreSQL database and Tweepy to access the Twitter API.
 
 ## Installation
 
