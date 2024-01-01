@@ -1,47 +1,35 @@
-# CS50x Final Project. XTEMP: A Discourse Temperature Tracker For Twitter (ARGENTINA/POLITICS VERSION).
+# Análisis de Compromiso en Twitter
 
-This Flask app is designed to track the Twitter activity of specific users in real-time and determine the level of engagement based on tracking likes, retweets and replies. The app uses SQLAlchemy to interact with a PostgreSQL database and Tweepy to access the Twitter API.
+Este proyecto tiene como objetivo analizar y clasificar el compromiso de los usuarios de Twitter. Se recogen los tweets de los usuarios y se calcula una puntuación de compromiso basada en varios factores como los likes, retweets y respuestas que reciben sus tweets.
 
-## Installation
+## Tecnología 🛠️
 
-1. Clone the repository to your local machine.
-2. Install the required packages using `pip install -r requirements.txt`.
-3. Create a `.env` file in the root directory of the project and add your Twitter API credentials and database URL in the following format:
+El proyecto está construido con Python y utiliza Flask para el backend. Para el almacenamiento de datos, se utiliza una base de datos PostgreSQL. Las consultas a la base de datos se realizan utilizando SQLAlchemy.
 
-```
-TWITTER_CONSUMER_KEY=<your_consumer_key>
-TWITTER_CONSUMER_SECRET=<your_consumer_secret>
-TWITTER_ACCESS_TOKEN=<your_access_token>
-TWITTER_ACCESS_TOKEN_SECRET=<your_access_token_secret>
-DATABASE_URL=<your_database_url>
-```
+## Rutas 🚀
 
-4. Connect your GitHub repo to Render to generate the [Cron Job]([https://link-url-here.org](https://render.com/docs/cronjobs))
+El proyecto consta de varias rutas que realizan diferentes funciones:
 
-5. Run the app using `python app.py`.
+1. `calculate_engagement(tweet)`: Esta ruta calcula la puntuación de compromiso para un tweet individual basándose en los likes, retweets y respuestas que ha recibido.
 
-## Usage
+2. `calculate_normalized_engagement(total_engagement, num_tweets, followers, time_window=24)`: Esta ruta normaliza la puntuación de compromiso de un usuario basándose en el número total de tweets que ha publicado y el número de seguidores que tiene.
 
-The app has two routes:
+3. `get_current_engagement()`: Esta ruta recopila las puntuaciones de compromiso de todos los usuarios y las devuelve en una lista ordenada.
 
-1. `/toxicity`: This route returns the current level of toxicity based on the increase in tweets over a certain period of time. The toxicity level is determined as follows:
+## Limitaciones ⚠️
 
-- Green: If the total tweet increase is less than 3.
-- Yellow: If the total tweet increase is between 3 and 5.
-- Red: If the total tweet increase is greater than 5.
+El proyecto tiene algunas limitaciones:
 
-2. `/tweet_activity`: This route returns the total tweet increase for each of the last four hours and checks for any significant spikes in tweet activity during that time.
+1. La puntuación de compromiso se basa únicamente en los likes, retweets y respuestas. No se tienen en cuenta otros factores que podrían influir en el compromiso del usuario, como el contenido del tweet o el momento en que se publicó.
 
-The app also has a homepage (`/`) that displays the current level of toxicity, the total tweet increase for the last hour, and the time since the last fetch.
+2. El proyecto recoge los tweets de los usuarios una vez por hora. Esto significa que los tweets que se publiquen fuera de este intervalo no se tendrán en cuenta en la puntuación de compromiso.
 
-## Database
+3. El proyecto asume que el número de seguidores de un usuario es un indicador de su nivel de compromiso. Sin embargo, este no siempre es el caso, ya que un usuario puede tener muchos seguidores pero recibir poco compromiso en sus tweets.
 
-The app uses a PostgreSQL database to store information about users, their tweet counts, and the times at which their tweet counts were last fetched. The database also stores information about the total tweet increase for each fetch.
+## Contribuyendo 🖇️
 
-## Cron Job
+Por favor lee el CONTRIBUTING.md para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
 
-The app includes a `run_cron_job()` function that fetches the latest tweet counts for the specified users and updates the database. This function is set to run every half hour to maintain measurement standards.
+## Licencia 📄
 
-## Deploy
-
-You can deploy your own XTemp. into Render. See [here](https://twitter-temperature.onrender.com/)
+Este proyecto está bajo la Licencia (Tu Licencia) - mira el archivo LICENSE.md para detalles
