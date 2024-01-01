@@ -87,13 +87,13 @@ def get_current_engagement():
     max_possible_engagement = 100000.0 
 
     # Get all users
-    users = User.query.order_by(User.id.asc()).limit(6).all()
+    users = User.query.order_by(User.id.asc()).limit(7).all()
     if not users:
         app.logger.warning("No User records found")
         return jsonify({"error": "No User records found"})
 
     # Number of followers for each user --> ordered by user id (?)
-    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 100000.0]
+    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 100000.0, 90000.0]
 
     # Initialize a list to store user engagement
     user_engagements = []

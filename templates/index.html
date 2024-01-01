@@ -40,6 +40,7 @@
             <div class="card position-background" style="width:95%">
                 <div class="card-body rounded" style="background-color: #fffcf0;">
                     {% for user, engagement in user_engagements %}
+                    {% if engagement > 0 %}
                     {% if user == 'yanilatorre' %}
                     {% set user = 'Ms. Odio' %}
                     {% elif user == 'SergioChouza' %}
@@ -52,6 +53,8 @@
                     {% set user = 'El Pastor del mal' %}
                     {% elif user == 'alexcaniggia' %}
                     {% set user = 'Rey de copas' %}
+                    {% elif user == 'lilialemoine' %}
+                    {% set user = 'Pitonisa del Caos' %}
                     {% endif %}
                     {% if engagement > 1 %}
                     {% set engagement = 1 %}
@@ -62,7 +65,8 @@
                         </div>
                     </div>
                     <p class="text-uppercase" style="font-weight: 900; letter-spacing: -.5px;">{{ user }}</h6>
-                        {% endfor %}
+                    {% endif %}
+                    {% endfor %}
                 </div>
             </div>
         </div>
