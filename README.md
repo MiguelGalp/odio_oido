@@ -1,10 +1,10 @@
 # Análisis de Interacciones en Twitter
 
-Este proyecto tiene como objetivo analizar y clasificar las interacciones de los usuarios de Twitter. Se recogen los tweets de los usuarios y se calcula una puntuación de compromiso basada en varios factores como los likes, retweets y respuestas que reciben sus tweets.
+Este proyecto tiene como objetivo analizar y clasificar las interacciones de los usuarios de Twitter. Se recogen los tweets de los usuarios y se calcula una puntuación de engagement basada en varios factores como los likes, retweets y respuestas que reciben sus tweets.
 
 ## Tecnología 🛠️
 
-El proyecto está construido con Python y utiliza Flask para el backend. Para el almacenamiento de datos, se utiliza una base de datos PostgreSQL. Las consultas a la base de datos se realizan utilizando SQLAlchemy.
+El proyecto está construido con Python y utiliza Flask y una librería de scrappeo llamada Twscapper para el backend. Para el almacenamiento de datos, se utiliza una base de datos PostgreSQL. Las consultas a la base de datos se realizan utilizando SQLAlchemy.
 
 ## Rutas 🚀
 
