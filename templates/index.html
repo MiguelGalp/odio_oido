@@ -58,50 +58,34 @@
                     {% endif %}
                     <div class="p-1" style="background-color: #fffcf0; border: 1px solid #000;">
                         <div
-                            style="height: 8px; width: {{ '%.2f'|format(min(engagement * 10000, 100)) }}%; background-color: #000; ">
+                            style="height: 15px; width: {{ '%.2f'|format(min(engagement * 10000, 100)) }}%; background-color: #000; ">
                         </div>
                     </div>
-                    <p class="text-uppercase" style="font-weight: 900;">{{ user }}</h6>
+                    <p class="text-uppercase" style="font-weight: 900; letter-spacing: -.5px;">{{ user }}</h6>
                         {% endfor %}
                 </div>
             </div>
-            <div class="row ms-3">
-                <mark class="rounded-3 py-0 mt-1" style="width: 48%">
-                    {% if peak_occurrences %}
-                    <i class="bi bi-graph-up d-inline"></i>
-                    {% set timestamp, engagement = peak_occurrences[0] %}
-                    <p class="d-inline" style="width: 100%">{{ timestamp.strftime('%B %d, %Y at %I:%M %p') }}: {{ engagement }}</p>
-                    {% else %}
-                    <i class="bi bi-graph-up d-inline"></i>
-                    <p class="d-inline">sin picos</p>
-                    {% endif %}
-                </mark>
-            </div>
-            
-            <p class="mx-4 my-3" style="width: 80%; line-height: 9px;"><sup>1</sup> Es un hecho establecido hace
-                tiempo que un
-                lector se distraerá.
-            </p>
         </div>
-        <div class="col-12 col-md-3" style="">
+        <div class="col-12 col-md-3" style="margin-left: 3px">
             <div class="hero-text hate-text-color" style="margin-top: 13px; scale: 103%;">
                 ODIO<span class="flipped-text">ODIO </span>
             </div>
-            <div class="row text-uppercase custom-width" style="font-weight: 900; letter-spacing: -0.5px; margin-top: 8px; margin-left: -3px; line-height: 9px;">
+            <div class="row text-uppercase custom-width"
+                style="font-weight: 900; letter-spacing: -0.5px; margin-top: 8px; margin-left: -3px; line-height: 9px;">
                 <p>
                     <span style="display: inline-block; margin-right: -10px;">Interacciones según seguidores</span><br>
-                    <span style="display: inline-block; margin-right: 10px;">y tweets (en un ciclo de vida de 24hs). Engagements y</span><br>
-                    <span style="display: inline-block; margin-right: 20px;"> una suerte de espejo-venganza --o una </span><br>
+                    <span style="display: inline-block; margin-right: 10px;">y tweets (en un ciclo de vida de 24hs).
+                        Engagements y</span><br>
+                    <span style="display: inline-block; margin-right: 20px;"> una suerte de espejo-venganza --o una
+                    </span><br>
                     <span style="display: inline-block; margin-right: 30px;">advertencia:</span>
                     <span style="display: inline-block; margin-right: 30px;">es gente</span><br>
                     <span style="display: inline-block; margin-right: 40px;">tóxica.</span>
                 </p>
             </div>
-            
-            
         </div>
         <div class="col-12 col-md-2">
-            <img src="./static/public/avatar.png" alt="MG"  class="pic-margin pic-size" />
+            <img src="./static/public/avatar.png" alt="MG" class="pic-margin pic-size" />
         </div>
     </div>
 </div>

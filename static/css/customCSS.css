@@ -49,34 +49,34 @@ body {
 
 .pic-margin {
   margin-left: -125px;
-  margin-top: 7px;
+  margin-top: 9px;
 }
 
 @media (max-width: 1700px) {
   .pic-margin {
     margin-left: -125px;
-  margin-top: 7px;
+  margin-top: 9px;
   }
 }
 
 @media (max-width: 1400px) {
   .pic-margin {
     margin-left: -90px;
-  margin-top: 7px;
+  margin-top: 9px;
   }
 }
 
 @media (max-width: 1200px) {
   .pic-margin {
     margin-left: -40px;
-  margin-top: 7px;
+  margin-top: 9px;
   }
 }
 
 @media (max-width: 992px) {
   .pic-margin {
     margin-left: 15px;
-  margin-top: 7px;
+  margin-top: 9px;
   }
 }
 
@@ -93,13 +93,13 @@ body {
 
 .custom-position-content {
   position: relative;
-  left: -115px;
+  left: -113px;
 }
 
 @media (max-width: 1200px) {
   .custom-position-content {
     position: relative;
-    left: -175px;
+    left: -180px;
   }
 }
 
