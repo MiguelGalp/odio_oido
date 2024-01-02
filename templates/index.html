@@ -9,16 +9,154 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 {% endblock %}
 
+{% block scripts %}
+{{ super() }}
+<script>
+    document.getElementById('avatar_2').addEventListener('click', function () {
+        // Get the list of chosen users
+        var users = ['MabelPajarita', 'lilialemoine', 'CarlosMaslaton', 'alexcaniggia'];
+
+        // Function to change usernames
+        function changeUsername(username) {
+            switch (username) {
+                case 'yanilatorre':
+                    return 'Ms. Odio';
+                case 'SergioChouza':
+                    return 'El Capanga';
+                case 'atilioboron':
+                    return 'Profesor Nada';
+                case 'CarlosMaslaton':
+                    return 'Un Payaso';
+                case 'rialjorge':
+                    return 'Pastor del mal';
+                case 'alexcaniggia':
+                    return 'Rey de copas';
+                case 'lilialemoine':
+                    return 'Pitonisa del Caos';
+                case 'MabelPajarita':
+                    return 'Pepita la Pistolera';
+                default:
+                    return username;
+            }
+        }
+
+        // Make an AJAX request to the new route
+        fetch('/engagement_by_users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ users: users })
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Update the card component with the new data
+                var card = document.querySelector('.card-body');
+                card.innerHTML = '';
+                data.forEach(function (user) {
+                    if (user[1] > 0) {
+                        // Create new elements for the user
+                        var engagementDiv = document.createElement('div');
+                        engagementDiv.className = 'p-1';
+                        engagementDiv.style.backgroundColor = '#fffcf0';
+                        engagementDiv.style.border = '1px solid #000';
+
+                        var engagementBar = document.createElement('div');
+                        engagementBar.style.height = '15px';
+                        engagementBar.style.width = Math.min(user[1] * 10000, 100) + '%';
+                        engagementBar.style.backgroundColor = '#000';
+                        engagementDiv.appendChild(engagementBar);
+
+                        var userP = document.createElement('p');
+                        userP.className = 'text-uppercase';
+                        userP.style.fontWeight = '900';
+                        userP.style.letterSpacing = '-.5px';
+                        userP.textContent = changeUsername(user[0]);
+
+                        // Append new elements to the card
+                        card.appendChild(engagementDiv);
+                        card.appendChild(userP);
+                    }
+                });
+            });
+    });
+
+
+    document.getElementById('avatar_1').addEventListener('click', function () {
+        // Function to change usernames
+        function changeUsername(username) {
+            switch (username) {
+                case 'yanilatorre':
+                    return 'Ms. Odio';
+                case 'SergioChouza':
+                    return 'El Capanga';
+                case 'atilioboron':
+                    return 'Profesor Nada';
+                case 'CarlosMaslaton':
+                    return 'Un Payaso';
+                case 'rialjorge':
+                    return 'Pastor del mal';
+                case 'alexcaniggia':
+                    return 'Rey de copas';
+                case 'lilialemoine':
+                    return 'Pitonisa del Caos';
+                case 'MabelPajarita':
+                    return 'Pepita la Pistolera';
+                default:
+                    return username;
+            }
+        }
+
+        // Make an AJAX request to the original route
+        fetch('/engagement')
+            .then(response => response.json())
+            .then(data => {
+                // Update the card component with the new data
+                var card = document.querySelector('.card-body');
+                card.innerHTML = '';
+                data.forEach(function (user) {
+                    // Only add users with non-zero engagement
+                    if (user[1] > 0) {
+
+                        // Create new elements for the user
+                        var engagementDiv = document.createElement('div');
+                        engagementDiv.className = 'p-1';
+                        engagementDiv.style.backgroundColor = '#fffcf0';
+                        engagementDiv.style.border = '1px solid #000';
+
+                        var engagementBar = document.createElement('div');
+                        engagementBar.style.height = '15px';
+                        engagementBar.style.width = Math.min(user[1] * 10000, 100) + '%';
+                        engagementBar.style.backgroundColor = '#000';
+                        engagementDiv.appendChild(engagementBar);
+
+                        var userP = document.createElement('p');
+                        userP.className = 'text-uppercase';
+                        userP.style.fontWeight = '900';
+                        userP.style.letterSpacing = '-.5px';
+                        userP.textContent = changeUsername(user[0]);
+
+                        // Append new elements to the card
+                        card.appendChild(engagementDiv);
+                        card.appendChild(userP);
+                    }
+                });
+            });
+    });
+
+</script>
+{% endblock %}
+
 {% block content %}
 
 <div class="container">
     <div class="row custom-position-content">
         <div class="col-12 col-md-1 offset-md-3 avatar-margin ">
             <div class="text-center" style="margin-top: 20px;">
-                <img src="./static/public/avatar.png" alt="MG" width="28" height="28" />
+                <img id="avatar_1" src="./static/public/avatar.png" alt="MG" width="28" height="28" />
                 <br>
                 <br>
-                <img src="./static/public/avatar.png" alt="MG" width="28" height="28" />
+                <img id="avatar_2" src="./static/public/avatar.png" alt="MG" width="28" height="28" />
             </div>
         </div>
 
@@ -50,11 +188,13 @@
                     {% elif user == 'CarlosMaslaton' %}
                     {% set user = 'Un Payaso' %}
                     {% elif user == 'rialjorge' %}
-                    {% set user = 'El Pastor del mal' %}
+                    {% set user = 'Pastor del mal' %}
                     {% elif user == 'alexcaniggia' %}
                     {% set user = 'Rey de copas' %}
                     {% elif user == 'lilialemoine' %}
                     {% set user = 'Pitonisa del Caos' %}
+                    {% elif user == 'MabelPajarita' %}
+                    {% set user = 'Pepita la Pistolera' %}
                     {% endif %}
                     {% if engagement > 1 %}
                     {% set engagement = 1 %}
@@ -65,8 +205,8 @@
                         </div>
                     </div>
                     <p class="text-uppercase" style="font-weight: 900; letter-spacing: -.5px;">{{ user }}</h6>
-                    {% endif %}
-                    {% endfor %}
+                        {% endif %}
+                        {% endfor %}
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_babelex import format_datetime
@@ -86,14 +86,14 @@ def get_current_engagement():
     # Define the maximum possible engagement score
     max_possible_engagement = 100000.0 
 
-    # Get all users
-    users = User.query.order_by(User.id.asc()).limit(7).all()
+    # Only get "my" users
+    users = User.query.filter(User.name.in_(['CarlosMaslaton', 'alexcaniggia', 'lilialemoine', 'atilioboron', 'SergioChouza', 'rialjorge', 'yanilatorre'])).order_by(User.id.asc()).all()
     if not users:
         app.logger.warning("No User records found")
         return jsonify({"error": "No User records found"})
 
     # Number of followers for each user --> ordered by user id (?)
-    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 100000.0, 90000.0]
+    followers = [340000.0, 128000.0, 1300000.0, 90000.0, 350000.0, 3300000.0, 92000.0, 75000.0]
 
     # Initialize a list to store user engagement
     user_engagements = []
@@ -123,6 +123,45 @@ def get_current_engagement():
     # Return the sorted list of tuples
     return user_engagements
 
+def get_engagement_by_users(users, followers, max_possible_engagement):
+    # Get the datetime for 24 hours ago
+    a_day_ago = datetime.utcnow() - timedelta(hours=24)
+
+    # Initialize a list to store user engagement
+    user_engagements = []
+
+    # Calculate total engagement for all users
+    for i, user_name in enumerate(users):
+        user = User.query.filter_by(name=user_name).first()
+        if user:
+            recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
+            engagements = [calculate_engagement(tweet) for tweet in recent_tweets]
+            total_engagement = sum(engagements)
+            max_engagement = max(engagements) if engagements else 0
+            if not recent_tweets:
+                normalized_engagement = 0.0
+            else:
+                normalized_engagement = calculate_normalized_engagement(total_engagement, max_engagement, len(recent_tweets), followers[i]) / max_possible_engagement
+            user_engagements.append((user.name, normalized_engagement))
+
+    user_engagements.sort(key=lambda x: x[1], reverse=True)
+    return user_engagements
+
+@app.route('/engagement_by_users', methods=['POST'])
+def engagement_by_users_route():
+    # Get the list of users from the request data
+    users = request.get_json().get('users', [])
+
+    # Define the maximum possible engagement score
+    max_possible_engagement = 100000.0 
+
+    # Number of followers for each user --> ordered by user id (?)
+    followers = [340000.0, 3300000.0, 3300000.0, 125000.0, 345000.0, 100000.0, 90000.0]
+    
+    # Get the engagement data for the chosen users
+    user_engagements = get_engagement_by_users(users, followers, max_possible_engagement)
+
+    return jsonify(user_engagements)
 
 @app.route('/engagement', methods=['GET'])
 def engagement_route():
