@@ -96,6 +96,13 @@ body {
   left: -103px;
 }
 
+@media (max-width: 1400px) {
+  .custom-position-content {
+    position: relative;
+    left: -75px;
+  }
+}
+
 @media (max-width: 1200px) {
   .custom-position-content {
     position: relative;
