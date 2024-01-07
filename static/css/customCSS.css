@@ -34,8 +34,8 @@ body {
 
 @media (max-width: 1400px) {
   .pic-size {
-    width: 234px;
-  height: 234px
+    width: 199px;
+  height: 199px;
   }
 }
 
@@ -61,7 +61,7 @@ body {
 
 @media (max-width: 1400px) {
   .pic-margin {
-    margin-left: -70px;
+    margin-left: -75px;
   margin-top: 3px;
   }
 }
