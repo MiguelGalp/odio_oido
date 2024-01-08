@@ -66,14 +66,14 @@ def calculate_engagement(tweet):
     return engagement_score
 
 def calculate_normalized_engagement(total_engagement, num_tweets, followers, time_window=24):
-    # Calculate the average tweets per hour
-    avg_tweets_per_hour = num_tweets / time_window
+    # Calculate the average tweets per day
+    avg_tweets_per_day = num_tweets / time_window
     
     # Define a weight for the time factor based on your specific needs
     time_weight = 0.5
     
     # Adjust the total engagement with the time factor
-    adjusted_engagement = total_engagement * (1 + time_weight * avg_tweets_per_hour)
+    adjusted_engagement = total_engagement * (1 + time_weight * avg_tweets_per_day)
     
     normalized_engagement = float(adjusted_engagement / followers)
     
