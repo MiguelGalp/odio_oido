@@ -86,14 +86,16 @@ def get_current_engagement(max_possible_engagement):
     groups = {
         'La grieta': ['SergioChouza', 'atilioboron'],
         'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita'],
-        'Medios': ['alexcaniggia', 'yanilatorre', 'rialjorge']
+        'Medios': ['alexcaniggia', 'yanilatorre', 'rialjorge'],
+        'Deportes': ['dflatorre', 'VarskySports']
     }
 
-    # Define the followers for each group
+    # Define the followers for each group according to user followers (i.e: SergioChouze = 92000, atilioboron = 128000)
     group_followers = {
         'La grieta': 128000 + 92000,
         'Política': 350000 + 78000 + 90000,
-        'Medios': 3300000 + 1300000 + 340000
+        'Medios': 3300000 + 1300000 + 340000,
+        'Deportes' : 2100000 + 1430000
     }
 
     # Initialize a dictionary to store group engagements
@@ -158,7 +160,8 @@ def engagement_by_groups_route():
     group_followers = {
         'La grieta': 128000 + 92000,
         'Política': 350000 + 78000 + 90000,
-        'Medios': 3300000 + 1300000 + 340000
+        'Medios': 3300000 + 1300000 + 340000,
+        'Deportes' : 2100000 + 1430000
     }
 
     # Get the engagement data for the chosen groups
