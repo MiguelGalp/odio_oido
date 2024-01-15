@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort, Response
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_babelex import format_datetime
@@ -11,6 +11,7 @@ from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 from collections import OrderedDict
+from functools import wraps
 import logging
 import math
 
@@ -63,6 +64,26 @@ try:
         db.create_all()
 except Exception as e:
     print(f"Database error: {str(e)}")
+
+def check_auth(username, password):
+    # This function is called to check if a username / password combination is valid
+    return username == 'admin' and password == 'secret'
+
+def authenticate():
+    # Sends a 401 response that enables basic auth
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
 
 def calculate_engagement(tweet):
     likes = tweet.likes
@@ -155,6 +176,7 @@ def get_engagement_by_groups(front_groups, group_followers, max_possible_engagem
 
 
 @app.route('/engagement_by_groups', methods=['POST'])
+@requires_auth
 def engagement_by_groups_route():
     # Define the maximum possible engagement score
     max_possible_engagement = 100000.0 
@@ -180,10 +202,12 @@ def engagement_by_groups_route():
 
 
 @app.route('/api/front_groups', methods=['GET'])
+@requires_auth
 def front_groups_route():
     return jsonify(front_groups)
 
 @app.route('/api/front_chile', methods=['GET'])
+@requires_auth
 def front_chile_route():
     return jsonify(front_chile)
 
