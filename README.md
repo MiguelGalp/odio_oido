@@ -1,13 +1,12 @@
-# Twitter/X Compromisos 2024
+# El opio de los pueblos, Twitter/X Trackeo de Interacciones por tendencias, 2024
 
-Twitter/X Compromisos 2024 es un servicio web para el análisis de datos en tiempo real destinado a campañas de marketing.
+El opio de los pueblos es un servicio web para el análisis de datos en tiempo real. Conocé más sobre el comportamiento de las tendencias en X/Twitter. 
 
 ## Tecnologías utilizadas
 
-- **Python**: Lenguaje de programación principal utilizado para el backend.
-- **Flask**: Framework de Python utilizado para crear la aplicación web.
-- **JavaScript**: Utilizado para la funcionalidad del lado del cliente, incluyendo las solicitudes AJAX al servidor.
-- **HTML/CSS**: Utilizados para la estructura y el estilo de la página web.
+- **Python**: Utilizado para el backend.
+- **Flask**: Framework de Python para crear la aplicación web.
+- **JavaScript**: Para la funcionalidad del lado del cliente, incluyendo solicitudes AJAX al servidor (SQLAlchemy)
 
 ## Rutas disponibles
 
@@ -17,7 +16,7 @@ Twitter/X Compromisos 2024 es un servicio web para el análisis de datos en tiem
 
 ## Usos del servicio web
 
-Este servicio web puede ser utilizado para analizar el compromiso de diferentes grupos de usuarios de Twitter en tiempo real. Esto puede ser útil para las campañas de marketing para entender mejor a su audiencia y ajustar sus estrategias en consecuencia.
+Este servicio web puede ser utilizado para analizar tendencias en Twitter, en tiempo real. Esto puede ser útil para las planificar campañas y en general como termómetros de los tópicos principales en cada país. 
 
 ## Licencia
 
