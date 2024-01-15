@@ -20,6 +20,14 @@ groups_string = os.getenv('GROUPS')
 # Parse the string to get the dictionary
 groups = ast.literal_eval(groups_string)
 
+# Load the string from the environment variable
+front_groups_string = os.getenv('FRONT_GROUPS')
+front_chile_string = os.getenv('FRONT_CHILE')
+
+# Parse the string to get the dictionary
+front_groups = ast.literal_eval(front_groups_string)
+front_chile = ast.literal_eval(front_chile_string)
+
 
 app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
@@ -172,21 +180,11 @@ def engagement_by_groups_route():
 
 
 @app.route('/api/front_groups', methods=['GET'])
-def front_groups():
-    front_groups = {
-        'La grieta': ['SergioChouza', 'atilioboron'],
-        'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita'],
-        'Medios': ['alexcaniggia', 'yanilatorre', 'rialjorge'],
-        'Deportes': ['dflatorre', 'VarskySports']
-    }
+def front_groups_route():
     return jsonify(front_groups)
 
 @app.route('/api/front_chile', methods=['GET'])
-def front_chile():
-    front_chile = {
-        'La grieta': ['SergioChouza', 'atilioboron'],
-        'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita']
-    }
+def front_chile_route():
     return jsonify(front_chile)
 
 @app.route('/')
