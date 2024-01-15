@@ -1,6 +1,6 @@
-# El opio de los pueblos analiza interacciones en X/Twitter (engagement, funcionando en el 2024!). 
+# Twitter/X Compromisos 2024
 
-El opio de los pueblos es un servicio web para el análisis de datos en tiempo real. Conocé el comportamiento de tendencias en Argentina y Chile (más países y tópicos próximamente).
+Twitter/X Compromisos 2024 es un servicio web para el análisis de datos en tiempo real destinado a campañas de marketing.
 
 ## Tecnologías utilizadas
 
@@ -13,16 +13,18 @@ El opio de los pueblos es un servicio web para el análisis de datos en tiempo r
 
 - `GET /api/front_groups`: Devuelve un JSON con los grupos y usuarios para la interfaz de Argentina.
 - `GET /api/front_chile`: Devuelve un JSON con los grupos y usuarios para la interfaz de Chile.
-- `POST /engagement_by_groups`: Acepta un JSON con los grupos y usuarios seleccionados y devuelve un JSON con los valores de interacciones de los grupos.
+- `POST /engagement_by_groups`: Acepta un JSON con los grupos y usuarios seleccionados y devuelve un JSON con los compromisos de los grupos.
 
 ## Usos del servicio web
 
-Este servicio web puede ser utilizado para analizar el el comportamiento de tendencias de diferentes grupos de usuarios y tópicos de Twitter en tiempo real. Esto puede ser útil para decidir campañas o entender la evolución de las tendencias en relación a los acontecimientos públicos de los países analizados. 
+Este servicio web puede ser utilizado para analizar el compromiso de diferentes grupos de usuarios de Twitter en tiempo real. Esto puede ser útil para las campañas de marketing para entender mejor a su audiencia y ajustar sus estrategias en consecuencia.
 
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
-## Limitaciones del proyecto
+## Explicación detallada del proyecto
 
-Este repositorio solo contiene el código del frontend de la aplicación. El código del backend que realiza la búsqueda de tweets no está incluido, por lo que no se puede hacer un despliegue completo de la aplicación a partir de este repositorio. Además, debido a las limitaciones de la API de Twitter, solo se pueden analizar los tweets más recientes.
+Este proyecto rastrea y analiza las interacciones de los tweets de las últimas 24 horas de los usuarios especificados. Las interacciones medidas incluyen likes, retweets y respuestas a los tweets. Se da más peso tanto a los tweets más recientes como a los tweets individuales con más interacciones. 
+
+Por favor, ten en cuenta que este repositorio solo contiene el código del frontend de la aplicación. El código del backend que realiza la búsqueda de tweets no está incluido, por lo que no se puede hacer un despliegue completo de la aplicación a partir de este repositorio.
