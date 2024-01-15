@@ -1,18 +1,18 @@
-# El opio de los pueblos, Twitter/X Trackeo de Interacciones por tendencias, 2024
+# El opio de los pueblos. Twitter/X trackeado por tópicos y por país, 2024
 
-El opio de los pueblos es un servicio web para el análisis de datos en tiempo real. Conocé más sobre el comportamiento de las tendencias en X/Twitter. 
+El opio de los pueblos es un servicio web que analiza datos en tiempo real. Conocé más sobre el comportamiento de las tendencias en X/Twitter. 
 
 ## Tecnologías utilizadas
 
 - **Python**: Utilizado para el backend.
 - **Flask**: Framework de Python para crear la aplicación web.
-- **JavaScript**: Para la funcionalidad del lado del cliente, incluyendo solicitudes AJAX al servidor (SQLAlchemy)
+- **JavaScript**: Para la funcionalidad del lado del cliente.
 
 ## Rutas disponibles
 
-- `GET /api/front_groups`: Devuelve un JSON con los grupos y usuarios para la interfaz de Argentina.
-- `GET /api/front_chile`: Devuelve un JSON con los grupos y usuarios para la interfaz de Chile.
-- `POST /engagement_by_groups`: Acepta un JSON con los grupos y usuarios seleccionados y devuelve un JSON con los compromisos de los grupos.
+- `GET /api/front_groups`: Devuelve un JSON con los tópicos que son tendencia en Argentina.
+- `GET /api/front_chile`: Devuelve un JSON con los tópicos que son tendencia en Chile.
+- `POST /engagement_by_groups`: Acepta un JSON con los grupos y usuarios seleccionados y devuelve un JSON con las interacciones de los tópicos.
 
 ## Usos del servicio web
 
