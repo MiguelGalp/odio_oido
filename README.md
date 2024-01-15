@@ -12,7 +12,7 @@ El opio de los pueblos es un servicio web que analiza datos en tiempo real. Cono
 
 - `GET /api/front_groups`: Devuelve un JSON con los tópicos que son tendencia en Argentina.
 - `GET /api/front_chile`: Devuelve un JSON con los tópicos que son tendencia en Chile.
-- `POST /engagement_by_groups`: Acepta un JSON con los grupos y usuarios seleccionados y devuelve un JSON con las interacciones de los tópicos.
+- `POST /engagement_by_groups`: Acepta un JSON con los tópicos dados y devuelve un JSON que los rankea.
 
 ## Usos del servicio web
 
