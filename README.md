@@ -1,33 +1,28 @@
-# Análisis de Interacciones en Twitter
+# El opio de los pueblos analiza interacciones en X/Twitter (engagement, funcionando en el 2024!). 
 
-Este proyecto tiene como objetivo analizar y clasificar las interacciones de los usuarios de Twitter. Se recogen los tweets de los usuarios y se calcula una puntuación de engagement trackeando likes, retweets y normalizando según número de seguidores y de posteos totales. Para el ranking también se asigna un valor decreciente a cada tweet dentro de un "ciclo de vida" de 24hs, por lo que se aspira a un comportamiento de cercano al del tiempo real. 
+El opio de los pueblos es un servicio web para el análisis de datos en tiempo real. Conocé el comportamiento de tendencias en Argentina y Chile (más países y tópicos próximamente).
 
-## Tecnología 🛠️
+## Tecnologías utilizadas
 
-El proyecto está construido con Python y utiliza Flask y una librería de scrappeo llamada Twscapper para el backend. Es decir que no se utiliza la API oficial de X, por razones obvias. Para el almacenamiento de datos, se utiliza una base de datos PostgreSQL. Las consultas a la base de datos se realizan utilizando SQLAlchemy.
+- **Python**: Lenguaje de programación principal utilizado para el backend.
+- **Flask**: Framework de Python utilizado para crear la aplicación web.
+- **JavaScript**: Utilizado para la funcionalidad del lado del cliente, incluyendo las solicitudes AJAX al servidor.
+- **HTML/CSS**: Utilizados para la estructura y el estilo de la página web.
 
-## Rutas 🚀
+## Rutas disponibles
 
-El proyecto consta de varias rutas que realizan diferentes funciones:
+- `GET /api/front_groups`: Devuelve un JSON con los grupos y usuarios para la interfaz de Argentina.
+- `GET /api/front_chile`: Devuelve un JSON con los grupos y usuarios para la interfaz de Chile.
+- `POST /engagement_by_groups`: Acepta un JSON con los grupos y usuarios seleccionados y devuelve un JSON con los valores de interacciones de los grupos.
 
-1. `calculate_engagement(tweet)`: Esta ruta calcula la puntuación de engagement para un tweet individual basándose en los likes, retweets y respuestas que ha recibido.
+## Usos del servicio web
 
-2. `calculate_normalized_engagement(total_engagement, num_tweets, followers, time_window=24)`: Esta ruta normaliza la puntuación de engagement de un usuario basándose en el número total de tweets que ha publicado y el número de seguidores que tiene.
+Este servicio web puede ser utilizado para analizar el el comportamiento de tendencias de diferentes grupos de usuarios y tópicos de Twitter en tiempo real. Esto puede ser útil para decidir campañas o entender la evolución de las tendencias en relación a los acontecimientos públicos de los países analizados. 
 
-3. `get_current_engagement()`: Esta ruta recopila las puntuaciones de engagement de todos los usuarios y las devuelve en una lista ordenada.
+## Licencia
 
-## Limitaciones ⚠️
+Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
 
-El proyecto tiene algunas limitaciones:
+## Limitaciones del proyecto
 
-1. La puntuación de compromiso se basa únicamente en los likes, retweets y respuestas. No se tienen en cuenta otros factores que podrían influir en el compromiso del usuario, como el contenido del tweet o el momento en que se publicó.
-
-2. El proyecto recoge los tweets de los usuarios una vez por hora. Esto significa que los tweets que se publiquen fuera de este intervalo no se tendrán en cuenta en la puntuación de compromiso.
-
-## Contribuyendo 🖇️
-
-Por favor lee el CONTRIBUTING.md para detalles de nuestro código de conducta, y el proceso para enviarnos pull requests.
-
-## Licencia 📄
-
-...
+Este repositorio solo contiene el código del frontend de la aplicación. El código del backend que realiza la búsqueda de tweets no está incluido, por lo que no se puede hacer un despliegue completo de la aplicación a partir de este repositorio. Además, debido a las limitaciones de la API de Twitter, solo se pueden analizar los tweets más recientes.
