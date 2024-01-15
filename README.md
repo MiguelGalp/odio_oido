@@ -10,10 +10,8 @@ El opio de los pueblos es un servicio web que analiza datos en tiempo real. Cono
 
 ## Rutas disponibles
 
-- `GET /api/front_groups`: Devuelve un JSON con los tópicos que son tendencia en Argentina.
-- `GET /api/front_chile`: Devuelve un JSON con los tópicos que son tendencia en Chile.
-- `POST /engagement_by_groups`: Acepta un JSON con los tópicos dados y devuelve un JSON que los rankea.
-
+- Las rutas no están protegidas (aún): usar con discreción por favor. 
+  
 ## Usos del servicio web
 
 Este servicio web puede ser utilizado para analizar tendencias en Twitter, en tiempo real. Esto puede ser útil para las planificar campañas y en general como termómetros de los tópicos principales en cada país. 
