@@ -13,121 +13,113 @@
 {{ super() }}
 <script>
     document.getElementById('avatar_2').addEventListener('click', function () {
-        // Get the list of chosen groups
-        var groups = {
-            'La grieta': ['SergioChouza', 'atilioboron'],
-            'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita'],
-        };
-
-        // Change the hero image source
-        document.getElementById('hero').src = "./static/public/Chile.png";
-
-        // Change the color of the hero text
-        var heroText = document.querySelector('.hate-text-color');
-        heroText.style.setProperty('color', '#f54447', 'important'); // Change the color to argentina
-
-
-        // Make an AJAX request to the new route
-        fetch('/engagement_by_groups', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ groups: groups })
-        })
+        // Fetch the list of chosen groups
+        fetch('/api/front_chile')
             .then(response => response.json())
-            .then(data => {
+            .then(front_chile => {
+                // Change the hero image source
+                document.getElementById('hero').src = "./static/public/Chile.png";
 
+                // Change the color of the hero text
+                var heroText = document.querySelector('.hate-text-color');
+                heroText.style.setProperty('color', '#f54447', 'important'); // Change the color to argentina
 
-                // Update the card component with the new data
-                var card = document.querySelector('.card-body');
-                card.innerHTML = '';
-                data.forEach(function (group) {
-                    if (group[1] > 0) {
-                        // Create new elements for the group
-                        var engagementDiv = document.createElement('div');
-                        engagementDiv.className = 'p-1';
-                        engagementDiv.style.backgroundColor = '#fffcf0';
-                        engagementDiv.style.border = '1px solid #000';
+                // Make an AJAX request to the new route
+                fetch('/engagement_by_groups', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ front_groups : front_chile })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the card component with the new data
+                        var card = document.querySelector('.card-body');
+                        card.innerHTML = '';
+                        data.forEach(function (group) {
+                            if (group[1] > 0) {
+                                // Create new elements for the group
+                                var engagementDiv = document.createElement('div');
+                                engagementDiv.className = 'p-1';
+                                engagementDiv.style.backgroundColor = '#fffcf0';
+                                engagementDiv.style.border = '1px solid #000';
 
-                        var engagementBar = document.createElement('div');
-                        engagementBar.style.height = '15px';
-                        engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
-                        engagementBar.style.backgroundColor = '#000';
-                        engagementDiv.appendChild(engagementBar);
+                                var engagementBar = document.createElement('div');
+                                engagementBar.style.height = '15px';
+                                engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
+                                engagementBar.style.backgroundColor = '#000';
+                                engagementDiv.appendChild(engagementBar);
 
-                        var groupP = document.createElement('p');
-                        groupP.className = 'text-uppercase';
-                        groupP.style.fontWeight = '900';
-                        groupP.style.letterSpacing = '-.5px';
-                        groupP.textContent = group[0]; // Display the name of the group
+                                var groupP = document.createElement('p');
+                                groupP.className = 'text-uppercase';
+                                groupP.style.fontWeight = '900';
+                                groupP.style.letterSpacing = '-.5px';
+                                groupP.textContent = group[0]; // Display the name of the group
 
-                        // Append new elements to the card
-                        card.appendChild(engagementDiv);
-                        card.appendChild(groupP);
-                    }
-                });
+                                // Append new elements to the card
+                                card.appendChild(engagementDiv);
+                                card.appendChild(groupP);
+                            }
+                        });
+                    });
             });
     });
 
     document.getElementById('avatar_1').addEventListener('click', function () {
-        // Get the list of chosen groups
-        var groups = {
-            'La grieta': ['SergioChouza', 'atilioboron'],
-            'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita'],
-            'Medios': ['alexcaniggia', 'yanilatorre', 'rialjorge'],
-            'Deportes': ['dflatorre', 'VarskySports']
-        };
-
-        // Change the hero image source
-        document.getElementById('hero').src = "./static/public/Argentina.png";
-
-        // Change the color of the hero text
-        var heroText = document.querySelector('.hate-text-color');
-        heroText.style.setProperty('color', '#84c6c6', 'important'); // Change the color to chile
-
-        // Make an AJAX request to the new route
-        fetch('/engagement_by_groups', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ groups: groups })
-        })
+        // Fetch the list of chosen groups
+        fetch('/api/front_groups')
             .then(response => response.json())
-            .then(data => {
+            .then(front_groups => {
+                // Change the hero image source
+                document.getElementById('hero').src = "./static/public/Argentina.png";
 
+                // Change the color of the hero text
+                var heroText = document.querySelector('.hate-text-color');
+                heroText.style.setProperty('color', '#84c6c6', 'important'); // Change the color to chile
 
-                // Update the card component with the new data
-                var card = document.querySelector('.card-body');
-                card.innerHTML = '';
-                data.forEach(function (group) {
-                    if (group[1] > 0) {
-                        // Create new elements for the group
-                        var engagementDiv = document.createElement('div');
-                        engagementDiv.className = 'p-1';
-                        engagementDiv.style.backgroundColor = '#fffcf0';
-                        engagementDiv.style.border = '1px solid #000';
+                // Make an AJAX request to the new route
+                fetch('/engagement_by_groups', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ front_groups: front_groups })
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        // Update the card component with the new data
+                        var card = document.querySelector('.card-body');
+                        card.innerHTML = '';
+                        data.forEach(function (group) {
+                            if (group[1] > 0) {
+                                // Create new elements for the group
+                                var engagementDiv = document.createElement('div');
+                                engagementDiv.className = 'p-1';
+                                engagementDiv.style.backgroundColor = '#fffcf0';
+                                engagementDiv.style.border = '1px solid #000';
 
-                        var engagementBar = document.createElement('div');
-                        engagementBar.style.height = '15px';
-                        engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
-                        engagementBar.style.backgroundColor = '#000';
-                        engagementDiv.appendChild(engagementBar);
+                                var engagementBar = document.createElement('div');
+                                engagementBar.style.height = '15px';
+                                engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
+                                engagementBar.style.backgroundColor = '#000';
+                                engagementDiv.appendChild(engagementBar);
 
-                        var groupP = document.createElement('p');
-                        groupP.className = 'text-uppercase';
-                        groupP.style.fontWeight = '900';
-                        groupP.style.letterSpacing = '-.5px';
-                        groupP.textContent = group[0]; // Display the name of the group
+                                var groupP = document.createElement('p');
+                                groupP.className = 'text-uppercase';
+                                groupP.style.fontWeight = '900';
+                                groupP.style.letterSpacing = '-.5px';
+                                groupP.textContent = group[0]; // Display the name of the group
 
-                        // Append new elements to the card
-                        card.appendChild(engagementDiv);
-                        card.appendChild(groupP);
-                    }
-                });
+                                // Append new elements to the card
+                                card.appendChild(engagementDiv);
+                                card.appendChild(groupP);
+                            }
+                        });
+                    });
             });
     });
+
 
 </script>
 {% endblock %}

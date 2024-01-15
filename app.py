@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from flask_babelex import format_datetime
 import pytz 
 import os
+import ast
 from flask import Flask, render_template
 from flask_babelex import format_datetime
 from flask_bootstrap import Bootstrap
@@ -14,6 +15,12 @@ import logging
 import math
 
 load_dotenv()
+# Load the string from the environment variable
+groups_string = os.getenv('GROUPS')
+# Parse the string to get the dictionary
+groups = ast.literal_eval(groups_string)
+
+
 app = Flask(__name__, template_folder='templates')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 db = SQLAlchemy(app)
@@ -82,14 +89,7 @@ def calculate_normalized_engagement(total_engagement, num_tweets, followers, tim
 from datetime import datetime, timedelta
 
 def get_current_engagement(max_possible_engagement):
-    # Define the groups
-    groups = {
-        'La grieta': ['SergioChouza', 'atilioboron'],
-        'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita'],
-        'Medios': ['alexcaniggia', 'yanilatorre', 'rialjorge'],
-        'Deportes': ['dflatorre', 'VarskySports']
-    }
-
+    
     # Define the followers for each group according to user followers (i.e: SergioChouze = 92000, atilioboron = 128000)
     group_followers = {
         'La grieta': 128000 + 92000,
@@ -122,12 +122,12 @@ def get_current_engagement(max_possible_engagement):
 
 
 
-def get_engagement_by_groups(groups, group_followers, max_possible_engagement):
+def get_engagement_by_groups(front_groups, group_followers, max_possible_engagement):
     a_day_ago = datetime.utcnow() - timedelta(days=1)
-    group_engagements = {group: 0 for group in groups}
+    group_engagements = {group: 0 for group in front_groups}
 
     # Calculate total engagement for all groups
-    for group_name, users in groups.items():
+    for group_name, users in front_groups.items():
         total_engagement = 0
         for user_name in users:
             user = User.query.filter_by(name=user_name).first()
@@ -146,29 +146,48 @@ def get_engagement_by_groups(groups, group_followers, max_possible_engagement):
     return sorted_group_engagements
 
 
-
-
 @app.route('/engagement_by_groups', methods=['POST'])
 def engagement_by_groups_route():
     # Define the maximum possible engagement score
     max_possible_engagement = 100000.0 
 
     # Get the groups from the request body
-    groups = request.json['groups']
+    groups = request.json['front_groups']
 
     # Define the followers for each group
-    group_followers = {
+    all_group_followers = {
         'La grieta': 128000 + 92000,
         'Política': 350000 + 78000 + 90000,
         'Medios': 3300000 + 1300000 + 340000,
         'Deportes' : 2100000 + 1430000
     }
 
+    # Filter the followers for only the groups in the request
+    group_followers = {group: all_group_followers[group] for group in groups}
+
     # Get the engagement data for the chosen groups
     group_engagements = get_engagement_by_groups(groups, group_followers, max_possible_engagement)
     print(group_engagements) 
     return jsonify(group_engagements)
 
+
+@app.route('/api/front_groups', methods=['GET'])
+def front_groups():
+    front_groups = {
+        'La grieta': ['SergioChouza', 'atilioboron'],
+        'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita'],
+        'Medios': ['alexcaniggia', 'yanilatorre', 'rialjorge'],
+        'Deportes': ['dflatorre', 'VarskySports']
+    }
+    return jsonify(front_groups)
+
+@app.route('/api/front_chile', methods=['GET'])
+def front_chile():
+    front_chile = {
+        'La grieta': ['SergioChouza', 'atilioboron'],
+        'Política': ['lilialemoine', 'CarlosMaslaton', 'MabelPajarita']
+    }
+    return jsonify(front_chile)
 
 @app.route('/')
 def index():
