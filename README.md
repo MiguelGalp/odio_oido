@@ -11,10 +11,10 @@ En este momento la app permite visualizar cuatro espacios latentes, para la Arge
 - **Python**: Utilizado para el backend.
 - **Flask**: Framework de Python para crear la aplicación web.
 - **JavaScript**: Para la funcionalidad del lado del cliente.
-  
+
 ## Usos del servicio web
 
-Este servicio web puede ser utilizado para analizar tendencias en Twitter, en tiempo real. Esto puede ser útil para las planificar campañas y como termómetro de los tópicos principales en cada país. 
+Los datos son en tiempo real hasta donde la API de X/Twitter lo permite. Al momento la máxima ventana de tiempo entre recuperaciones es de una hora. Ver abajo para más detalles acerca de los datos y métricas utilizadas. 
 
 ## Licencia
 
@@ -22,6 +22,6 @@ Este proyecto está licenciado bajo la Licencia MIT.
 
 ## Explicación detallada del proyecto
 
-Este proyecto rastrea y analiza las interacciones de los tweets de las últimas 24 horas dentro de los tópicos pre-cargados. Las interacciones trackeadas incluyen likes, retweets y respuestas a cada tweet dentro de los tópicos pre-cargados (hard-codeados). Es un cálculo normalizado: se da más peso tanto a los tweets más recientes como a los tweets individuales con más interacciones. También se normaliza por número de seguidores de cada tópico. Por ahora hardcodedos.  
+Este proyecto rastrea y analiza las interacciones de los tweets de las últimas 24 horas. Se trata de un grupo de tweets (ver el modelo de la base de datos en la app) que representa la idea de tópico según lo define la idea de la LDA. Las interacciones trackeadas incluyen likes, retweets y respuestas a cada tweet. Es importante mencionar que cada tweet resulta en un cálculo normalizado donde, dentro del período de 24hs, se da más peso tanto a los tweets más recientes como a los tweets individuales con más interacciones. También se normaliza por número de seguidores dentro de cada dominio. 
 
-Tené en cuenta que este repositorio solo contiene el código del frontend de la aplicación. El código del backend que realiza la búsqueda de tweets no está incluido, por lo que no se puede hacer un deploy completo de la aplicación a partir de este repositorio. 
+Por último: tené en cuenta que este repositorio solo contiene el código del frontend de la aplicación. El código del backend que realiza la búsqueda de tweets no está incluido, por lo que no se puede hacer un deploy completo de la aplicación a partir de este repositorio. 
