@@ -6,7 +6,7 @@ El dominio es una estrategia derivada de lo que se llama "Asignación Latente de
 
 Como resultado final, si su marco teórico es correcto, la app da cuenta del nivel de temperatura en el discurso. Lo hace visualizando un ranking de "dominios".
 
-En este momento la app permite visualizar cuatro dominios, para la Argentina y Chile. En el "roadmap" apunto a generar los dominios de forma dinámica a través de la IA, que, luego de analizar los tweets, devolvería las agrupaciones de usuarios por tópico o dominio luego de cada recuperación de tweets. 
+En este momento la app permite visualizar cuatro dominios, para la Argentina y Chile. En el "roadmap" apunto a generar los dominios de forma dinámica a través de la IA, que, luego de analizar los tweets, devolvería las agrupaciones de tweets (por dominio) luego de cada recuperación de tweets. 
 
 ## Tecnologías utilizadas
 
