@@ -264,6 +264,36 @@ body {
   }
 }
 
+.github-positioning {
+  margin-left: -10%;
+  margin-top: 7px;
+}
+
+@media (min-width: 1400px) {
+  /* xl screens and larger */
+  .github-positioning {
+    margin-left: -13%;
+   
+  }
+}
+
+@media (max-width: 1199px) {
+  /* screens smaller than 1200px */
+  .github-positioning {
+    position: relative;
+    left: 8%;
+  }
+}
+
+@media (max-width: 968px) {
+  /* screens smaller than 968px */
+  .github-positioning {
+    position: relative;
+    left: 150px;
+  }
+}
+
+
 
 
 .bg-orange {
