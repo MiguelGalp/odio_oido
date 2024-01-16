@@ -1,4 +1,4 @@
-# El opio de los pueblos. Twitter/X trackeado por tópicos y por país, 2024
+# El opio de los pueblos. Twitter/X trackeado, 2024
 
 El opio de los pueblos es un MVP cuyo objetivo primordial es el de utilizar la idea de "espacio latente" para generar visualizaciones de datos en tiempo real. En términos de datos "duros", la app escrappea X/Twitter para obtener el nivel de "engagement" de un grupo de tweets que, a su vez, se agrupan a través de la idea de "dominio". Se trata de una estrategia derivada de lo que se llama "Asignación Latente de Dirichlet (ALD)", donde, [siguiendo a Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), "la clave es que las palabras siguen una hipótesis de bolsa de palabras o, más bien que el orden no importa, que el uso de una palabra es ser parte de un tema y que comunica la misma información sin importar dónde se encuentra en el documento". 
 
