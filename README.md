@@ -4,7 +4,7 @@ El opio de los pueblos es un MVP que tiene como objetivo utilizar la idea de "es
 
 El dominio es una idea derivada de lo que se llama "Asignación Latente de Dirichlet (ALD)", donde, [según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), "la clave es que las palabras siguen una hipótesis de bolsa de palabras o, más bien que el orden no importa, que el uso de una palabra es ser parte de un tema y que comunica la misma información sin importar dónde se encuentra en el documento". 
 
-Como resultado final, si su marco teórico es correcto, la app da cuenta del nivel de temperatura en el discurso. Lo hace visualizando un ranking de "dominios".
+Como resultado final, si sus bases conceptuales son correctas, la app da cuenta del nivel de temperatura según dominios.
 
 En este momento la app permite visualizar cuatro dominios, para la Argentina y Chile. En el "roadmap" apunto a generar los dominios de forma dinámica a través de la IA, que, luego de analizar los tweets, devolvería las agrupaciones de tweets (por dominio) luego de cada recuperación de tweets. 
 
