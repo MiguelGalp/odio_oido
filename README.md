@@ -16,7 +16,7 @@ En este momento la app permite visualizar cuatro dominios, para la Argentina y C
 
 ## Usos del servicio web
 
-Los datos son en tiempo real hasta donde X/Twitter lo permite. Al momento la máxima ventana de tiempo entre recuperaciones es de una hora. Ver abajo para más detalles acerca de los datos y métricas utilizadas. 
+Los datos son en tiempo real hasta donde X/Twitter lo permite. Al momento, la máxima ventana de tiempo entre recuperaciones es de una hora. Ver abajo para más detalles acerca de los modelos de datos y las métricas utilizadas. 
 
 ## Licencia
 
