@@ -14,7 +14,7 @@ Este servicio web puede ser utilizado para analizar tendencias en Twitter, en ti
 
 ## Licencia
 
-Este proyecto está licenciado bajo la Licencia MIT. Consulta el archivo LICENSE para obtener más detalles.
+Este proyecto está licenciado bajo la Licencia MIT.
 
 ## Explicación detallada del proyecto
 
