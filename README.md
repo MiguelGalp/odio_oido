@@ -1,4 +1,4 @@
-# El opio de los pueblos. Twitter/X trackeado, 2024
+# El opio de los pueblos. Twitter/X trackeado por "dominios", 2024
 
 El opio de los pueblos es un MVP cuyo objetivo primordial es el de utilizar la idea de "espacio latente" para generar visualizaciones de datos en tiempo real (trackeo). En términos de datos "duros", la app escrappea X/Twitter para obtener el nivel de "engagement" de un grupo de tweets que, a su vez, se agrupan a través de la idea de "dominio". 
 
