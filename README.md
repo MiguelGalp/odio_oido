@@ -14,13 +14,13 @@ En este momento la app permite visualizar cuatro espacios latentes, para la Arge
 
 ## Usos del servicio web
 
-Los datos son en tiempo real hasta donde la API de X/Twitter lo permite. Al momento la máxima ventana de tiempo entre recuperaciones es de una hora. Ver abajo para más detalles acerca de los datos y métricas utilizadas. 
+Los datos son en tiempo real hasta donde X/Twitter lo permite. Al momento la máxima ventana de tiempo entre recuperaciones es de una hora. Ver abajo para más detalles acerca de los datos y métricas utilizadas. 
 
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia MIT.
 
-## Explicación detallada del proyecto
+## Más detalles acerca de los datos generados.
 
 Este proyecto rastrea y analiza las interacciones de los tweets de las últimas 24 horas. Se trata de un grupo de tweets (ver el modelo de la base de datos en la app) que representa la idea de tópico según lo define la idea de la LDA. Las interacciones trackeadas incluyen likes, retweets y respuestas a cada tweet. Es importante mencionar que cada tweet resulta en un cálculo normalizado donde, dentro del período de 24hs, se da más peso tanto a los tweets más recientes como a los tweets individuales con más interacciones. También se normaliza por número de seguidores dentro de cada dominio. 
 
