@@ -161,7 +161,7 @@
                             style="height: 15px; width: {{ '%.2f'|format(min(engagement * 10000, 100)) }}%; background-color: #000;">
                         </div>
                     </div>
-                    <p class="text-uppercase" style="font-weight: 900; letter-spacing: -.5px;">{{ group }}</p>
+                    <p class="text-uppercase" style="font-weight: 900; letter-spacing: -.5px; margin-top: 2px;">{{ group }}</p>
                     {% endif %}
                     {% endfor %}
 
@@ -173,22 +173,28 @@
                 ODIO<span class="flipped-text">ODIO </span>
             </div>
             <div class="row text-uppercase custom-width"
-                style="font-weight: 900; letter-spacing: -0.5px; margin-top: 8px; margin-left: -3px; line-height: 9px;">
+                style="font-weight: 900; letter-spacing: -0.5px; margin-top: 8px; margin-left: -3px; line-height: 10px;">
                 <p>
-                    <span style="display: inline-block; margin-right: -10px;">Interacciones según seguidores</span><br>
-                    <span style="display: inline-block; margin-right: 10px;">y tweets (en un ciclo de vida de 24hs).
-                        Engagements y</span><br>
-                    <span style="display: inline-block; margin-right: 20px;"> una suerte de espejo-venganza --o una
+                    <span style="display: inline-block; margin-right: -30px;">El opio de los pueblos: twitter</span><br>
+                    <span style="display: inline-block; margin-right: 10px;">servido por dominios <a href="https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation">LAD.</a></span><br>
+                    <span style="display: inline-block; margin-right: 20px;"> una suerte de espejo-venganza --y una
                     </span><br>
                     <span style="display: inline-block; margin-right: 30px;">advertencia:</span>
-                    <span style="display: inline-block; margin-right: 30px;">es gente</span><br>
-                    <span style="display: inline-block; margin-right: 40px;">tóxica.</span>
+                    <span style="display: inline-block; margin-right: 30px;">¿es gente ...</span><br>
+                    <span style="display: inline-block; margin-right: 40px;">tóxica?</span>
                 </p>
             </div>
         </div>
         <div class="col-12 col-md-2">
             <img id="hero" src="./static/public/Argentina.png" alt="MG" class="pic-margin pic-size" />
         </div>
+        <div class="col-1 col-md-1 github-positioning">
+            <div class="text-center">
+                <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon" src="./static/public/github-logo.png" alt="GitHub" width="20" height="20" /></a>
+            </div>
+        </div>
+        
+        
     </div>
 </div>
 {% endblock %}

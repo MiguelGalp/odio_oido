@@ -28,8 +28,8 @@ body {
 }
 
 .pic-size {
-  width: 199px;
-  height: 199px;
+  width: 190px;
+  height: 190px;
 }
 
 .pic-margin {
@@ -171,7 +171,7 @@ body {
 .hero-text {
   font-size: 72px;
   font-weight: 900;
-  line-height: 72%;
+  line-height: 66%;
   width: 75%;
 }
 
@@ -263,6 +263,36 @@ body {
     margin-right: 5px;
   }
 }
+
+.github-positioning {
+  margin-left: -10%;
+  margin-top: 7px;
+}
+
+@media (min-width: 1400px) {
+  /* xl screens and larger */
+  .github-positioning {
+    margin-left: -13.5%;
+   
+  }
+}
+
+@media (max-width: 1199px) {
+  /* screens smaller than 1200px */
+  .github-positioning {
+    position: relative;
+    left: 8%;
+  }
+}
+
+@media (max-width: 968px) {
+  /* screens smaller than 968px */
+  .github-positioning {
+    position: relative;
+    left: 150px;
+  }
+}
+
 
 
 

@@ -248,12 +248,12 @@ sup {
 }
 
 a {
-  color: #0d6efd;
+  color: inherit;
   text-decoration: underline;
 }
 
 a:hover {
-  color: #0a58ca;
+  opacity: 89%;
 }
 
 a:not([href]):not([class]),

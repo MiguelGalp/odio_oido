@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, abort, Response
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_babelex import format_datetime
@@ -11,22 +11,34 @@ from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 from collections import OrderedDict
-import logging
-import math
+from functools import wraps
+import json
+import uuid
 
 load_dotenv()
-# Load the string from the environment variable
-groups_string = os.getenv('GROUPS')
-# Parse the string to get the dictionary
-groups = ast.literal_eval(groups_string)
 
-# Load the string from the environment variable
-front_groups_string = os.getenv('FRONT_GROUPS')
-front_chile_string = os.getenv('FRONT_CHILE')
+# Read the group data from the environment variables and parse it 
+groups = ast.literal_eval(os.environ.get('GROUPS', '{}'))
+front_groups = ast.literal_eval(os.environ.get('FRONT_GROUPS', '{}'))
+front_chile = ast.literal_eval(os.environ.get('FRONT_CHILE', '{}'))
 
-# Parse the string to get the dictionary
-front_groups = ast.literal_eval(front_groups_string)
-front_chile = ast.literal_eval(front_chile_string)
+# Combine all users from all group data
+all_users = list(set(user for group in groups.values() for user in group) 
+                 | set(user for group in front_groups.values() for user in group) 
+                 | set(user for group in front_chile.values() for user in group))
+
+# Create aliases for all users
+user_aliases = {user: str(uuid.uuid4()) for user in all_users}
+
+# Replace actual usernames with their aliases in the group data
+for group, users in groups.items():
+    groups[group] = [user_aliases[user] for user in users]
+
+for group, users in front_groups.items():
+    front_groups[group] = [user_aliases[user] for user in users]
+
+for group, users in front_chile.items():
+    front_chile[group] = [user_aliases[user] for user in users]
 
 
 app = Flask(__name__, template_folder='templates')
@@ -63,6 +75,26 @@ try:
         db.create_all()
 except Exception as e:
     print(f"Database error: {str(e)}")
+
+def check_auth(username, password):
+    # This function is called to check if a username / password combination is valid
+    return username == 'admin' and password == 'secret'
+
+def authenticate():
+    # Sends a 401 response that enables basic auth
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
 
 def calculate_engagement(tweet):
     likes = tweet.likes
@@ -103,7 +135,7 @@ def get_current_engagement(max_possible_engagement):
         'La grieta': 128000 + 92000,
         'Política': 350000 + 78000 + 90000,
         'Medios': 3300000 + 1300000 + 340000,
-        'Deportes' : 2100000 + 1430000
+        'Fútbol' : 2100000 + 1430000
     }
 
     # Initialize a dictionary to store group engagements
@@ -111,8 +143,9 @@ def get_current_engagement(max_possible_engagement):
 
     # Calculate total engagement for all groups
     a_day_ago = datetime.utcnow() - timedelta(days=1)
-    for group, users in groups.items():
-        for user_name in users:
+    for group, aliases in groups.items():
+        for alias in aliases:
+            user_name = next(user for user, user_alias in user_aliases.items() if user_alias == alias)
             user = User.query.filter_by(name=user_name).first()
             if user:
                 recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
@@ -128,16 +161,15 @@ def get_current_engagement(max_possible_engagement):
     print(sorted_group_engagements) 
     return sorted_group_engagements
 
-
-
 def get_engagement_by_groups(front_groups, group_followers, max_possible_engagement):
     a_day_ago = datetime.utcnow() - timedelta(days=1)
     group_engagements = {group: 0 for group in front_groups}
 
     # Calculate total engagement for all groups
-    for group_name, users in front_groups.items():
+    for group_name, aliases in front_groups.items():
         total_engagement = 0
-        for user_name in users:
+        for alias in aliases:
+            user_name = next(user for user, user_alias in user_aliases.items() if user_alias == alias)
             user = User.query.filter_by(name=user_name).first()
             if user:
                 recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
@@ -153,7 +185,6 @@ def get_engagement_by_groups(front_groups, group_followers, max_possible_engagem
 
     return sorted_group_engagements
 
-
 @app.route('/engagement_by_groups', methods=['POST'])
 def engagement_by_groups_route():
     # Define the maximum possible engagement score
@@ -167,7 +198,7 @@ def engagement_by_groups_route():
         'La grieta': 128000 + 92000,
         'Política': 350000 + 78000 + 90000,
         'Medios': 3300000 + 1300000 + 340000,
-        'Deportes' : 2100000 + 1430000
+        'Fútbol' : 2100000 + 1430000
     }
 
     # Filter the followers for only the groups in the request
@@ -181,10 +212,12 @@ def engagement_by_groups_route():
 
 @app.route('/api/front_groups', methods=['GET'])
 def front_groups_route():
+    # Return the aliased user lists
     return jsonify(front_groups)
 
 @app.route('/api/front_chile', methods=['GET'])
 def front_chile_route():
+    # Return the aliased user lists
     return jsonify(front_chile)
 
 @app.route('/')
