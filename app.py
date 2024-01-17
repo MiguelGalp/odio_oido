@@ -17,10 +17,10 @@ import uuid
 
 load_dotenv()
 
-# Read the group data from the environment variables and parse it as JSON
-groups = json.loads(os.environ.get('GROUPS', '{}'))
-front_groups = json.loads(os.environ.get('FRONT_GROUPS', '{}'))
-front_chile = json.loads(os.environ.get('FRONT_CHILE', '{}'))
+# Read the group data from the environment variables and parse it 
+groups = ast.literal_eval(os.environ.get('GROUPS', '{}'))
+front_groups = ast.literal_eval(os.environ.get('FRONT_GROUPS', '{}'))
+front_chile = ast.literal_eval(os.environ.get('FRONT_CHILE', '{}'))
 
 # Combine all users from all group data
 all_users = list(set(user for group in groups.values() for user in group) 
