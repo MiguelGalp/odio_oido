@@ -3,7 +3,7 @@
 ## MVP: PROYECTO "EL OPIO DE LOS PUEBLOS"
 
 <img src="static/public/niña_arg.png" width="25%" alt="Argentina"> 
-
+&nbsp
 </div>
 
 **El opio de los pueblos** es un proyecto abierto y sin fines de lucro que tiene como objetivo hacer un aporte crítico a la construcción de "tendencias" en las redes sociales. 
