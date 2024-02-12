@@ -4,13 +4,15 @@
 
 ---
 
-El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco en las en redes sociales.
+El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco puesto en los discursos en las redes sociales.
 
-El proyecto se inscribe en el marco de las humanidades digitales (2.0) ya que, basada en datos en tiempo real, se analizan discursos desde una perspectiva <em>Bayesiana</em> ligado a la ligüística.
+Desde el punto de vista metodológico el proyecto se inscribe en el marco de las humanidades digitales (2.0).
 
-La propuesta plantea como eje metodológico utilizar la "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés).[Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), el LDA tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema [incluso sin ser explícito en el texto] y que comunica la misma información sin importar dónde se encuentra en el documento".
+Es así que, obtiendo datos en tiempo real, el MVP analiza y visibiliza discursos desde una perspectiva <em>Bayesiana</em> ligado a la ligüística.
 
-El opio de los pueblos tiene como objetivo viabilizar miradas críticas a las redes a la vez que brindar información relevante respecto a qué se está discutiendo regionalmente en redes sociales.  
+En el centro del proyecto se ubica la "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés) que, [según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema [incluso sin ser explícito en el texto] y que comunica la misma información sin importar dónde se encuentra en el documento".
+
+El opio de los pueblos tiene como objetivo proponer que las redes sociales articulan tendencias "LAD" (o latentes) tanto como aquellas que son las que habitualmente nos proponen los algoritmos de las plataformas. En este sentido, la idea-fuerza es la accesibilizar y debatir modelos de sentido "alternativos". 
 
 ---
 
