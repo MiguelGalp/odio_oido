@@ -6,18 +6,21 @@
 
 **El opio de los pueblos** es un desarrollo abierto y sin fines de lucro con el foco puesto en **visibilizar tendencias latentes** en redes sociales.
 
-Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene datos en tiempo real que articulan con análisis cualitativos realizados desde la perspectiva llamada **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés).
+Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene datos en tiempo real que articulan con análisis cualitativos realizados desde una perspectiva llamada **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés).
 
 [Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), el modelo LDA tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema **[incluso sin ser explícito en el texto]** y que comunica la misma información sin importar dónde se encuentra en el documento".
 
-El objetivo del proyecto es **accesibilizar y debatir modelos de usos de las redes** que, como punto de partida, se conciben "alternativos" frente a los presentados por las plataformas "mainstream".  
+Algunos de los posibles diferenciales de este proyecto son:
+
+- Brindar información regional y por país de las tendencias.
+- Trackear la evolución temporal de los debates sociales.
+- Abrir el algoritmo de tendencias a métricas alternativas
 
 ---
 
 ## Índice de Contenidos
 
 - [¿Cómo continúa el desarrollo de la app (el "Roadmap")?](#roadmap)
-- [Tecnologías utilizadas](#tecnologías-utilizadas)
 - [Cómo contribuir](#cómo-contribuir)
 - [Misión, Visión y Valores](#misión-visión-y-valores)
 - [Comunidad](#comunidad)
@@ -32,7 +35,7 @@ El objetivo del proyecto es **accesibilizar y debatir modelos de usos de las red
 
 [Conocer los issues, hitos y demás detalles del proyecto -> siguiendo este enlace](https://github.com/users/MiguelGalp/projects/1)
 
-## Tecnologías necesarias para contribuir con el proyecto.
+## Cómo contribuir con el proyecto.
 
 - **Python**: Utilizado para el backend.
 - **Flask**: Framework de Python para crear la aplicación web.
