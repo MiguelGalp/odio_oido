@@ -4,7 +4,7 @@
 
 ---
 
-El opio de los pueblos es un desarrollo abierto y sin fines de lucro que accesibiliza tendencias alternativas en redes sociales.
+El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco en las en redes sociales.
 
 El proyecto se inscribe en el marco de las humanidades digitales (2.0) ya que, basada en datos en tiempo real, se analizan discursos desde una perspectiva <em>Bayesiana</em> ligado a la ligüística.
 
