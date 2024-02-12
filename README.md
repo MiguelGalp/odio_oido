@@ -28,6 +28,10 @@ El objetivo: **accesibilizar y debatir modelos de sentido** que, como punto de p
 - [Licencias](#licencias)
 - [Links de interés](#links-de-interés)
 
+## Roadmap: calendario de desarrollos
+
+[Project Roadmap](https://www.notion.so/YourNotionPageLink)
+
 ## Tecnologías utilizadas
 
 - **Python**: Utilizado para el backend.
