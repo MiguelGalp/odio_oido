@@ -6,8 +6,6 @@
 
 </div>
 
----
-
 **El opio de los pueblos** es un proyecto abierto y sin fines de lucro que tiene como objetivo analizar discursos en redes sociales. 
 
 Nos encontramos actualmente en fase "MVP" en que el modelo de análisis, tomado de lo que se llama "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés), se aplica a discursos emitidos en Twitter/X y específicamente relacionados a categorías socio-culturales de la Argentina. 
