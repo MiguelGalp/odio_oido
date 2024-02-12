@@ -16,6 +16,7 @@ El objetivo: **accesibilizar y debatir modelos de sentido** que, como punto de p
 
 ## Índice de Contenidos
 
+- [¿Cómo continúa el desarrollo de la app?](#roadmap)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
 - [Cómo contribuir](#cómo-contribuir)
 - [Misión, Visión y Valores](#misión-visión-y-valores)
