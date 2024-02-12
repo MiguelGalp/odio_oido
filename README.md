@@ -32,11 +32,12 @@ El objetivo: **accesibilizar y debatir modelos de usos de las redes** que, como 
 
 [Conocer los issues, hitos y demás detalles del proyecto -> siguiendo este enlace](https://github.com/users/MiguelGalp/projects/1)
 
-## Tecnologías utilizadas
+## Tecnologías necesarias para contribuir con el proyecto.
 
 - **Python**: Utilizado para el backend.
 - **Flask**: Framework de Python para crear la aplicación web.
 - **JavaScript**: Para la funcionalidad del lado del cliente.
+- **CSS**: Para estilizar los componentes de la app.
 
 ## Usos del servicio web
 
