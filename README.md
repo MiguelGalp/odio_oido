@@ -1,12 +1,9 @@
 <div align="center" width="100%">
-    <h1>El opio de los pueblos</h1>
-    <div align="center" width="25%">
 
-![Argentina](static/public/Argentina.png) &nbsp; &nbsp; &nbsp; ![Chile](static/public/Chile.png)
+<img src="static/public/Argentina.png" width="25%" alt="Argentina"> &nbsp; &nbsp; &nbsp; <img src="static/public/Chile.png" width="25%" alt="Chile">
 
 </div>
 
-</div>
 
 
 
