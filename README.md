@@ -1,3 +1,13 @@
+<div align="center" width="100%">
+    <h1>La Cuentoneta</h1>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/rolivencia/cuentoneta/assets/32349705/b0ea0659-3c9d-4c4f-9d14-ab60d50dd832">
+        <img width="33%" alt="La Cuentoneta" src="https://github.com/MiguelGalp/opiodelospueblos/static/public/Argentina.png">
+    </picture>
+</div>
+
+---
+
 # El opio de los pueblos. Twitter/X trackeado por LDA, 2024
 
 El opio de los pueblos es un MVP que tiene como objetivo utilizar la idea de espacio latente para generar visualizaciones de datos en tiempo real (trackeo). En términos de datos duros, la app escrappea X/Twitter para obtener el nivel de interacciones de un grupo de tweets que, a su vez, se agrupan en dominios.
