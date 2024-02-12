@@ -30,7 +30,7 @@ El objetivo: **accesibilizar y debatir modelos de sentido** que, como punto de p
 
 ## Roadmap
 
-[Cómo sigue el desarrollo del proyecto -> siguiendo este enlace]([ROADMAP.md](https://github.com/users/MiguelGalp/projects/1))
+[Cómo sigue el desarrollo del proyecto -> siguiendo este enlace](https://github.com/users/MiguelGalp/projects/1)
 
 ## Tecnologías utilizadas
 
