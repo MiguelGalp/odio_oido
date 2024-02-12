@@ -8,7 +8,7 @@ El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco
 
 Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene datos en tiempo real que articulan con análisis cualitativos realizados desde la perspectiva llamada **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés).
 
-[Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), las categorías LDA del análisis del discurso tienen como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema **[incluso sin ser explícito en el texto]** y que comunica la misma información sin importar dónde se encuentra en el documento".
+[Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), el modelo LDA tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema **[incluso sin ser explícito en el texto]** y que comunica la misma información sin importar dónde se encuentra en el documento".
 
 El objetivo: **accesibilizar y debatir modelos de usos de las redes** que, como punto de partida, se conciben "alternativos" frente a los presentados por las plataformas "mainstream".  
 
