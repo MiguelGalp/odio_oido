@@ -1,6 +1,5 @@
-
 <div align="center" width="100%"> 
-  # PROYECTO "EL OPIO DE LOS PUEBLOS"
+<h1>PROYECTO "EL OPIO DE LOS PUEBLOS"</h1> 
   <picture> <img width="33%" alt="El opio de los pueblos" src="static/public/niña_arg.png"> </picture> </div> 
 
 ---
