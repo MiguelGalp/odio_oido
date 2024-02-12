@@ -16,7 +16,7 @@ El objetivo: **accesibilizar y debatir modelos de sentido** que, como punto de p
 
 ## Índice de Contenidos
 
-- [¿Cómo continúa el desarrollo de la app (el "Roadmap")?](#Roadmap-,-calendario)
+- [¿Cómo continúa el desarrollo de la app (el "Roadmap")?](#roadmap)
 - [Tecnologías utilizadas](#tecnologías-utilizadas)
 - [Cómo contribuir](#cómo-contribuir)
 - [Misión, Visión y Valores](#misión-visión-y-valores)
@@ -28,7 +28,7 @@ El objetivo: **accesibilizar y debatir modelos de sentido** que, como punto de p
 - [Licencias](#licencias)
 - [Links de interés](#links-de-interés)
 
-## Roadmap, calendario de desarrollos
+## Roadmap
 
 [Project Roadmap]([https://www.notion.so/YourNotionPageLink](https://www.notion.so/92d83c7ccb2946169e0cfa8928b6b5ff?v=a638879428a6435fb6aad347ffbaf625&pvs=4))
 
