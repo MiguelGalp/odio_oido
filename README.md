@@ -1,5 +1,5 @@
 <style>
-    img {
+    picture {
         margin-right: 20px;
     }
 </style>
