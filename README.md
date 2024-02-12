@@ -30,7 +30,7 @@ El objetivo: **accesibilizar y debatir modelos de sentido** que, como punto de p
 
 ## Roadmap
 
-[Project Roadmap]([https://www.notion.so/YourNotionPageLink](https://www.notion.so/92d83c7ccb2946169e0cfa8928b6b5ff?v=a638879428a6435fb6aad347ffbaf625&pvs=4))
+[Cómo sigue el desarrollo del proyecto -> siguiendo este enlace]([https://www.notion.so/YourNotionPageLink](https://www.notion.so/92d83c7ccb2946169e0cfa8928b6b5ff?v=a638879428a6435fb6aad347ffbaf625&pvs=4))
 
 ## Tecnologías utilizadas
 
