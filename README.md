@@ -10,7 +10,7 @@
 
 El proyecto se encuentra actualmente en fase MVP, en que el modelo de análisis, tomado de lo que se llama "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés), se aplica a discursos emitidos en Twitter/X y específicamente relacionados a categorías socio-culturales de la Argentina. 
 
-[Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation): "la clave es que las palabras siguen una hipótesis de bolsa de palabras o, más bien que el orden no importa, que el uso de una palabra es ser parte de un tema y que comunica la misma información sin importar dónde se encuentra en el documento". 
+[Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation): "la clave [en el modelo] es que las palabras siguen una hipótesis de bolsa de palabras o, más bien que el orden no importa, que el uso de una palabra es ser parte de un tema y que comunica la misma información sin importar dónde se encuentra en el documento". 
 
 En este momento lo que se requiere es validar los resultados obtenidos y, eventualmente (de acuerdo a la validación) ampliar el análisis hacia países de la región. 
 
