@@ -3,7 +3,7 @@
 ## MVP: PROYECTO "EL OPIO DE LOS PUEBLOS"
 
 <img src="static/public/niña_arg.png" width="25%" alt="Argentina"> 
-&nbsp
+<source media="(prefers-color-scheme: dark)" srcset="https://github.com/rolivencia/cuentoneta/assets/32349705/b0ea0659-3c9d-4c4f-9d14-ab60d50dd832">
 </div>
 
 **El opio de los pueblos** es un proyecto abierto y sin fines de lucro que tiene como objetivo hacer un aporte crítico a la construcción de "tendencias" en las redes sociales. 
