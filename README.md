@@ -2,7 +2,7 @@
 
 ## MVP: PROYECTO "EL OPIO DE LOS PUEBLOS"
 
-<img src="static/public/Argentina.png" width="25%" alt="Argentina"> &nbsp; &nbsp; &nbsp; <img src="static/public/Chile.png" width="25%" alt="Chile">
+<img src="static/public/niña_arg.png" width="25%" alt="Argentina"> 
 
 </div>
 
