@@ -8,7 +8,7 @@
 
 **El opio de los pueblos** es un proyecto abierto y sin fines de lucro que tiene como objetivo analizar discursos en redes sociales. 
 
-Nos encontramos actualmente en fase "MVP" en que el modelo de análisis, tomado de lo que se llama "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés), se aplica a discursos emitidos en Twitter/X y específicamente relacionados a categorías socio-culturales de la Argentina. 
+El proyecto se encuentra actualmente en fase "MVP" en que el modelo de análisis, tomado de lo que se llama "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés), se aplica a discursos emitidos en Twitter/X y específicamente relacionados a categorías socio-culturales de la Argentina. 
 
 El dominio es una idea derivada de lo que se llama "Asignación Latente de Dirichlet (ALD)", donde, [según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), "la clave es que las palabras siguen una hipótesis de bolsa de palabras o, más bien que el orden no importa, que el uso de una palabra es ser parte de un tema y que comunica la misma información sin importar dónde se encuentra en el documento". 
 
