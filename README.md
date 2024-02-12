@@ -2,9 +2,6 @@
 UN MVP SOBRE REDES SOCIALES
 <div align="center" width="100%"> <picture> <img width="33%" alt="La Cuentoneta" src="static/public/niña_arg.png"> </picture> </div> <h2>El opio de los pueblos es un desarrollo abierto y sin fines de lucro que accesibiliza tendencias alternativas en redes sociales.</h2>
 El proyecto se inscribe en el marco de las humanidades digitales (2.0) ya que, basada en datos en tiempo real, se analizan discursos desde un modelo <em>Bayesiano</em> ligado a la ligüística.
-
-El proyecto se inscribe en el marco de las humanidades digitales (2.0) ya que, basada en datos en tiempo real, se analizan discursos desde un modelo <em>Bayesiano</em> ligado a la ligüística. 
-
 La propuesta plantea como eje metodológico utilizar la "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés) que, [según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema [incluso sin ser explícito en el texto] y que comunica la misma información sin importar dónde se encuentra en el documento". 
 
 ## Tecnologías utilizadas
