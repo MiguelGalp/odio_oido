@@ -3,6 +3,9 @@
     <picture>
         <source media="(prefers-color-scheme: dark)" srcset="https://github.com/rolivencia/cuentoneta/assets/32349705/b0ea0659-3c9d-4c4f-9d14-ab60d50dd832">
         <img width="25%" alt="Argentina" src="static/public/Argentina.png">
+    </picture>
+    <picture>
+        <source media="(prefers-color-scheme: dark)" srcset="https://github.com/rolivencia/cuentoneta/assets/32349705/b0ea0659-3c9d-4c4f-9d14-ab60d50dd832">
         <img width="25%" alt="Argentina" src="static/public/Argentina.png">
     </picture>
 </div>
