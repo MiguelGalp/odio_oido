@@ -1,7 +1,5 @@
-<div align="center" width="100%">
-
 # MVP: PROYECTO "EL OPIO DE LOS PUEBLOS"
-
+<div align="center" width="100%">
 <picture>
         <img width="33%" alt="La Cuentoneta" src="static/public/niña_arg.png">
 </picture>
