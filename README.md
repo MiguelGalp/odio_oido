@@ -2,7 +2,8 @@
     <h1>El opio de los pueblos</h1>
     <picture>
         <source media="(prefers-color-scheme: dark)" srcset="https://github.com/rolivencia/cuentoneta/assets/32349705/b0ea0659-3c9d-4c4f-9d14-ab60d50dd832">
-        <img width="33%" alt="La Cuentoneta" src="static/public/Argentina.png">
+        <img width="33%" alt="Argentina" src="static/public/Argentina.png">
+        <img width="33%" alt="Argentina" src="static/public/Argentina.png">
     </picture>
 </div>
 
