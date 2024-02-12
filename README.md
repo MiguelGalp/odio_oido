@@ -4,15 +4,13 @@
 
 ---
 
-El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco puesto en los discursos en las redes sociales.
+El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco puesto en las tendencias "LDA" (o latentes) en los discursos realizados en las redes sociales.
 
-Desde el punto de vista metodológico el proyecto se inscribe en el marco de las humanidades digitales (2.0).
+Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **humanidades digitales (2.0)**.
 
-Es así que, obtiendo datos en tiempo real, el MVP analiza y visibiliza discursos desde una perspectiva <em>Bayesiana</em> ligado a la ligüística.
+El MVP de la app que aquí se presenta analiza y visibiliza discursos desde la **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés) que, [según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema **[incluso sin ser explícito en el texto]** y que comunica la misma información sin importar dónde se encuentra en el documento".
 
-En el centro del proyecto se ubica la "Asignación Latente de Dirichlet" (LDA según sus siglas en inglés) que, [según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema [incluso sin ser explícito en el texto] y que comunica la misma información sin importar dónde se encuentra en el documento".
-
-El opio de los pueblos tiene como objetivo proponer que las redes sociales articulan tendencias "LAD" (o latentes) tanto como aquellas que son las que habitualmente nos proponen los algoritmos de las plataformas. En este sentido, la idea-fuerza es la accesibilizar y debatir modelos de sentido "alternativos". 
+La idea-fuerza de El opio de los pueblos es la de **accesibilizar y debatir modelos de sentido** que, como punto de partida, se conciben "alternativos" frente a los presentados por las plataformas "mainstream".  
 
 ---
 
