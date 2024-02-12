@@ -30,7 +30,7 @@ El objetivo: **accesibilizar y debatir modelos de usos de las redes** que, como 
 
 ## Roadmap
 
-[Cómo sigue el desarrollo del proyecto -> siguiendo este enlace](https://github.com/users/MiguelGalp/projects/1)
+[Conocer los issues, hitos y demás detalles del proyecto -> siguiendo este enlace](https://github.com/users/MiguelGalp/projects/1)
 
 ## Tecnologías utilizadas
 
