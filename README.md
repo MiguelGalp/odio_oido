@@ -1,5 +1,5 @@
-# MVP: PROYECTO "EL OPIO DE LOS PUEBLOS"
-MVP: PROYECTO "EL OPIO DE LOS PUEBLOS"
+# PROYECTO "EL OPIO DE LOS PUEBLOS"
+UN MVP SOBRE REDES SOCIALES
 <div align="center" width="100%"> <picture> <img width="33%" alt="La Cuentoneta" src="static/public/niña_arg.png"> </picture> </div> <h2>El opio de los pueblos es un desarrollo abierto y sin fines de lucro que accesibiliza tendencias alternativas en redes sociales.</h2>
 El proyecto se inscribe en el marco de las humanidades digitales (2.0) ya que, basada en datos en tiempo real, se analizan discursos desde un modelo <em>Bayesiano</em> ligado a la ligüística.
 
