@@ -4,7 +4,7 @@
 
 ---
 
-El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco puesto en **visibilizar tendencias latentes** en los discursos realizados en las redes sociales.
+El opio de los pueblos es un desarrollo abierto y sin fines de lucro con el foco puesto en **visibilizar tendencias latentes** en redes sociales.
 
 Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene datos en tiempo real que articular con análisis cualitativos realizados desde la perspectiva llamada **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés).
 
