@@ -9,7 +9,7 @@
 
 ---
 
-## **El opio de los pueblos** es un desarrollo abierto y sin fines de lucro que accesibiliza tendencias alternativas en redes sociales. 
+## El opio de los pueblos es un desarrollo abierto y sin fines de lucro que accesibiliza tendencias alternativas en redes sociales. 
 
 ---
 
