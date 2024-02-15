@@ -114,6 +114,13 @@ body {
   color: #84c6c6;
 }
 
+.hero-text {
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 66%;
+  width: 75%;
+}
+
 .text-bajada {
   font-weight: 900;
   letter-spacing: -0.7px;
