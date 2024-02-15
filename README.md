@@ -6,16 +6,14 @@
 
 **El opio de los pueblos** es un desarrollo abierto y sin fines de lucro con el foco puesto en **visibilizar tendencias latentes** en redes sociales.
 
-Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene métricas de interacciones en tiempo real. Estos datos articulan con categorías cualitativas obtenidas por la **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés), un modelo Bayesiano de análisis de textos. 
+Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene datos en tiempo real que articulan con análisis cualitativos realizados desde una perspectiva llamada **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés).
 
 [Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), el modelo LDA tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema **[incluso sin ser explícito en el texto]** y que comunica la misma información sin importar dónde se encuentra en el documento".
 
-En esta iteración la app obtiene las categorías offline y hardcoded. A futuro el objetivo técnico del proyecto es que las cateogorías sean "dinámicas", obtenidas junto con los datos primarios. 
-
 Algunos de los posibles diferenciales de este proyecto son:
 
-- Brindar información regional y por país de tendencias alternativas (por estar "latentes" en lugar de explícitas).
-- Trackear 24/7 y correlacionar debates sociales con eventos y usuarios puntuales.
+- Brindar información regional y por país de las tendencias.
+- Trackear la evolución temporal de los debates sociales.
 - Abrir el algoritmo de tendencias a métricas alternativas
 
 ---
