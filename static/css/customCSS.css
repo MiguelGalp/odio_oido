@@ -113,7 +113,7 @@ body {
   .text-bajada {
     font-weight: 900;
     letter-spacing: -0.7px;
-    width: 285px;
+    min-width: 270px !important;
     line-height: 12px;
     margin-top: 10px;
   }
@@ -123,8 +123,20 @@ body {
 
   .text-bajada {
     font-weight: 900;
-    letter-spacing: -0.7px;
-    width: 185px;
+    letter-spacing: -0.2px;
+    min-width: 210px !important;
+    line-height: 12px;
+    margin-top: 10px;
+    margin-right: -20px;
+  }
+}
+
+@media (min-width: 1200px) {
+
+  .text-bajada {
+    font-weight: 900;
+    letter-spacing: -0.2px;
+    width: 190px;
     line-height: 12px;
     margin-top: 10px;
   }
