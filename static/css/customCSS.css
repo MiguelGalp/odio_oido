@@ -13,57 +13,20 @@ body {
   font-family: 'Geist', fallback;
   display: flex;
   align-items: center;
-  /* This will vertically center the flex child (your container) */
   justify-content: center;
-  /* This will horizontally center the flex child if needed */
   min-height: 100vh;
-  /* Use min-height to ensure it at least covers the viewport height */
   margin: 0;
-  /* Remove default margin */
-  scale: 135%;
+  scale: 1.1;
 }
 
-.p {
-  margin-bottom: 0rem !important;
-}
-
-.pic-size {
-  width: 190px;
-  height: 190px;
-}
-
-.pic-margin {
-  margin-left: -115px;
-  margin-top: 3px;
-}
-
-@media (max-width: 1700px) {
-  .pic-margin {
-    margin-left: -115px;
-  margin-top: 3px;
+@media (min-width: 768px) {
+  .avatars-positions {
+    position: relative;
+    left: 24px;
+    top: 18px;
   }
 }
 
-@media (max-width: 1400px) {
-  .pic-margin {
-    margin-left: -75px;
-  margin-top: 3px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .pic-margin {
-    margin-left: -25px;
-  margin-top: 3px;
-  }
-}
-
-@media (max-width: 992px) {
-  .pic-margin {
-    margin-left: 15px;
-  margin-top: 3px;
-  }
-}
 
 .card {
   position: relative;
@@ -76,103 +39,21 @@ body {
   border-radius: 0.5rem !important;
 }
 
-.custom-position-content {
-  position: relative;
-  left: -55px;
-}
-
-@media (max-width: 1400px) {
-  .custom-position-content {
-    position: relative;
-    left: -75px;
+@media (min-width: 768px) {
+  .hero-text {
+    font-size: 6em;
+    font-weight: 900;
+    line-height: 66%;
+    width: 75%;
   }
 }
 
-@media (max-width: 1200px) {
-  .custom-position-content {
-    position: relative;
-    left: -180px;
-  }
-}
-
-@media (max-width: 992px) {
-  .custom-position-content {
-    position: relative;
-    left: -170px;
-  }
-}
-
-.custom-width {
-  width: 80px;
-}
-
-@media (max-width: 767.98px) {
-  .custom-margin-top {
-    margin-top: 130px !important;
-    /* replace with your desired margin-top */
-  }
-}
-
-.negative-letter-spacing {
-  letter-spacing: -0.03em;
-  /* Example of a negative letter-spacing value */
-}
-
-.no-padding {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.blue-bg {
-  background-color: #205ea6;
-}
-
-.green-bg {
-  background-color: #66800c;
-}
-
-.purple-bg {
-  background-color: #5e419d;
-}
-
-.hard-background {
-  background-color: #ecc9c9ff;
-}
-
-.dark-red-bg {
-  background-color: #7a1e19;
-}
-
-.slide-background {
-  background-color: #b7b7b7ff;
-}
-
-.hate-text-color {
-  color: #84c6c6;
-}
-
-.text-custom-color {
-  color: #1c1c1c;
-}
-
-.margin-hero {
-  margin-left: 0vw;
-}
-
-.line-clamp {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 10;
-  /* Replace '3' with the number of lines you want to clamp to */
-}
-
-.hero-text {
-  font-size: 72px;
+.text-bajada {
   font-weight: 900;
-  line-height: 66%;
-  width: 75%;
+  letter-spacing: -0.7px;
+  width: 185px;
+  line-height: 12px;
+  margin-top: 10px;
 }
 
 /* Flipped text styles */
@@ -180,121 +61,23 @@ body {
   display: inline-block;
   transform: scaleX(-1);
   position: relative;
-  right: 1px
+  right: 1px;
 }
 
-/* Media query for screens from 768px to 960px */
-@media (min-width: 768px) and (max-width: 1200px) {
-  .hero-text {
-    font-size: 72px;
-    /* Adjust the font size as needed for the specified screen width range */
-  }
+.pic-size {
+  width: 88%;
+  height: auto;
 }
 
-.custom-width {
-  width: 50%;
-  /* default width */
+@media (min-width: 768px) {
+.negative-margin {
+  margin-left: -60px !important;
 }
-
-@media (min-width: 767px) {
-
-  /* md screens and larger */
-  .custom-width {
-    width: 115%;
-  }
-}
-
-@media (min-width: 992px) {
-
-  /* lg screens and larger */
-  .custom-width {
-    width: 85%;
-  }
-}
-
-@media (min-width: 1200px) {
-
-  /* xl screens and larger */
-  .custom-width {
-    width: 68%;
-  }
-}
-
-@media (min-width: 1399px) {
-
-  /* xl screens and larger */
-  .custom-width {
-    width: 60%;
-  }
-}
-
-.avatar-margin {
-  margin-right: 25px;
-}
-
-@media (min-width: 767px) {
-
-  /* md screens and larger */
-  .custom-width {
-    margin-right: 20px;
-  }
-}
-
-@media (min-width: 992px) {
-
-  /* lg screens and larger */
-  .avatar-margin {
-    margin-right: 20px;
-  }
-}
-
-@media (min-width: 1200px) {
-
-  /* xl screens and larger */
-  .avatar-margin {
-    margin-right: 12px;
-  }
-}
-
-@media (min-width: 1399px) {
-
-  /* xl screens and larger */
-  .avatar-margin {
-    margin-right: 5px;
-  }
 }
 
 .github-positioning {
-  margin-left: -10%;
-  margin-top: 7px;
+  text-align: start;
 }
-
-@media (min-width: 1400px) {
-  /* xl screens and larger */
-  .github-positioning {
-    margin-left: -13.5%;
-   
-  }
-}
-
-@media (max-width: 1199px) {
-  /* screens smaller than 1200px */
-  .github-positioning {
-    position: relative;
-    left: 8%;
-  }
-}
-
-@media (max-width: 968px) {
-  /* screens smaller than 968px */
-  .github-positioning {
-    position: relative;
-    left: 150px;
-  }
-}
-
-
-
 
 .bg-orange {
   background-color: #bc5215;
