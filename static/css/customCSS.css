@@ -39,29 +39,17 @@ body {
   border-radius: 0.5rem !important;
 }
 
-.custom-position-content {
-  position: relative;
-  left: -55px;
-}
-
-@media (max-width: 1400px) {
+@media (min-width: 768px) {
   .custom-position-content {
     position: relative;
-    left: -75px;
+    left: -90px;
   }
 }
 
-@media (max-width: 1200px) {
+@media (min-width: 1200px) {
   .custom-position-content {
     position: relative;
-    left: -180px;
-  }
-}
-
-@media (max-width: 992px) {
-  .custom-position-content {
-    position: relative;
-    left: -170px;
+    left: 0px;
   }
 }
 
@@ -121,12 +109,25 @@ body {
   width: 75%;
 }
 
-.text-bajada {
-  font-weight: 900;
-  letter-spacing: -0.7px;
-  width: 185px;
-  line-height: 12px;
-  margin-top: 10px;
+@media (min-width: 768px) {
+  .text-bajada {
+    font-weight: 900;
+    letter-spacing: -0.7px;
+    width: 285px;
+    line-height: 12px;
+    margin-top: 10px;
+  }
+}
+
+@media (min-width: 992px) {
+
+  .text-bajada {
+    font-weight: 900;
+    letter-spacing: -0.7px;
+    width: 185px;
+    line-height: 12px;
+    margin-top: 10px;
+  }
 }
 
 /* Flipped text styles */
@@ -143,9 +144,61 @@ body {
 }
 
 @media (min-width: 768px) {
-.negative-margin {
-  margin-left: -60px !important;
+  .pic-size {
+    width: 110%;
+    height: auto;
+  }
 }
+
+@media (min-width: 992px) {
+  .pic-size {
+    width: 125%;
+    height: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .pic-size {
+    width: 100%;
+    height: auto;
+  }
+}
+
+@media (min-width: 1400px) {
+  .pic-size {
+    width: 88%;
+    height: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .negative-margin {
+    margin-left: 80px !important;
+  }
+}
+
+@media (min-width: 992px) {
+  .negative-margin {
+    margin-left: 50px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .negative-margin {
+    margin-left: 50px !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .negative-margin {
+    margin-left: 15px !important;
+  }
+}
+
+@media (min-width: 1400px) {
+  .negative-margin {
+    margin-left: -40px !important;
+  }
 }
 
 .github-positioning {
