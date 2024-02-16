@@ -49,7 +49,7 @@ body {
 @media (min-width: 1200px) {
   .custom-position-content {
     position: relative;
-    left: 0px;
+    left: -30px;
   }
 }
 
@@ -57,12 +57,11 @@ body {
   width: 80px;
 }
 
-@media (max-width: 767.98px) {
+
   .custom-margin-top {
-    margin-top: 130px !important;
+    margin-top: -4px !important;
     /* replace with your desired margin-top */
   }
-}
 
 .negative-letter-spacing {
   letter-spacing: -0.03em;
@@ -74,30 +73,6 @@ body {
   padding-right: 0 !important;
 }
 
-.blue-bg {
-  background-color: #205ea6;
-}
-
-.green-bg {
-  background-color: #66800c;
-}
-
-.purple-bg {
-  background-color: #5e419d;
-}
-
-.hard-background {
-  background-color: #ecc9c9ff;
-}
-
-.dark-red-bg {
-  background-color: #7a1e19;
-}
-
-.slide-background {
-  background-color: #b7b7b7ff;
-}
-
 .hate-text-color {
   color: #84c6c6;
 }
@@ -107,6 +82,15 @@ body {
   font-weight: 900;
   line-height: 66%;
   width: 75%;
+  right: 4px;
+}
+
+/* Flipped text styles */
+.flipped-text {
+  display: inline-block;
+  transform: scaleX(-1);
+  position: relative;
+  right: 10px;
 }
 
 @media (min-width: 768px) {
@@ -142,13 +126,7 @@ body {
   }
 }
 
-/* Flipped text styles */
-.flipped-text {
-  display: inline-block;
-  transform: scaleX(-1);
-  position: relative;
-  right: 1px;
-}
+
 
 .pic-size {
   width: 88%;
@@ -185,31 +163,31 @@ body {
 
 @media (min-width: 768px) {
   .negative-margin {
-    margin-left: 80px !important;
+    margin-left: 90px !important;
   }
 }
 
 @media (min-width: 992px) {
   .negative-margin {
-    margin-left: 50px !important;
+    margin-left: 60px !important;
   }
 }
 
 @media (min-width: 1024px) {
   .negative-margin {
-    margin-left: 50px !important;
+    margin-left: 70px !important;
   }
 }
 
 @media (min-width: 1200px) {
   .negative-margin {
-    margin-left: 15px !important;
+    margin-left: 35px !important;
   }
 }
 
 @media (min-width: 1400px) {
   .negative-margin {
-    margin-left: -40px !important;
+    margin-left: -10px !important;
   }
 }
 
@@ -231,6 +209,30 @@ body {
 
 .bg-yellow {
   background-color: #ad8302;
+}
+
+.blue-bg {
+  background-color: #205ea6;
+}
+
+.green-bg {
+  background-color: #66800c;
+}
+
+.purple-bg {
+  background-color: #5e419d;
+}
+
+.hard-background {
+  background-color: #ecc9c9ff;
+}
+
+.dark-red-bg {
+  background-color: #7a1e19;
+}
+
+.slide-background {
+  background-color: #b7b7b7ff;
 }
 
 .blockquote {

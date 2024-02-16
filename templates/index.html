@@ -37,8 +37,9 @@
                         // Update the card component with the new data
                         var card = document.querySelector('.card-body');
                         card.innerHTML = '';
-                        data.forEach(function (group) {
-                            if (group[1] > 0) {
+                        data = data.slice(0, 3); // Get the top 3 groups
+                        data.forEach(function (group, index) {
+                            if (group[1] > 0 && index < 3)  {
                                 // Create new elements for the group
                                 var engagementDiv = document.createElement('div');
                                 engagementDiv.className = 'p-1';
@@ -91,8 +92,9 @@
                         // Update the card component with the new data
                         var card = document.querySelector('.card-body');
                         card.innerHTML = '';
-                        data.forEach(function (group) {
-                            if (group[1] > 0) {
+                        data = data.slice(0, 3); // Get the top 3 groups
+                        data.forEach(function (group, index) {
+                            if (group[1] > 0 && index < 3)   {
                                 // Create new elements for the group
                                 var engagementDiv = document.createElement('div');
                                 engagementDiv.className = 'p-1';
@@ -135,7 +137,7 @@
             <img id="avatar_2" src="./static/public/Chile.png" alt="LA" width="28" height="28" />
         </div>
 
-        <div class="col-12 col-md-3 col-lg-3 col-xl-2">
+        <div class="col-12 col-md-3 col-lg-3 col-xl-3 custom-margin-top" style="max-width: 225px;">
             <div class="row">
                 <!-- Time difference calculation -->
                 {% if last_total_increase %}
@@ -152,7 +154,7 @@
             </div>
             <div class="card position-background" style="width:95%">
                 <div class="card-body rounded" style="background-color: #fffcf0;">
-                    {% for group, engagement in group_engagements %}
+                    {% for group, engagement in group_engagements[:3] %}
                     {% if engagement > 0 %}
                     <div class="p-1" style="background-color: #fffcf0; border: 1px solid #000;">
                         <div
@@ -168,13 +170,12 @@
         </div>
         <div class="col-12 col-md-2 mx-4">
             <div class="hero-text hate-text-color" style="margin-top: 13px; scale: 103%;">
-                ODIO<span class="flipped-text">ODIO </span>
+                TRES<span class="flipped-text">MAS+ </span>
             </div>
             <div class="row text-uppercase">
                 <p class="text-bajada">
-                    El opio de los pueblos: twitter servido por dominios 
-                    <a href="https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation">LAD.</a> 
-                    una suerte de espejo-venganza --y una advertencia: ¿es una red... tóxica?
+                    Los tres màs: una versión opinionada de los tres temas más picantes de twitter. Aquí y ahora. 24/7.
+                    ¿Cuál es la realidad de las redes en tu país?
                 </p>
             </div>
             
