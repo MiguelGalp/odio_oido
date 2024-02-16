@@ -42,14 +42,14 @@ body {
 @media (min-width: 768px) {
   .custom-position-content {
     position: relative;
-    left: -90px;
+    left: -100px;
   }
 }
 
 @media (min-width: 1200px) {
   .custom-position-content {
     position: relative;
-    left: -30px;
+    left: -40px;
   }
 }
 
@@ -58,10 +58,10 @@ body {
 }
 
 
-  .custom-margin-top {
+.custom-margin-top {
     margin-top: -4px !important;
     /* replace with your desired margin-top */
-  }
+}
 
 .negative-letter-spacing {
   letter-spacing: -0.03em;
