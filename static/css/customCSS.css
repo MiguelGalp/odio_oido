@@ -90,7 +90,7 @@ body {
   display: inline-block;
   transform: scaleX(-1);
   position: relative;
-  right: 10px;
+  left: -1px;
 }
 
 @media (min-width: 768px) {
