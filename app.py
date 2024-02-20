@@ -132,10 +132,10 @@ def get_current_engagement(max_possible_engagement):
     
     # Define the followers for each group according to user followers (i.e: SergioChouze = 92000, atilioboron = 128000)
     group_followers = {
-        'La grieta ideológica': 128000 + 92000,
-        'Política': 350000 + 78000 + 90000,
-        'Los discursos como armas': 3300000 + 1300000 + 340000,
-        'El fútbol' : 2100000 + 1430000
+        '#pasionesabsurdas': 2600000 + 6100000 + 95100 + 365600 + 382100 + 1700000,
+        '#falsedadesquedestruyen': 130000 + 76100 + 362400 + 3300000 + 865900 + 100000 + 179000 + 44300,
+        '#palabrasquelastiman': 1400000 + 1200000 + 347500 + 153700 + 3830,
+        '#imágenesdeloinalcanzable' : 345100 + 2800000
     }
 
     # Initialize a dictionary to store group engagements
@@ -195,10 +195,10 @@ def engagement_by_groups_route():
 
     # Define the followers for each group
     all_group_followers = {
-        'La grieta ideológica': 128000 + 92000,
-        'Política': 350000 + 78000 + 90000,
-        'Los discursos como armas': 3300000 + 1300000 + 340000,
-        'El fútbol' : 2100000 + 1430000
+        '#pasionesabsurdas': 2600000 + 6100000 + 95100 + 365600 + 382100 + 1700000,
+        '#falsedadesquedestruyen': 130000 + 76100 + 362400 + 3300000 + 865900 + 100000 + 179000 + 44300,
+        '#palabrasquelastiman': 1400000 + 1200000 + 347500 + 153700 + 3830,
+        '#imágenesdeloinalcanzable' : 345100 + 2800000
     }
 
     # Filter the followers for only the groups in the request

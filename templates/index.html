@@ -47,7 +47,7 @@
                                 engagementDiv.style.border = '1px solid #000';
 
                                 var engagementBar = document.createElement('div');
-                                engagementBar.style.height = '15px';
+                                engagementBar.style.height = '17px';
                                 engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
                                 engagementBar.style.backgroundColor = '#000';
                                 engagementDiv.appendChild(engagementBar);
@@ -55,7 +55,8 @@
                                 var groupP = document.createElement('p');
                                 groupP.className = 'text-uppercase';
                                 groupP.style.fontWeight = '900';
-                                groupP.style.letterSpacing = '-.5px';
+                                groupP.style.letterSpacing = '.2px';
+                                groupP.style.marginTop = '2px';
                                 groupP.textContent = group[0]; // Display the name of the group
 
                                 // Append new elements to the card
@@ -102,15 +103,16 @@
                                 engagementDiv.style.border = '1px solid #000';
 
                                 var engagementBar = document.createElement('div');
-                                engagementBar.style.height = '15px';
-                                engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
+                                engagementBar.style.height = '17px';
+                                engagementBar.style.width = Math.min(group[1] * 1000, 100) + '%';
                                 engagementBar.style.backgroundColor = '#000';
                                 engagementDiv.appendChild(engagementBar);
 
                                 var groupP = document.createElement('p');
                                 groupP.className = 'text-uppercase';
                                 groupP.style.fontWeight = '900';
-                                groupP.style.letterSpacing = '-.5px';
+                                groupP.style.letterSpacing = '.2px';
+                                groupP.style.marginTop = '2px';
                                 groupP.textContent = group[0]; // Display the name of the group
 
                                 // Append new elements to the card
@@ -158,10 +160,10 @@
                     {% if engagement > 0 %}
                     <div class="p-1" style="background-color: #fffcf0; border: 1px solid #000;">
                         <div
-                            style="height: 17px; width: {{ '%.2f'|format(min(engagement * 10000, 100)) }}%; background-color: #000;">
+                            style="height: 17px; width: {{ '%.2f'|format(min(engagement * 1000, 100)) }}%; background-color: #000;">
                         </div>
                     </div>
-                    <p class="text-uppercase" style="font-weight: 900; letter-spacing: -.5px; margin-top: 2px;">{{ group }}</p>
+                    <p class="text-uppercase" style="font-weight: 900; letter-spacing: .2px; margin-top: 2px;">{{ group }}</p>
                     {% endif %}
                     {% endfor %}
 
@@ -174,8 +176,7 @@
             </div>
             <div class="row text-uppercase">
                 <p class="text-bajada">
-                    Los tres màs: una versión opinionada de los tres temas más picantes de twitter. Aquí y ahora. 24/7.
-                    ¿Cuál es la realidad de las redes en tu país?
+                    ¿Cómo se hace la toxicidad en Twitter? Rankeamos las tres tendencias más tóxicas 24/7. Lo hacemos por país.
                 </p>
             </div>
             
