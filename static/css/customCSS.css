@@ -16,7 +16,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  scale: 1.1;
+  scale: 1;
 }
 
 @media (min-width: 768px) {
@@ -37,6 +37,7 @@ body {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.5rem !important;
+  margin-bottom: -2px;
 }
 
 .toxicity-meter {
@@ -122,10 +123,10 @@ body {
 }
 
 .hero-text {
-  font-size: 72px;
+  font-size: 76px;
   font-weight: 900;
   line-height: 66%;
-  width: 75%;
+  width: 85%;
   right: 4px;
 }
 
@@ -142,8 +143,8 @@ body {
     font-weight: 900;
     letter-spacing: -0.7px;
     min-width: 270px !important;
-    line-height: 12px;
-    margin-top: 10px;
+    line-height: 14px;
+    margin-top: 12px;
   }
 }
 
@@ -153,8 +154,8 @@ body {
     font-weight: 900;
     letter-spacing: -0.2px;
     min-width: 210px !important;
-    line-height: 12px;
-    margin-top: 10px;
+    line-height: 14px;
+    margin-top: 12px;
     margin-right: -20px;
   }
 }
@@ -165,8 +166,8 @@ body {
     font-weight: 900;
     letter-spacing: -0.2px;
     width: 190px;
-    line-height: 12px;
-    margin-top: 10px;
+    line-height: 14px;
+    margin-top: 12px;
   }
 }
 
@@ -219,19 +220,19 @@ body {
 
 @media (min-width: 1024px) {
   .negative-margin {
-    margin-left: 70px !important;
+    margin-left: 60px !important;
   }
 }
 
 @media (min-width: 1200px) {
   .negative-margin {
-    margin-left: 35px !important;
+    margin-left: 30px !important;
   }
 }
 
 @media (min-width: 1400px) {
   .negative-margin {
-    margin-left: -10px !important;
+    margin-left: -25px !important;
   }
 }
 

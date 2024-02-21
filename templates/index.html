@@ -158,12 +158,12 @@
                 <div class="card-body rounded" style="background-color: #fffcf0;">
                     {% for group, engagement in group_engagements[:3] %}
                     {% if engagement > 0 %}
-                    <div class="p-1" style="background-color: #fffcf0; border: 1px solid #000;">
+                    <div class="p-2 mt-2" style="background-color: #fffcf0; border: 1px solid #000;">
                         <div
                             style="height: 17px; width: {{ '%.2f'|format(min(engagement * 1000, 100)) }}%; background-color: #000;">
                         </div>
                     </div>
-                    <p class="" style="font-weight: 900; letter-spacing: .2px; margin-top: 2px;">{{ group }}</p>
+                    <p class="fs-5 mt-2" style="font-weight: 400; letter-spacing: 0px;">{{ group }}</p>
                     {% endif %}
                     {% endfor %}
 
@@ -177,18 +177,18 @@
                             <div class="light yellow" {% if engagement_level == "MEDIA" %}style="background-color: yellow;"{% endif %}></div>
                             <div class="light green" {% if engagement_level == "BAJA" %}style="background-color: green;"{% endif %}></div>
                         </div>
-                        <span class="toxicity-level" style="font-weight: 900; letter-spacing: .2px;">TOXICIDAD {{ engagement_level }}</span>
+                        <span class="toxicity-level fs-6" style="font-weight: 900; letter-spacing: .2px;">TOXICIDAD {{ engagement_level }}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-2 mx-4">
-            <div class="hero-text hate-text-color" style="margin-top: 13px; scale: 103%;">
+            <div class="hero-text hate-text-color" style="margin-top: 13px; scale: 104%;">
                 ODIO<span class="flipped-text">ODIO</span>
             </div>
             <div class="row text-uppercase">
-                <p class="text-bajada">
-                    ¿Cómo es la toxicidad en Twitter? ¿Respondemos con hashtags propios? Creemos poder rankear el odio, en tiempo real, 24/7. <u>Ayudanos a mejorar los hashses.</u>
+                <p class="text-bajada fs-5">
+                    Creemos poder "trendear" el odio, en tiempo real, 24/7. Proponemos hashtags como reflejos de un análisis "discurso como performance". <u>Ayudanos a mejorar.</u>
                 </p>
             </div>
             
