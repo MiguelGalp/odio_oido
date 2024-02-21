@@ -139,7 +139,7 @@
             <img id="avatar_2" src="./static/public/Chile.png" alt="LA" width="28" height="28" />
         </div>
 
-        <div class="col-12 col-md-3 col-lg-3 col-xl-3 custom-margin-top" style="max-width: 225px;">
+        <div class="col-12 col-md-3 col-lg-3 col-xl-3 custom-margin-top" style="max-width: 235px;">
             <div class="row">
                 <!-- Time difference calculation -->
                 {% if last_total_increase %}
@@ -167,6 +167,18 @@
                     {% endif %}
                     {% endfor %}
 
+                </div>
+            </div>
+            <div class="card position-background" style="width:95%; margin-top: 5px;">
+                <div class="card-body rounded custom-padding" style="background-color: #fffcf0;">
+                    <div class="toxicity-meter custom-layout">
+                        <div class="traffic-light custom-margin">
+                            <div class="light red" {% if engagement_level == "ALTA" %}style="background-color: red;"{% endif %}></div>
+                            <div class="light yellow" {% if engagement_level == "MEDIA" %}style="background-color: yellow;"{% endif %}></div>
+                            <div class="light green" {% if engagement_level == "BAJA" %}style="background-color: green;"{% endif %}></div>
+                        </div>
+                        <span class="toxicity-level" style="font-weight: 900; letter-spacing: .2px;">TOXICIDAD {{ engagement_level }}</span>
+                    </div>
                 </div>
             </div>
         </div>

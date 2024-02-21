@@ -39,6 +39,50 @@ body {
   border-radius: 0.5rem !important;
 }
 
+.toxicity-meter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  font-size: 0.9em;
+}
+
+.traffic-light {
+  display: flex;
+  margin: 0 10px;
+}
+
+.light {
+  border: 1px solid #000;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  margin: 2px;
+  background-color: #fffcf0;
+}
+
+.toxicity-level {
+  text-transform: capitalize; /* Esto asegura que la primera letra sea mayúscula */
+}
+
+.card-body.custom-padding {
+  padding-left: 0px;
+  padding-right: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+.toxicity-meter.custom-layout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Asegura que el contenido se alinea a la izquierda */
+}
+
+.traffic-light.custom-margin {
+  margin-right: 10px;
+}
+
 @media (min-width: 768px) {
   .custom-position-content {
     position: relative;

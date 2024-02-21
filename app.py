@@ -256,14 +256,24 @@ def index():
         if increase.total_tweet_engagement > average_engagement * 1.1:  # 1.5 is an example threshold for "significant" increase
             peak_occurrences.append((increase.timestamp, increase.total_tweet_engagement))
 
-    # Determine if the total tweet engagement is below average, average, or above average
-    latest_engagement = total_increases[0].total_tweet_engagement if total_increases else 0
-    if latest_engagement < 500000:
-        engagement_level = "NO"
-    elif latest_engagement < 600000:
-        engagement_level = "?"
+    # Asegurándose de que total_increases contenga al menos dos registros
+    if len(total_increases) >= 2:
+        # Obteniendo los dos últimos registros
+        latest_engagement = total_increases[0].total_tweet_engagement
+        second_latest_engagement = total_increases[1].total_tweet_engagement
+    # Calculando la diferencia
+        difference = latest_engagement - second_latest_engagement
     else:
-        engagement_level = "SÍ"
+    # Si no hay suficientes registros, establece una diferencia predeterminada o maneja como prefieras
+        difference = 0  # O cualquier manejo de error o valor predeterminado que consideres adecuado
+
+# Determinando el engagement_level basado en la diferencia
+    if difference <= 12000:
+        engagement_level = "BAJA"
+    elif 12001 <= difference <= 15000:
+        engagement_level = "MEDIA"
+    else:
+        engagement_level = "ALTA"
     
     # Get the tweet with hate speech content
     hate_tweet = Tweet.query.filter(Tweet.content.isnot(None)).order_by(Tweet.id.desc()).first()
