@@ -132,10 +132,16 @@ def get_current_engagement(max_possible_engagement):
     
     # Define the followers for each group according to user followers (i.e: SergioChouze = 92000, atilioboron = 128000)
     group_followers = {
-        '#pasionesabsurdas': 2600000 + 6100000 + 95100 + 365600 + 382100 + 1700000,
-        '#falsedadesquedestruyen': 130000 + 76100 + 362400 + 3300000 + 865900 + 100000 + 179000 + 44300,
-        '#palabrasquelastiman': 1400000 + 1200000 + 347500 + 153700 + 3830,
-        '#imágenesdeloinalcanzable' : 345100 + 2800000
+        '#PasionesAbsurdas': 31400 + 1700000,
+        '#FalsedadesQueDestruyen': 875400 + 3300000,
+        '#PalabrasQueLastiman': 1400000 + 149600,
+        '#ImágenesDeLoInalcanzable' : 345100 + 2800000,
+        '#ProfetasDelApocalipsis' : 6100000 + 2600000,
+        '#ArquitectosDeBurbujas' : 130000 + 153900,
+        '#EjércitoDeTrolls' : 362600 + 76100,
+        '#GuardianesDeLaMoral' : 95200 + 366100,
+        '#CruzadosDeLaCancelación' : 1200000 + 348100,
+        '#IngenierosDeIlusiones' : 174100 + 470700
     }
 
     # Initialize a dictionary to store group engagements
@@ -195,10 +201,16 @@ def engagement_by_groups_route():
 
     # Define the followers for each group
     all_group_followers = {
-        '#pasionesabsurdas': 2600000 + 6100000 + 95100 + 365600 + 382100 + 1700000,
-        '#falsedadesquedestruyen': 130000 + 76100 + 362400 + 3300000 + 865900 + 100000 + 179000 + 44300,
-        '#palabrasquelastiman': 1400000 + 1200000 + 347500 + 153700 + 3830,
-        '#imágenesdeloinalcanzable' : 345100 + 2800000
+        '#PasionesAbsurdas': 31400 + 1700000,
+        '#FalsedadesQueDestruyen': 875400 + 3300000,
+        '#PalabrasQueLastiman': 1400000 + 149600,
+        '#ImágenesDeLoInalcanzable' : 345100 + 2800000,
+        '#ProfetasDelApocalipsis' : 6100000 + 2600000,
+        '#ArquitectosDeBurbujas' : 130000 + 153900,
+        '#EjércitoDeTrolls' : 362600 + 76100,
+        '#GuardianesDeLaMoral' : 95200 + 366100,
+        '#CruzadosDeLaCancelación' : 1200000 + 348100,
+        '#IngenierosDeIlusiones' : 174100 + 470700
     }
 
     # Filter the followers for only the groups in the request

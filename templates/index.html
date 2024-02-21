@@ -53,7 +53,7 @@
                                 engagementDiv.appendChild(engagementBar);
 
                                 var groupP = document.createElement('p');
-                                groupP.className = 'text-uppercase';
+                                groupP.className = '';
                                 groupP.style.fontWeight = '900';
                                 groupP.style.letterSpacing = '.2px';
                                 groupP.style.marginTop = '2px';
@@ -109,7 +109,7 @@
                                 engagementDiv.appendChild(engagementBar);
 
                                 var groupP = document.createElement('p');
-                                groupP.className = 'text-uppercase';
+                                groupP.className = '';
                                 groupP.style.fontWeight = '900';
                                 groupP.style.letterSpacing = '.2px';
                                 groupP.style.marginTop = '2px';
@@ -163,7 +163,7 @@
                             style="height: 17px; width: {{ '%.2f'|format(min(engagement * 1000, 100)) }}%; background-color: #000;">
                         </div>
                     </div>
-                    <p class="text-uppercase" style="font-weight: 900; letter-spacing: .2px; margin-top: 2px;">{{ group }}</p>
+                    <p class="" style="font-weight: 900; letter-spacing: .2px; margin-top: 2px;">{{ group }}</p>
                     {% endif %}
                     {% endfor %}
 
