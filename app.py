@@ -128,44 +128,103 @@ def calculate_normalized_engagement(total_engagement, num_tweets, followers, tim
 
 from datetime import datetime, timedelta
 
-def get_current_engagement(max_possible_engagement):
-    
-    # Define the followers for each group according to user followers (i.e: SergioChouze = 92000, atilioboron = 128000)
-    group_followers = {
-        '#PasionesAbsurdas': 31400 + 1700000,
-        '#FalsedadesQueDestruyen': 875400 + 3300000,
-        '#PalabrasQueLastiman': 1400000 + 149600,
-        '#ImágenesDeLoInalcanzable' : 345100 + 2800000,
-        '#ProfetasDelApocalipsis' : 6100000 + 2600000,
-        '#ArquitectosDeBurbujas' : 130000 + 153900,
-        '#EjércitoDeTrolls' : 362600 + 76100,
-        '#GuardianesDeLaMoral' : 95200 + 366100,
-        '#CruzadosDeLaCancelación' : 1200000 + 348100,
-        '#IngenierosDeIlusiones' : 174100 + 470700
+def get_current_engagement(max_possible_engagement, groups_to_consider):
+    try:
+        # Define the followers for each group according to user followers
+        group_followers = {
+            '#AmplificaLoPeor': 31400 + 1700000,
+            '#AnticipaLoPeor': 6100000 + 2600000,
+            '#EsCondescendiente': 366500 + 95200,
+            '#CuestionaLoIncuestionable' : 875400 + 3300000,
+            '#Trollea' : 362900 + 76100,
+            '#Descontextualiza' : 130000 + 153900,
+            '#TeInsulta' : 362600 + 76100,
+            '#TeMiente' : 2800000 + 345100,
+            '#TeInvisibiliza' : 174200 + 470800,
+            '#TeAmenaza' : 1200000 + 349000
+        }
+
+        # Initialize a dictionary to store group engagements
+        group_engagements = {group: 0 for group in groups_to_consider}
+
+        # Calculate total engagement for all groups
+        a_day_ago = datetime.utcnow() - timedelta(days=1)
+        for group, aliases in groups_to_consider.items():
+            for alias in aliases:
+                user_name = next(user for user, user_alias in user_aliases.items() if user_alias == alias)
+                user = User.query.filter_by(name=user_name).first()
+                if user:
+                    recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
+                    engagements = [calculate_engagement(tweet) for tweet in recent_tweets]
+                    total_engagement = sum(engagements)
+                    max_engagement = max(engagements) if engagements else 0
+                    if recent_tweets:
+                        normalized_engagement = calculate_normalized_engagement(total_engagement, max_engagement, len(recent_tweets), group_followers[group]) / max_possible_engagement
+                        group_engagements[group] += normalized_engagement
+
+        # Calculate total engagement and find the group with the most engagement
+        total_engagement = 0
+        max_engagement_group = None
+        max_engagement = 0
+        for group, engagement in group_engagements.items():
+            total_engagement += engagement
+            if engagement > max_engagement:
+                max_engagement = engagement
+                max_engagement_group = group
+
+        # Sort the dictionary by engagement in descending order
+        sorted_group_engagements = sorted(group_engagements.items(), key=lambda x: x[1], reverse=True)
+        print(sorted_group_engagements) 
+        return sorted_group_engagements, total_engagement, max_engagement_group
+
+    except Exception as e:
+        app.logger.error(f"Error in get_current_engagement: {str(e)}")
+        raise
+
+
+
+@app.route('/api/total_engagement_argentina', methods=['GET'])
+def total_engagement_argentina_route():
+    max_possible_engagement = 100000.0
+    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups)
+    return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
+
+@app.route('/api/total_engagement_chile', methods=['GET'])
+def total_engagement_chile_route():
+    max_possible_engagement = 100000.0  # or whatever value you use in your application
+    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_chile)
+    return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
+
+
+@app.route('/engagement_by_groups', methods=['POST'])
+def engagement_by_groups_route():
+    # Define the maximum possible engagement score
+    max_possible_engagement = 100000.0 
+
+    # Get the groups from the request body
+    groups = request.json['front_groups']
+
+    # Define the followers for each group
+    all_group_followers = {
+        '#AmplificaLoPeor': 31400 + 1700000,
+        '#AnticipaLoPeor': 6100000 + 2600000,
+        '#EsCondescendiente': 366500 + 95200,
+        '#CuestionaLoIncuestionable' : 875400 + 3300000,
+        '#Trollea' : 362900 + 76100,
+        '#Descontextualiza' : 130000 + 153900,
+        '#TeInsulta' : 362600 + 76100,
+        '#TeMiente' : 2800000 + 345100,
+        '#TeInvisibiliza' : 174200 + 470800,
+        '#TeAmenaza' : 1200000 + 349000
     }
 
-    # Initialize a dictionary to store group engagements
-    group_engagements = {group: 0 for group in groups}
+    # Filter the followers for only the groups in the request
+    group_followers = {group: all_group_followers[group] for group in groups}
 
-    # Calculate total engagement for all groups
-    a_day_ago = datetime.utcnow() - timedelta(days=1)
-    for group, aliases in groups.items():
-        for alias in aliases:
-            user_name = next(user for user, user_alias in user_aliases.items() if user_alias == alias)
-            user = User.query.filter_by(name=user_name).first()
-            if user:
-                recent_tweets = Tweet.query.filter(Tweet.user_id == user.id, Tweet.timestamp >= a_day_ago).all()
-                engagements = [calculate_engagement(tweet) for tweet in recent_tweets]
-                total_engagement = sum(engagements)
-                max_engagement = max(engagements) if engagements else 0
-                if recent_tweets:
-                    normalized_engagement = calculate_normalized_engagement(total_engagement, max_engagement, len(recent_tweets), group_followers[group]) / max_possible_engagement
-                    group_engagements[group] += normalized_engagement
-
-    # Sort the dictionary by engagement in descending order
-    sorted_group_engagements = sorted(group_engagements.items(), key=lambda x: x[1], reverse=True)
-    print(sorted_group_engagements) 
-    return sorted_group_engagements
+    # Get the engagement data for the chosen groups
+    group_engagements = get_engagement_by_groups(groups, group_followers, max_possible_engagement)
+    print(group_engagements) 
+    return jsonify(group_engagements)
 
 def get_engagement_by_groups(front_groups, group_followers, max_possible_engagement):
     a_day_ago = datetime.utcnow() - timedelta(days=1)
@@ -191,36 +250,6 @@ def get_engagement_by_groups(front_groups, group_followers, max_possible_engagem
 
     return sorted_group_engagements
 
-@app.route('/engagement_by_groups', methods=['POST'])
-def engagement_by_groups_route():
-    # Define the maximum possible engagement score
-    max_possible_engagement = 100000.0 
-
-    # Get the groups from the request body
-    groups = request.json['front_groups']
-
-    # Define the followers for each group
-    all_group_followers = {
-        '#PasionesAbsurdas': 31400 + 1700000,
-        '#FalsedadesQueDestruyen': 875400 + 3300000,
-        '#PalabrasQueLastiman': 1400000 + 149600,
-        '#ImágenesDeLoInalcanzable' : 345100 + 2800000,
-        '#ProfetasDelApocalipsis' : 6100000 + 2600000,
-        '#ArquitectosDeBurbujas' : 130000 + 153900,
-        '#EjércitoDeTrolls' : 362600 + 76100,
-        '#GuardianesDeLaMoral' : 95200 + 366100,
-        '#CruzadosDeLaCancelación' : 1200000 + 348100,
-        '#IngenierosDeIlusiones' : 174100 + 470700
-    }
-
-    # Filter the followers for only the groups in the request
-    group_followers = {group: all_group_followers[group] for group in groups}
-
-    # Get the engagement data for the chosen groups
-    group_engagements = get_engagement_by_groups(groups, group_followers, max_possible_engagement)
-    print(group_engagements) 
-    return jsonify(group_engagements)
-
 
 @app.route('/api/front_groups', methods=['GET'])
 def front_groups_route():
@@ -237,8 +266,9 @@ def index():
 
     max_possible_engagement = 100000.0 
 
-    # Get current engagement
-    group_engagements = get_current_engagement(max_possible_engagement)
+    # Get current engagement, total engagement, and the group with the most engagement
+    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups)
+
 
     # Fetch the latest TotalIncrease
     last_total_increase = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
@@ -284,8 +314,7 @@ def index():
     else:
         hate_tweet_content = None
 
-    return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, group_engagements=group_engagements, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase, min=min)
-
+    return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, total_engagement=total_engagement, max_engagement_group=max_engagement_group, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase, min=min)
 
 
 

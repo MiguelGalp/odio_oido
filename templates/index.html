@@ -9,124 +9,6 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 {% endblock %}
 
-{% block scripts %}
-{{ super() }}
-<script>
-    document.getElementById('avatar_2').addEventListener('click', function () {
-        // Fetch the list of chosen groups
-        fetch('/api/front_chile')
-            .then(response => response.json())
-            .then(front_chile => {
-                // Change the hero image source
-                document.getElementById('hero').src = "./static/public/Chile.png";
-
-                // Change the color of the hero text
-                var heroText = document.querySelector('.hate-text-color');
-                heroText.style.setProperty('color', '#f54447', 'important'); // Change the color to argentina
-
-                // Make an AJAX request to the new route
-                fetch('/engagement_by_groups', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ front_groups : front_chile })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Update the card component with the new data
-                        var card = document.querySelector('.card-body');
-                        card.innerHTML = '';
-                        data = data.slice(0, 3); // Get the top 3 groups
-                        data.forEach(function (group, index) {
-                            if (group[1] > 0 && index < 3)  {
-                                // Create new elements for the group
-                                var engagementDiv = document.createElement('div');
-                                engagementDiv.className = 'p-1';
-                                engagementDiv.style.backgroundColor = '#fffcf0';
-                                engagementDiv.style.border = '1px solid #000';
-
-                                var engagementBar = document.createElement('div');
-                                engagementBar.style.height = '17px';
-                                engagementBar.style.width = Math.min(group[1] * 10000, 100) + '%';
-                                engagementBar.style.backgroundColor = '#000';
-                                engagementDiv.appendChild(engagementBar);
-
-                                var groupP = document.createElement('p');
-                                groupP.className = '';
-                                groupP.style.fontWeight = '900';
-                                groupP.style.letterSpacing = '.2px';
-                                groupP.style.marginTop = '2px';
-                                groupP.textContent = group[0]; // Display the name of the group
-
-                                // Append new elements to the card
-                                card.appendChild(engagementDiv);
-                                card.appendChild(groupP);
-                            }
-                        });
-                    });
-            });
-    });
-
-    document.getElementById('avatar_1').addEventListener('click', function () {
-        // Fetch the list of chosen groups
-        fetch('/api/front_groups')
-            .then(response => response.json())
-            .then(front_groups => {
-                // Change the hero image source
-                document.getElementById('hero').src = "./static/public/Argentina.png";
-
-                // Change the color of the hero text
-                var heroText = document.querySelector('.hate-text-color');
-                heroText.style.setProperty('color', '#84c6c6', 'important'); // Change the color to chile
-
-                // Make an AJAX request to the new route
-                fetch('/engagement_by_groups', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ front_groups: front_groups })
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        // Update the card component with the new data
-                        var card = document.querySelector('.card-body');
-                        card.innerHTML = '';
-                        data = data.slice(0, 3); // Get the top 3 groups
-                        data.forEach(function (group, index) {
-                            if (group[1] > 0 && index < 3)   {
-                                // Create new elements for the group
-                                var engagementDiv = document.createElement('div');
-                                engagementDiv.className = 'p-1';
-                                engagementDiv.style.backgroundColor = '#fffcf0';
-                                engagementDiv.style.border = '1px solid #000';
-
-                                var engagementBar = document.createElement('div');
-                                engagementBar.style.height = '17px';
-                                engagementBar.style.width = Math.min(group[1] * 1000, 100) + '%';
-                                engagementBar.style.backgroundColor = '#000';
-                                engagementDiv.appendChild(engagementBar);
-
-                                var groupP = document.createElement('p');
-                                groupP.className = '';
-                                groupP.style.fontWeight = '900';
-                                groupP.style.letterSpacing = '.2px';
-                                groupP.style.marginTop = '2px';
-                                groupP.textContent = group[0]; // Display the name of the group
-
-                                // Append new elements to the card
-                                card.appendChild(engagementDiv);
-                                card.appendChild(groupP);
-                            }
-                        });
-                    });
-            });
-    });
-
-
-</script>
-{% endblock %}
 
 {% block content %}
 
@@ -139,7 +21,7 @@
             <img id="avatar_2" src="./static/public/Chile.png" alt="LA" width="28" height="28" />
         </div>
 
-        <div class="col-12 col-md-3 col-lg-3 col-xl-3 custom-margin-top" style="max-width: 235px;">
+        <div class="col-12 col-md-4 col-lg-4 col-xl-4 custom-margin-top" style="max-width: 250px;">
             <div class="row">
                 <!-- Time difference calculation -->
                 {% if last_total_increase %}
@@ -156,53 +38,140 @@
             </div>
             <div class="card position-background" style="width:95%">
                 <div class="card-body rounded" style="background-color: #fffcf0;">
-                    {% for group, engagement in group_engagements[:3] %}
-                    {% if engagement > 0 %}
-                    <div class="p-2 mt-2" style="background-color: #fffcf0; border: 1px solid #000;">
+                    <div class="p-2" style="background-color: #fffcf0; border: 1px solid #000;">
                         <div
-                            style="height: 17px; width: {{ '%.2f'|format(min(engagement * 1000, 100)) }}%; background-color: #000;">
+                            style="height: 17px; width: {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%; background-color: #84c6c6; opacity: 30%;">
                         </div>
                     </div>
-                    <p class="fs-5 mt-2" style="font-weight: 400; letter-spacing: 0px;">{{ group }}</p>
-                    {% endif %}
-                    {% endfor %}
-
+                    <p class="py-2 px-3 mt-2 rounded-2"
+                        style="font-weight: 600; background-color: #fac46f; color: #000;">{{ max_engagement_group }}</p>
                 </div>
             </div>
             <div class="card position-background" style="width:95%; margin-top: 5px;">
                 <div class="card-body rounded custom-padding" style="background-color: #fffcf0;">
                     <div class="toxicity-meter custom-layout">
-                        <div class="traffic-light custom-margin">
-                            <div class="light red" {% if engagement_level == "ALTA" %}style="background-color: red;"{% endif %}></div>
-                            <div class="light yellow" {% if engagement_level == "MEDIA" %}style="background-color: yellow;"{% endif %}></div>
-                            <div class="light green" {% if engagement_level == "BAJA" %}style="background-color: green;"{% endif %}></div>
-                        </div>
-                        <span class="toxicity-level fs-6" style="font-weight: 900; letter-spacing: .2px;">TOXICIDAD {{ engagement_level }}</span>
+                        <span class="text-bajada fs-5"
+                            style="margin-top: 0px !important; margin-left: 6px !important">TOXICIDAD {{
+                            engagement_level }}</span>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-12 col-md-2 mx-4">
-            <div class="hero-text hate-text-color" style="margin-top: 13px; scale: 104%;">
-                ODIO<span class="flipped-text">ODIO</span>
-            </div>
+
             <div class="row text-uppercase">
                 <p class="text-bajada fs-5">
-                    Creemos poder "trendear" el odio, en tiempo real, 24/7. Proponemos hashtags como reflejos de un análisis "discurso como performance". <u>Ayudanos a mejorar.</u>
+                    Toxicidad en Twitter. 24/7. <u>Ayudanos a mejorar.</u>
                 </p>
             </div>
-            
+
         </div>
         <div class="col-12 col-md-2 text-center">
             <img id="hero" src="./static/public/Argentina.png" alt="MG" class="pic-size negative-margin" />
         </div>
         <div class="col-1 col-md-1 github-positioning">
-            <div class="text-start negative-margin">
-                <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon" src="./static/public/github-logo.png" alt="GitHub" width="20" height="20" /></a>
+            <div class="text-start negative-margin" style="position: relative; left: 20px;">
+                <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon"
+                        src="./static/public/github-logo.png" alt="GitHub" width="20" height="20" /></a>
             </div>
         </div>
-        
-        
+
+
     </div>
 </div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    document.getElementById('avatar_2').addEventListener('click', function () {
+        console.log('Avatar 2 clicked'); 
+        // Change the hero image source
+        document.getElementById('hero').src = "./static/public/Chile.png";
+
+        // Change the color of the hero text
+        
+
+        // Make an AJAX request to the new route
+        fetch('/api/total_engagement_chile')
+            .then(response => response.json())
+            .then(data => {
+                
+                console.log(data);  // Add this line
+                console.log(data.total_engagement); 
+                // Update the card component with the new data
+                var card = document.querySelector('.card-body');
+                card.innerHTML = '';
+
+                // Create new elements for the total engagement
+                var engagementDiv = document.createElement('div');
+                engagementDiv.className = 'p-2';
+                engagementDiv.style.backgroundColor = '#fffcf0';
+                engagementDiv.style.border = '1px solid #000';
+
+                var engagementBar = document.createElement('div');
+                engagementBar.style.height = '17px';
+                engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                engagementBar.style.backgroundColor = '#84c6c6';
+                engagementBar.style.opacity = '30%';
+                engagementDiv.appendChild(engagementBar);
+
+                // Create new elements for the max engagement group
+                var groupP = document.createElement('p');
+                groupP.className = 'py-2 px-3 mt-1 mb-1 rounded-2';
+                groupP.style.fontWeight = '600';
+                groupP.style.backgroundColor = '#fac46f';
+                groupP.style.color = '#000';
+                groupP.textContent = data.max_engagement_group;
+
+                // Append new elements to the card
+                card.appendChild(engagementDiv);
+                card.appendChild(groupP);
+            });
+    });
+
+    document.getElementById('avatar_1').addEventListener('click', function () {
+        // Change the hero image source
+        document.getElementById('hero').src = "./static/public/Argentina.png";
+
+        // Change the color of the hero text
+        
+
+        // Make an AJAX request to the new route
+        fetch('/api/total_engagement_argentina')
+            .then(response => response.json())
+            .then(data => {
+
+                console.log(data);  // Add this line
+                // Update the card component with the new data
+                var card = document.querySelector('.card-body');
+                card.innerHTML = '';
+
+                // Create new elements for the total engagement
+                var engagementDiv = document.createElement('div');
+                engagementDiv.className = 'p-2';
+                engagementDiv.style.backgroundColor = '#fffcf0';
+                engagementDiv.style.border = '1px solid #000';
+
+                var engagementBar = document.createElement('div');
+                engagementBar.style.height = '17px';
+                engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                engagementBar.style.backgroundColor = '#84c6c6';
+                engagementBar.style.opacity = '30%';
+                engagementDiv.appendChild(engagementBar);
+
+                // Create new elements for the max engagement group
+                var groupP = document.createElement('p');
+                groupP.className = 'py-2 px-3 mt-1 mb-1 rounded-2';
+                groupP.style.fontWeight = '600';
+                groupP.style.backgroundColor = '#fac46f';
+                groupP.style.color = '#000';
+                groupP.textContent = data.max_engagement_group;
+
+                // Append new elements to the card
+                card.appendChild(engagementDiv);
+                card.appendChild(groupP);
+            });
+    });
+</script>
 {% endblock %}
