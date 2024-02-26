@@ -63,23 +63,9 @@
                     style=" font-size: 20px; font-weight: 900; color: #fac46f; width: 50%;">
                     {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%
                 </div>
-                <!-- <div class="py-1 px-3 rounded-pill d-flex justify-content-center align-items-center text-uppercase"
-                    style="font-weight: 400; background-color: #fac46f4D;  color: #000; width: 50%; letter-spacing: 1px;">
-                    {{ max_engagement_group }}
-                </div> -->
             </div>
-            <!--             <div class="card position-background" style="width:95%; margin-top: 5px; height: 15px">
-                <div class="card-body rounded custom-padding" style="background-color: #fffcf0;">
-                    <div class="toxicity-meter custom-layout">
-                        <span class="text-bajada fs-5"
-                            style="margin-top: 0px !important; margin-left: 6px !important">TOXICIDAD {{
-                            engagement_level }}</span>
-                    </div>
-                </div>
-            </div> -->
         </div>
         <div class="col-12 col-md-3 mx-1">
-
             <div class="mt-1" style="letter-spacing: 0%;">
                 <div class="text-uppercase d-inline"
                     style="font-size: 20px; font-weight: 900; color: rgba(132, 198, 198, 0.39);">
@@ -93,10 +79,6 @@
                     style="font-size: 44px; font-weight: 900; margin-top: -7px; color: #84c6c6; opacity: 39%; position: relative; right: 1px;">
                     TWITTER
                 </p>
-                <!--  <div class="" style="font-size: 22px; font-weight: 600; margin-top: -6px; color: #84c6c6; opacity: 100%; letter-spacing: -1px; margin-left: 2px;">24/7
-                    <p class="d-inline" style="font-size: 20px; font-weight: 900; margin-top: -10px; color: #fac46f; opacity: 50%;">por país</p>
-                </div> -->
-
             </div>
 
         </div>
@@ -125,53 +107,16 @@
         fetch('/api/total_engagement_chile')
             .then(response => response.json())
             .then(data => {
-                console.log(data);  // Add this line
+                console.log(data);
                 console.log(data.total_engagement);
-                // Update the card component with the new data
-                var card = document.querySelector('.card-body');
-                card.innerHTML = '';
-                // Create new elements for the total engagement
-                var engagementDiv = document.createElement('div');
-                engagementDiv.className = 'p-0';
-                engagementDiv.style.backgroundColor = '#84c6c6';
-                engagementDiv.style.opacity = '39%';
-                engagementDiv.style.borderRadius = '0.5rem';
-                engagementDiv.style.marginTop = '-8px';
-                engagementDiv.style.marginBottom = '-8px';
-                var engagementBar = document.createElement('div');
-                engagementBar.style.height = '40px';
+
+                // Update the width of the engagement bar
+                var engagementBar = document.querySelector('.card-body .p-0 div');
                 engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-                engagementBar.style.backgroundColor = '#000';
-                engagementBar.style.opacity = '30%';
-                engagementDiv.appendChild(engagementBar);
-                card.appendChild(engagementDiv);
 
-                // Create new elements for the percentage and max engagement group
-                var percentageAndGroupDiv = document.createElement('div');
-                percentageAndGroupDiv.className = 'd-flex justify-content-between';
-                percentageAndGroupDiv.style.marginTop = '3px';
-                percentageAndGroupDiv.style.marginLeft = '30px';
-
-                var percentageDiv = document.createElement('div');
-                percentageDiv.className = 'd-flex align-items-center';
-                percentageDiv.style.fontSize = '20px';
-                percentageDiv.style.fontWeight = '900';
-                percentageDiv.style.color = '#fac46f';
-                percentageDiv.style.width = '50%';
+                // Update the content of the percentage div
+                var percentageDiv = document.querySelector('.d-flex.align-items-center');
                 percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-                percentageAndGroupDiv.appendChild(percentageDiv);
-
-                var groupP = document.createElement('p');
-                groupP.className = 'py-1 px-3 rounded-pill d-flex justify-content-center align-items-center text-uppercase';
-                groupP.style.fontWeight = '400';
-                groupP.style.backgroundColor = '#fac46f4D';
-                groupP.style.color = '#000';
-                groupP.style.width = '50%';
-                groupP.style.letterSpacing = '1px';
-                groupP.textContent = data.max_engagement_group;
-                percentageAndGroupDiv.appendChild(groupP);
-
-                card.appendChild(percentageAndGroupDiv);
             });
 
     });
@@ -187,42 +132,16 @@
         fetch('/api/total_engagement_argentina')
             .then(response => response.json())
             .then(data => {
-                console.log(data);  // Add this line
+                console.log(data);
                 console.log(data.total_engagement);
-                // Update the card component with the new data
-                var card = document.querySelector('.card-body');
-                card.innerHTML = '';
-                // Create new elements for the total engagement
-                var engagementDiv = document.createElement('div');
-                engagementDiv.className = 'p-0';
-                engagementDiv.style.backgroundColor = '#84c6c6';
-                engagementDiv.style.opacity = '39%';
-                engagementDiv.style.borderRadius = '0.5rem';
-                engagementDiv.style.marginTop = '-8px';
-                engagementDiv.style.marginBottom = '-8px';
-                var engagementBar = document.createElement('div');
-                engagementBar.style.height = '40px';
+
+                // Update the width of the engagement bar
+                var engagementBar = document.querySelector('.card-body .p-0 div');
                 engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-                engagementBar.style.backgroundColor = '#000';
-                engagementBar.style.opacity = '30%';
-                engagementDiv.appendChild(engagementBar);
-                card.appendChild(engagementDiv);
 
-                // Create new elements for the percentage and max engagement group
-                
-
-                var percentageDiv = document.createElement('div');
-                percentageDiv.className = 'd-flex align-items-center';
-                percentageDiv.style.fontSize = '20px';
-                percentageDiv.style.fontWeight = '900';
-                percentageDiv.style.color = '#fac46f';
-                percentageDiv.style.width = '50%';
+                // Update the content of the percentage div
+                var percentageDiv = document.querySelector('.d-flex.align-items-center');
                 percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-                percentageAndGroupDiv.appendChild(percentageDiv);
-
-              
-
-                card.appendChild(percentageDiv);
             });
 
     });
