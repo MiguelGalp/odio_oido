@@ -16,7 +16,7 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  scale: 1;
+  scale: 1.15;
 }
 
 @media (min-width: 768px) {
@@ -30,14 +30,21 @@ body {
 @media (min-width: 768px) {
   .custom-position-content {
     position: relative;
-    left: -100px;
+    left: 35px;
   }
 }
 
 @media (min-width: 1200px) {
   .custom-position-content {
     position: relative;
-    left: 40px;
+    left: 100px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .custom-position-content {
+    position: relative;
+    left: 130px;
   }
 }
 
@@ -67,8 +74,15 @@ body {
   flex-direction: column;
   word-wrap: break-word;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 0.5rem !important;
+  /* border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.15rem !important; */
+}
+
+.card-body.custom-padding {
+  padding-left: 0px;
+  padding-right: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .toxicity-meter {
@@ -98,13 +112,7 @@ body {
   /* Esto asegura que la primera letra sea mayúscula */
 }
 
-.card-body.custom-padding {
-  padding-left: 0px;
-  padding-right: auto;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  text-align: left;
-}
+
 
 .toxicity-meter.custom-layout {
   display: flex;
@@ -122,11 +130,9 @@ body {
 }
 
 .hero-text {
-  font-size: 72px;
+ 
   font-weight: 900;
-  line-height: 60%;
-  width: 85%;
-  right: 4px;
+
 }
 
 /* Flipped text styles */
@@ -209,15 +215,11 @@ body {
 
 @media (min-width: 1200px) {
   .negative-margin {
-    margin-left: -90px !important;
+    margin-left: -120px !important;
   }
 }
 
-@media (min-width: 1400px) {
-  .negative-margin {
-    margin-left: -90px !important;
-  }
-}
+
 
 .github-positioning {
   text-align: start;
