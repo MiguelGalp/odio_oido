@@ -1,57 +1,80 @@
 <div align="center" width="100%"> 
-<h1>PROYECTO "EL OPIO DE LOS PUEBLOS"</h1> 
-  <picture> <img width="33%" alt="El opio de los pueblos" src="static/public/niña_arg.png"> </picture> </div> 
+<h1>PROYECTO <u>ODIO OÍDO</u></h1> 
+  <picture> <img width="33%" alt="Un plato vacío" src="static/public/listeningTwitter.jpeg"> </picture> 
 
 ---
 
-**El opio de los pueblos** es un desarrollo abierto y sin fines de lucro con el foco puesto en **visibilizar tendencias latentes** en redes sociales.
-
-Desde el punto de vista metodológico el proyecto se inscribe en el marco de las **Humanidades Digitales (2.0)**: la app obtiene datos en tiempo real que articulan con análisis cualitativos realizados desde una perspectiva llamada **"Asignación Latente de Dirichlet"** (LDA según sus siglas en inglés).
-
-[Según el artículo en Wikipedia](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation), el modelo LDA tiene como clave "el que las palabras siguen una hipótesis de **bolsa** o, más bien, que el orden no importa, que el uso de una palabra es ser parte de un tema **[incluso sin ser explícito en el texto]** y que comunica la misma información sin importar dónde se encuentra en el documento".
-
-Algunos de los posibles diferenciales de este proyecto son:
-
-- Brindar información regional y por país de las tendencias.
-- Trackear la evolución temporal de los debates sociales.
-- Abrir el algoritmo de tendencias a métricas alternativas
+<h1>UNA MEDIDA DE TOXICIDAD EN TWITTER, POR PAÍS. 24/7</h1><h3>Sumate al proyecto para dar un indicador fiable y ayudar en el uso responsable de las redes sociales.</h3> 
+</div> 
 
 ---
 
 ## Índice de Contenidos
 
-- [¿Cómo continúa el desarrollo de la app (el "Roadmap")?](#roadmap)
-- [Cómo contribuir](#cómo-contribuir)
-- [Misión, Visión y Valores](#misión-visión-y-valores)
+- [Origen](#Origen)
+- [Cómo funciona la app](#Cómo-funciona-la-app)
+- [Cómo contribuir](#Cómo-contribuir)
+- [Misión, visión y valores](#misión-visión-y-valores)
 - [Comunidad](#comunidad)
-- [Accesibilidad](#accesibilidad)
-- [Contribuyentes](#contribuyentes)
-- [Patrocinadores](#patrocinadores)
-- [Staff](#staff)
 - [Licencias](#licencias)
-- [Links de interés](#links-de-interés)
 
-## Roadmap
+---
 
-[Conocer los issues, hitos y demás detalles del proyecto -> siguiendo este enlace](https://github.com/users/MiguelGalp/projects/1)
+## Origen
 
-## Cómo contribuir con el proyecto.
+***Odio oído*** surge de la iniciativa "Laboratorio Hoy" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de investigación, y laboratorio experimental que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea focalizando en la formas comunicativas de la digitalidad y la tecnología. La iniciativa propone acercar a más artistxs a estos campos desde una perspectiva interdisciplinaria que define la nueva virtualidad como un espacio de sensibilidad, creación y representación. Más información en este enlace.  
 
-- **Python**: Utilizado para el backend.
-- **Flask**: Framework de Python para crear la aplicación web.
-- **JavaScript**: Para la funcionalidad del lado del cliente.
-- **CSS**: Para estilizar los componentes de la app.
+## ¿Cómo funciona la app?
 
-## Usos del servicio web
+EN DOS PASOS:
 
-Los datos son en tiempo real hasta donde X/Twitter lo permite. Al momento, la máxima ventana de tiempo entre recuperaciones es de una hora. Ver abajo para más detalles acerca de los modelos de datos y las métricas utilizadas. 
+1. (Offline), la app trabaja con datos que son obtenidos dentro de un modelo de tipo [LDA (Latend Dirichlet Allocation)](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation).
+En ***Odio oído*** se utilizan los tópicos descubiertos por LDA para conformar "dominios": áreas temáticas que agrupan usuarios alrededor de, por ejemplo, el tópico "crisis en la argentina". El modelo también está entrenado para detectar la toxicidad misma como tópico, por lo que el resultado de su aplicación al dataset (tweets de usuarios) es la conformación de grupos que, además de dominios, definen un campo discursivo **prevalentemente tóxico**
 
-## Licencia
+2. (Online). Una vez preparada la data, la app scrapea la **temperatura del discurso**, obtiendo un parcial de las interacciones por grupo/dominio que es normalizado según el número de seguidores. ***Odio oído*** sostiene que esa temperatura, al ser representativa de dominios con prevalencia de toxicidad que contienen debates centrales a la sociedad, tiene al menos una relación indirecta con la toxicidad general de Twitter.
 
-Este proyecto está licenciado bajo la Licencia MIT.
+La app llega al indicador definitivo a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
 
-## Más detalles acerca de los datos generados.
+## ¿Cómo contribuir?
 
-Este proyecto rastrea y analiza las interacciones de los tweets de las últimas 24 horas. Se trata de un grupo de tweets (ver el modelo de tweet en la tabla descripta dentro de los modelos, en app.py) que representa la idea de dominio según lo define la teoría llamada LDA, "Asignación Latente de Dirichlet (ALD)" en español. Las interacciones trackeadas incluyen likes, retweets y respuestas a cada tweet. Es importante mencionar que cada tweet devuelve un cálculo normalizado de interacciones donde, dentro del período de 24hs, se da más peso tanto a los tweets más recientes como a los tweets individuales con más interacciones. También se normaliza por número de seguidores dentro de cada dominio. 
+****Odio oído**** se encuentra en pleno desarrollo. Existen tres áreas diferentes en las que contribuir. 
 
-Por último: tené en cuenta que este repositorio solo contiene el código del frontend de la aplicación. El código del backend que realiza la búsqueda de tweets no está incluido, por lo que no se puede hacer un deploy completo de la aplicación a partir de este repositorio. 
+Datos: por un lado la app necesita mejorar y revisar la precisión con la que indica (o más precisamente intenta predecir) la toxicidad: (a) comprobar la calidad de los datos, (b) desarrollar un sistema de actualización de la base y de los grupos/dominios, (c) alcanzar más países regionales con la misma metodología.
+
+Front/Backend: implementación de data (ya disponible en back): a. Picos de toxicidad. b. Grupo/Dominio más tóxico. c. Contenido tóxico específico. 
+
+Los hitos principales del roadmap son ([este enlace](https://github.com/users/MiguelGalp/projects/1) detalla todo el proyecto, pedinos acceso si te interesa participar):
+
+- Marzo 2024: layout, mobile
+- Abril 2024: datos Chile, pico de toxicidad en front
+- Mayo 2024: datos ok, contenido y grupo más tóxico en front
+- Julio 2024: lda dinámico, front final
+
+## Misión, visión y valores
+
+Misión: ***Odio oído*** tiene como misión combatir la toxicidad y la falta de transparencia en las grandes plataformas sociales, utilizando la tecnología para analizar y visibilizar el discurso de odio en Twitter. 
+
+Visión: aspiramos a un mundo digital donde las interacciones sean respetuosas, transparentes y responsables. ***Odio oído*** busca ser una herramienta clave para la construcción de una cultura digital más sana e inclusiva. 
+
+Valores:
+
+Compromiso social: Creemos en el poder de la tecnología para generar un impacto positivo en la sociedad.
+
+Transparencia: Somos transparentes en cuanto a nuestro código, metodología y resultados.
+
+Responsabilidad: Asumimos la responsabilidad de usar la tecnología de forma ética y responsable.
+
+Colaboración: Creemos en el trabajo colaborativo como la mejor forma de lograr nuestros objetivos.
+
+Innovación: Buscamos constantemente nuevas formas de mejorar nuestras herramientas y análisis.
+
+## Comunidad
+
+Este proyecto se desarrolla con la participación y el apoyo de FrontendCafé. Es requerido unirte a nuestro server y buscar el canal # | . Allí vas a poder escribir consultas, realizar propuestas y compartir ideas para el proyecto. El código de conducta de este proyecto es extensible también a tu participación en el server de FrontendCafé en Discord.
+
+***Odio oído*** aspira también a ser parte de For Good First Issue, una iniciativa que busca generar una lista curada de proyectos open-source con foco en desarrollos del tipo Bienes Públicos Digitales (DPGs, Digital Public Goods) , los cuales además se encuentran disponibles para colaboración abierta.
+
+## Licencias
+
+Este repositorio y el contenido de la web de ****Odio oído**** se publican bajo licencia Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).
+

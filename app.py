@@ -17,20 +17,20 @@ import uuid
 
 load_dotenv()
 
-# Read the group data from the environment variables and parse it 
+# Lee los datos de los grupos a partir de las variables de entorno y los evalúa
 groups = ast.literal_eval(os.environ.get('GROUPS', '{}'))
 front_groups = ast.literal_eval(os.environ.get('FRONT_GROUPS', '{}'))
 front_chile = ast.literal_eval(os.environ.get('FRONT_CHILE', '{}'))
 
-# Combine all users from all group data
+# Combina todos los usuarios de los grupos
 all_users = list(set(user for group in groups.values() for user in group) 
                  | set(user for group in front_groups.values() for user in group) 
                  | set(user for group in front_chile.values() for user in group))
 
-# Create aliases for all users
+# Crea alias para todos los usuarios
 user_aliases = {user: str(uuid.uuid4()) for user in all_users}
 
-# Replace actual usernames with their aliases in the group data
+# Reemplaza los nombres de usuario reales por sus alias en los datos de grupo
 for group, users in groups.items():
     groups[group] = [user_aliases[user] for user in users]
 
@@ -71,13 +71,13 @@ class TotalIncrease(db.Model):
     total_tweet_engagement = db.Column(db.Integer)
 try:
     with app.app_context():
-        # Create the database tables
+        # Crea las tablas en la base de datos
         db.create_all()
 except Exception as e:
     print(f"Database error: {str(e)}")
 
 def check_auth(username, password):
-    # This function is called to check if a username / password combination is valid
+    # Auth check
     return username == 'admin' and password == 'secret'
 
 def authenticate():
@@ -101,10 +101,10 @@ def calculate_engagement(tweet):
     retweets = tweet.retweets
     replies = tweet.replies
     
-    # Define weights based on the importance you assign to each metric
+    # Define pesos relativos para las interacciones (tags: investigación, pregunta, calidad de datos)
     weights = {'likes': 1, 'retweets': 2, 'replies': 1.5}
     
-    # Calculate the time decay factor based on the age of the tweet
+    # Define un ciclo de vida: el tweet pierde mitad de su relevancia en 3 horas
     hours_since_tweet = (datetime.utcnow() - tweet.timestamp).total_seconds() / 3600
     decay_factor = 0.5 ** (hours_since_tweet / 3)  # Half-life of 3 hours
     
@@ -113,15 +113,14 @@ def calculate_engagement(tweet):
     return engagement_score
 
 def calculate_normalized_engagement(total_engagement, num_tweets, followers, time_window=24):
-    # Calculate the average tweets per day
+    # Normaliza de acuerdo a un promedio de tweets diario (tags: investigación, pregunta, calidad datos)
     avg_tweets_per_day = num_tweets / time_window
     
-    # Define a weight for the time factor based on your specific needs
+    # Normaliza ajustado por ciclo de vida (tags: documentación, pregunta --a mí mismo)
     time_weight = 0.5
-    
-    # Adjust the total engagement with the time factor
     adjusted_engagement = total_engagement * (1 + time_weight * avg_tweets_per_day)
     
+    # Normaliza por número de seguidores
     normalized_engagement = float(adjusted_engagement / followers)
     
     return normalized_engagement
@@ -130,7 +129,7 @@ from datetime import datetime, timedelta
 
 def get_current_engagement(max_possible_engagement, groups_to_consider):
     try:
-        # Define the followers for each group according to user followers
+        # Define el número de seguidores de cada grupo (tags: complejo, arquitectura, mejora)
         group_followers = {
             '#AmplificaLoPeor': 31400 + 1700000,
             '#AnticipaLoPeor': 6100000 + 2600000,
@@ -144,10 +143,10 @@ def get_current_engagement(max_possible_engagement, groups_to_consider):
             '#TeAmenaza' : 1200000 + 349000
         }
 
-        # Initialize a dictionary to store group engagements
+        # Inicializa el diccionario que guarda las interacciones 
         group_engagements = {group: 0 for group in groups_to_consider}
 
-        # Calculate total engagement for all groups
+        # Calcula temperatura de todos los grupos
         a_day_ago = datetime.utcnow() - timedelta(days=1)
         for group, aliases in groups_to_consider.items():
             for alias in aliases:
@@ -162,7 +161,7 @@ def get_current_engagement(max_possible_engagement, groups_to_consider):
                         normalized_engagement = calculate_normalized_engagement(total_engagement, max_engagement, len(recent_tweets), group_followers[group]) / max_possible_engagement
                         group_engagements[group] += normalized_engagement
 
-        # Calculate total engagement and find the group with the most engagement
+        # Calcula total engagement y encuentra el grupo más tóxico / con más temperatura
         total_engagement = 0
         max_engagement_group = None
         max_engagement = 0
@@ -172,7 +171,7 @@ def get_current_engagement(max_possible_engagement, groups_to_consider):
                 max_engagement = engagement
                 max_engagement_group = group
 
-        # Sort the dictionary by engagement in descending order
+        # Ordena el diccionario por temperatura en orden descendiente
         sorted_group_engagements = sorted(group_engagements.items(), key=lambda x: x[1], reverse=True)
         print(sorted_group_engagements) 
         return sorted_group_engagements, total_engagement, max_engagement_group
@@ -191,20 +190,20 @@ def total_engagement_argentina_route():
 
 @app.route('/api/total_engagement_chile', methods=['GET'])
 def total_engagement_chile_route():
-    max_possible_engagement = 100000.0  # or whatever value you use in your application
+    max_possible_engagement = 100000.0  # el máximo posible (tags: pregunta, investigación...)
     group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_chile)
     return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
 
 
 @app.route('/engagement_by_groups', methods=['POST'])
 def engagement_by_groups_route():
-    # Define the maximum possible engagement score
+    # Define el máximo de interacción (tags: pregunta, investigación...)
     max_possible_engagement = 100000.0 
 
-    # Get the groups from the request body
+    # Define qué grupo es el default
     groups = request.json['front_groups']
 
-    # Define the followers for each group
+    # Define número de seguidores del grupo default
     all_group_followers = {
         '#AmplificaLoPeor': 31400 + 1700000,
         '#AnticipaLoPeor': 6100000 + 2600000,
@@ -218,10 +217,10 @@ def engagement_by_groups_route():
         '#TeAmenaza' : 1200000 + 349000
     }
 
-    # Filter the followers for only the groups in the request
+    # Toma solo los seguidores de los grupos del default
     group_followers = {group: all_group_followers[group] for group in groups}
 
-    # Get the engagement data for the chosen groups
+    # Toma la data de interacción de los grupos defaulta
     group_engagements = get_engagement_by_groups(groups, group_followers, max_possible_engagement)
     print(group_engagements) 
     return jsonify(group_engagements)
@@ -230,7 +229,7 @@ def get_engagement_by_groups(front_groups, group_followers, max_possible_engagem
     a_day_ago = datetime.utcnow() - timedelta(days=1)
     group_engagements = {group: 0 for group in front_groups}
 
-    # Calculate total engagement for all groups
+    # Calcula el total de interacciones de los grupos default
     for group_name, aliases in front_groups.items():
         total_engagement = 0
         for alias in aliases:
@@ -245,7 +244,7 @@ def get_engagement_by_groups(front_groups, group_followers, max_possible_engagem
 
         group_engagements[group_name] = total_engagement
 
-    # Sort the dictionary by engagement in descending order
+    # Ordena el dict por interacciones en orden desc
     sorted_group_engagements = sorted(group_engagements.items(), key=lambda x: x[1], reverse=True)
 
     return sorted_group_engagements
@@ -253,12 +252,12 @@ def get_engagement_by_groups(front_groups, group_followers, max_possible_engagem
 
 @app.route('/api/front_groups', methods=['GET'])
 def front_groups_route():
-    # Return the aliased user lists
+    # Devuelve las listas de aliases
     return jsonify(front_groups)
 
 @app.route('/api/front_chile', methods=['GET'])
 def front_chile_route():
-    # Return the aliased user lists
+    # Devuelve las listas de aliases
     return jsonify(front_chile)
 
 @app.route('/')
@@ -266,38 +265,38 @@ def index():
 
     max_possible_engagement = 100000.0 
 
-    # Get current engagement, total engagement, and the group with the most engagement
+    # Obtiene las métricas de interacción actuales, las métricas de interacción totales y el grupo con mayor interacción
     group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups)
 
 
-    # Fetch the latest TotalIncrease
+    # Obtiene el último TotalIncrease (para calcular picos)
     last_total_increase = TotalIncrease.query.order_by(TotalIncrease.timestamp.desc()).first()
     
-    # Get total increases in the last 6 hours
+    # Obtiene los aumentos totales en las últimas 6 horas
     six_hours_ago = datetime.now() - timedelta(hours=6)
     total_increases = TotalIncrease.query.filter(TotalIncrease.timestamp >= six_hours_ago).order_by(TotalIncrease.timestamp.desc()).all()
 
-    # Calculate the average engagement over the past 6 hours
+    # Calcula el promedio de las métricas de interacción en las últimas 6 horas
     average_engagement = sum([increase.total_tweet_engagement for increase in total_increases]) / len(total_increases) if total_increases else 0
 
-    # Check for peak occurrences
+    # Busca ocurrencias pico
     peak_occurrences = []
     for increase in total_increases:
         if increase.total_tweet_engagement > average_engagement * 1.1:  # 1.5 is an example threshold for "significant" increase
             peak_occurrences.append((increase.timestamp, increase.total_tweet_engagement))
 
-    # Asegurándose de que total_increases contenga al menos dos registros
+    # Asegurar total_increases contenga al menos dos registros
     if len(total_increases) >= 2:
         # Obteniendo los dos últimos registros
         latest_engagement = total_increases[0].total_tweet_engagement
         second_latest_engagement = total_increases[1].total_tweet_engagement
-    # Calculando la diferencia
+    # Calcular la diferencia
         difference = latest_engagement - second_latest_engagement
     else:
-    # Si no hay suficientes registros, establece una diferencia predeterminada o maneja como prefieras
-        difference = 0  # O cualquier manejo de error o valor predeterminado que consideres adecuado
+    # Si no hay suficientes registros
+        difference = 0  # O cualquier manejo de error 
 
-# Determinando el engagement_level basado en la diferencia
+    # Determinar el engagement_level basado en la diferencia
     if difference <= 12000:
         engagement_level = "BAJA"
     elif 12001 <= difference <= 15000:
@@ -305,10 +304,10 @@ def index():
     else:
         engagement_level = "ALTA"
     
-    # Get the tweet with hate speech content
+    # Obtiene el tweet con contenido de discurso de odio por orden descendente temporal (el último?)
     hate_tweet = Tweet.query.filter(Tweet.content.isnot(None)).order_by(Tweet.id.desc()).first()
 
-    # Check if a hate tweet was found
+    # Comprueba si se encontró un tweet de odio
     if hate_tweet is not None:
         hate_tweet_content = hate_tweet.content
     else:
