@@ -22,7 +22,7 @@
 
 ## Origen
 
-***Odio oído*** surge de la iniciativa "Laboratorio Hoy" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de investigación, y laboratorio experimental que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea focalizando en la formas comunicativas de la digitalidad y la tecnología. La iniciativa propone acercar a más artistxs a estos campos desde una perspectiva interdisciplinaria que define la nueva virtualidad como un espacio de sensibilidad, creación y representación. Más información en este enlace.  
+***Odio oído*** surge como un desprendimiento de la iniciativa "*Ahora*" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de tipo laboratorio (investigación y desarrollo) que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea a partir de generar y accesibiliar datos relevantes al campo "arte + ciencia y tecnología". Más información sobre el laboratro *Ahora*" en este enlace. 
 
 ## ¿Cómo funciona la app?
 
@@ -33,7 +33,7 @@ En ***Odio oído*** se utilizan los tópicos descubiertos por LDA para conformar
 
 2. (Online). Una vez preparada la data, la app scrapea la **temperatura del discurso**, obtiendo un parcial de las interacciones por grupo/dominio que es normalizado según el número de seguidores. ***Odio oído*** sostiene que esa temperatura, al ser representativa de dominios con prevalencia de toxicidad que contienen debates centrales a la sociedad, tiene al menos una relación indirecta con la toxicidad general de Twitter.
 
-La app llega al indicador definitivo a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
+La app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
 
 ## ¿Cómo contribuir?
 
@@ -41,14 +41,14 @@ La app llega al indicador definitivo a través de la aplicación de pesos relati
 
 Datos: por un lado la app necesita mejorar y revisar la precisión con la que indica (o más precisamente intenta predecir) la toxicidad: (a) comprobar la calidad de los datos, (b) desarrollar un sistema de actualización de la base y de los grupos/dominios, (c) alcanzar más países regionales con la misma metodología.
 
-Front/Backend: implementación de data (ya disponible en back): a. Picos de toxicidad. b. Grupo/Dominio más tóxico. c. Contenido tóxico específico. 
+Frontend: implementación de data (ya disponible en back): a. Picos de toxicidad. b. Grupo/Dominio más tóxico. c. Contenido tóxico específico. 
 
 Los hitos principales del roadmap son ([este enlace](https://github.com/users/MiguelGalp/projects/1) detalla todo el proyecto, pedinos acceso si te interesa participar):
 
 - Marzo 2024: layout, mobile
 - Abril 2024: datos Chile, pico de toxicidad en front
 - Mayo 2024: datos ok, contenido y grupo más tóxico en front
-- Julio 2024: lda dinámico, front final
+- Julio 2024: lda dinámico, release 0.1
 
 ## Misión, visión y valores
 
