@@ -33,7 +33,16 @@ En ***Odio oído*** se utilizan los tópicos descubiertos por LDA para conformar
 
 2. (Online). Una vez preparada la data, la app scrapea la **temperatura del discurso**, obtiendo un parcial de las interacciones por grupo/dominio que es normalizado según el número de seguidores. ***Odio oído*** sostiene que esa temperatura, al ser representativa de dominios con prevalencia de toxicidad que contienen debates centrales a la sociedad, tiene al menos una relación indirecta con la toxicidad general de Twitter.
 
-La app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
+El data flow online se puede representar de la siguiente manera:
+
+A(Carga de datos) --> B(Cálculo del engagement por tweet)
+B --> C(Cálculo del engagement total y promedio por grupo)
+C --> D(Cálculo del engagement promedio global)
+D --> E(Visualización de resultados)
+E --> F(Almacenamiento de resultados)
+
+
+(Muy pronto): la app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
 
 ## ¿Cómo contribuir?
 
