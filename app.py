@@ -106,7 +106,7 @@ def calculate_engagement(tweet):
     
     # Define un ciclo de vida: el tweet pierde mitad de su relevancia en 3 horas
     hours_since_tweet = (datetime.utcnow() - tweet.timestamp).total_seconds() / 3600
-    decay_factor = 0.5 ** (hours_since_tweet / 6)  # Half-life of 3 hours
+    decay_factor = 0.5 ** (hours_since_tweet / 6)  # Half-life of 6 hours
     
     engagement_score = (likes*weights['likes'] + retweets*weights['retweets'] + replies*weights['replies']) * decay_factor
     
