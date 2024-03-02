@@ -23,7 +23,7 @@
 
 ## Origen
 
-***Odio oído*** surge como un desprendimiento de la iniciativa "*Ahora*" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de tipo laboratorio (investigación y desarrollo) que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea a partir de generar y accesibiliar datos relevantes al campo "arte + ciencia y tecnología". Más información sobre el laboratro *Ahora*" en este enlace. 
+***Odio oído*** surge como un desprendimiento de la iniciativa "*Ahora*" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de tipo laboratorio (investigación y desarrollo) que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea a partir de generar y accesibiliar datos relevantes al campo "arte + ciencia y tecnología". Más información sobre "*Ahora*" en este enlace. 
 
 ## ¿Qué solución da la app?
 
