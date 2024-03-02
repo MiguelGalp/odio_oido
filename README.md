@@ -60,9 +60,13 @@ En ***Odio oído*** se utilizan para la organización de los datos los tópicos 
 El data flow online se puede representar de la siguiente manera:
 
 A(Carga de datos) --> B(Cálculo del engagement por tweet)
+
 B --> C(Cálculo del engagement total y promedio por grupo)
+
 C --> D(Cálculo del engagement promedio global)
+
 D --> E(Visualización de resultados)
+
 E --> F(Almacenamiento de resultados)
 
 (Muy pronto): la app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
