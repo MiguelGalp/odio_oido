@@ -25,9 +25,9 @@
 
 ***Odio oído*** surge como un desprendimiento de la iniciativa "*Ahora*" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de tipo laboratorio (investigación y desarrollo) que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea a partir de generar y accesibiliar datos relevantes al campo "arte + ciencia y tecnología". Más información sobre "*Ahora*" en este enlace. 
 
-## ¿Qué solución da la app?
+## ¿Qué solución da el MVP?
 
-Odio oído construye un índice de probabilidad para la toxicidad en Twitter, de la siguiente manera:
+Odio oído en su versión MVP actual construye un índice de probabilidad para la toxicidad en Twitter, de la siguiente manera:
 
 A. Estudios sobre Twitter del Pew Research Center, la Universidad de Oxford y el Instituto Berkman Klein indican correlaciones entre: 
 
@@ -48,7 +48,7 @@ CONCLUSIÓN: creemos que si bien la relación es débil, con esta técnica, si l
 - Un instrumento de consulta para instituciones o padres. 
 - Un panorama comparativo para la toxicidad por país (por ahora regional) y por tipo de evento. 
 
-## ¿Cómo funciona la app?
+## ¿Cómo funciona el MVP?
 
 EN DOS PASOS:
 
@@ -73,18 +73,24 @@ E --> F(Almacenamiento de resultados)
 
 ## ¿Cómo contribuir?
 
-****Odio oído**** se encuentra en pleno desarrollo. Existen tres áreas diferentes en las que contribuir. 
+****Odio oído**** se encuentra en pleno desarrollo. Apuntamos hacia un primer release (0.0.1) en el mes de junio. 
 
-Datos: por un lado la app necesita mejorar y revisar la precisión con la que indica (o más precisamente intenta predecir) la toxicidad: (a) comprobar la calidad de los datos, (b) desarrollar un sistema de actualización de la base y de los grupos/dominios, (c) alcanzar más países regionales con la misma metodología.
+El roadmap detallado se encuentra en [este enlace](https://github.com/users/MiguelGalp/projects/1) (un proyecto GitHub, pedinos acceso si te interesa participar). 
 
-Frontend: implementación de data (ya disponible en back): a. Picos de toxicidad. b. Grupo/Dominio más tóxico. c. Contenido tóxico específico. 
+El objetivo de ese primer release es crear un *dashboard* de toxicidad en Twitter, con:
 
-Los hitos principales del roadmap son ([este enlace](https://github.com/users/MiguelGalp/projects/1) detalla todo el proyecto, pedinos acceso si te interesa participar):
+- Índice de probabilidad (lo que actualmente muestra el MPV)
+- Causa principal de toxicidad
+- Picos de toxicidad (para permitir correlaciones a eventos externos)
+- Contenido tóxico (visualización a modo de ejemplo de tweets tóxicos)
 
-- Marzo 2024: layout, mobile
-- Abril 2024: datos Chile, pico de toxicidad en front
-- Mayo 2024: datos ok, contenido y grupo más tóxico en front
-- Julio 2024: lda dinámico, release 0.1
+En términos generales las contribuciones al proyecto estarán dividas entre:
+
+1. Calidad y ampliación de los datos: la app necesita comprobar y actualizar los datos con los que se mide la toxicidad.
+
+2. Frontend: sistema de diseño, layout responsive, dashboard. 
+
+3. Producto: implementación de data (ya disponible en back): a. Picos de toxicidad. b. Grupo/Dominio más tóxico. c. Contenido tóxico específico. 
 
 ## Misión, visión y valores
 
