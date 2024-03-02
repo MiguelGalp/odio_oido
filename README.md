@@ -71,7 +71,7 @@ E --> F(Almacenamiento de resultados)
 
 (Muy pronto): la app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
 
-## ¿Cómo contribuir al primer release (0.0.1)?
+## ¿Cómo contribuir al primer release?
 
 ****Odio oído**** se encuentra en pleno desarrollo. Apuntamos hacia un primer release (0.0.1) en el mes de junio. 
 
