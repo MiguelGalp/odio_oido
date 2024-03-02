@@ -14,7 +14,7 @@
 - [Origen](#Origen)
 - [Qué solución da la app](#Qué-solución-da-la-app)
 - [Cómo funciona la app](#Cómo-funciona-la-app)
-- [Cómo contribuir](#Cómo-contribuir-al-primer-release-(0.0.1))
+- [Cómo contribuir](#Cómo-contribuir-al-primer-release)
 - [Misión, visión y valores](#misión-visión-y-valores)
 - [Comunidad](#comunidad)
 - [Licencias](#licencias)
