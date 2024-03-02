@@ -282,7 +282,7 @@ def index():
     # Busca ocurrencias pico
     peak_occurrences = []
     for increase in total_increases:
-        if increase.total_tweet_engagement > average_engagement * 1.1:  # 1.5 is an example threshold for "significant" increase
+        if increase.total_tweet_engagement > average_engagement * 1.1:  # 1.5 es un ejemplo de "desvío" más pronunciado
             peak_occurrences.append((increase.timestamp, increase.total_tweet_engagement))
 
     # Asegurar total_increases contenga al menos dos registros

@@ -12,6 +12,7 @@
 ## Índice de Contenidos
 
 - [Origen](#Origen)
+- [Qué solución da la app](#Qué-solución-da-la-app)
 - [Cómo funciona la app](#Cómo-funciona-la-app)
 - [Cómo contribuir](#Cómo-contribuir)
 - [Misión, visión y valores](#misión-visión-y-valores)
@@ -24,14 +25,37 @@
 
 ***Odio oído*** surge como un desprendimiento de la iniciativa "*Ahora*" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de tipo laboratorio (investigación y desarrollo) que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea a partir de generar y accesibiliar datos relevantes al campo "arte + ciencia y tecnología". Más información sobre el laboratro *Ahora*" en este enlace. 
 
+## ¿Qué solución da la app?
+
+Odio oído construye un índice de probabilidad para la toxicidad en Twitter, de la siguiente manera:
+
+A. Estudios sobre Twitter del Pew Research Center, la Universidad de Oxford y el Instituto Berkman Klein indican correlaciones entre: 
+
+1. Aumento de toxicidad durante (a) eventos políticos (como por ejemplo elecciones) y durante (b) eventos sociales singulares (como debates o tragedias).
+2. Una relación directa entre el aumento de la polarización política y el aumento de la toxicidad. 
+
+B. Por otro lado, el modelo LDA de análisis del discurso puede "ubicar" dentro de estos causales de toxicidad en Twitter a discursos de individuos/usuarios. Lo hace definiendo por ejemplo que un usuario X tiene como "espacio latente" (no explícito) en su discurso los temas "polarización política", o "crisis en la argentina", u "odio hacia y persona".
+
+C. Tomando estas dos perspectivas en conjunto, Odio oído investiga desde LDA la adherencia de usuarios a estos causales de toxicidad en Twitter.
+
+D. Con esta data (A, B y C) Oido oído propone un modelo de análisis que da un paso más allá. Para tracker (o más precisamente: para intentar predecir la toxicidad), la app define tópicos LDA que podrían considerarse **de segunda generación**. Es decir que, sobre tópicos de primera generación como "crisis en la argentina", Odio oído construye grupos de usaurios que, finalmente, definen el "dominio" como 
+- "***debates* sobre la crisis en la argentina**"
+o
+- "***usuarios con historial de odio* sobre política argentina**".
+
+CONCLUSIÓN: creemos que si bien la relación es débil, con esta técnica, si los datos son representativos, existe al menos un **indicador de probabilidad general de toxicidad para Twitter**, lo que puede dar lugar a:
+- Debates sobre la responsabilidad en el uso de redes sociales.
+- Un instrumento de consulta para instituciones o padres. 
+- Un panorama comparativo para la toxicidad por país (por ahora regional) y por tipo de evento. 
+
 ## ¿Cómo funciona la app?
 
 EN DOS PASOS:
 
-1. (Offline), la app trabaja con datos que son obtenidos dentro de un modelo de tipo [LDA (Latend Dirichlet Allocation)](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation).
-En ***Odio oído*** se utilizan los tópicos descubiertos por LDA para conformar "dominios": áreas temáticas que agrupan usuarios alrededor de, por ejemplo, el tópico "crisis en la argentina". El modelo también está entrenado para detectar la toxicidad misma como tópico, por lo que el resultado de su aplicación al dataset (tweets de usuarios) es la conformación de grupos que, además de dominios, definen un campo discursivo **prevalentemente tóxico**
+1. (Offline), un script (query.py) scrapea Twitter para alimentar la base de datos de la app con información actualizada cada media hora (ver) con los niveles de interacción. Los datos son organizados dentro de un modelo de tipo [LDA (Latend Dirichlet Allocation)](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation).
+En ***Odio oído*** se utilizan para la organización de los datos los tópicos descubiertos por LDA para conformar "dominios": áreas temáticas que agrupan usuarios alrededor de, por ejemplo, el tópico "crisis en la argentina". El modelo también está entrenado para detectar la toxicidad misma como tópico, por lo que el resultado de su aplicación al dataset (tweets de usuarios) es la conformación de grupos que, además de dominios, definen un campo discursivo **prevalentemente tóxico**
 
-2. (Online). Una vez preparada la data, la app scrapea la **temperatura del discurso**, obtiendo un parcial de las interacciones por grupo/dominio que es normalizado según el número de seguidores. ***Odio oído*** sostiene que esa temperatura, al ser representativa de dominios con prevalencia de toxicidad que contienen debates centrales a la sociedad, tiene al menos una relación indirecta con la toxicidad general de Twitter.
+2. (Online). Una vez preparada la data en la base de datos, la app genera la **temperatura del discurso**, obtiendo un parcial de las interacciones por grupo/dominio que es normalizado según el número de seguidores. ***Odio oído*** sostiene que esa temperatura, al ser representativa de dominios con prevalencia de toxicidad que contienen debates centrales a la sociedad, tiene al menos una relación indirecta con la toxicidad general de Twitter.
 
 El data flow online se puede representar de la siguiente manera:
 
@@ -40,7 +64,6 @@ B --> C(Cálculo del engagement total y promedio por grupo)
 C --> D(Cálculo del engagement promedio global)
 D --> E(Visualización de resultados)
 E --> F(Almacenamiento de resultados)
-
 
 (Muy pronto): la app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
 
