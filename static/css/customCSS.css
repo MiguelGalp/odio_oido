@@ -16,7 +16,6 @@ body {
   justify-content: center;
   min-height: 100vh;
   margin: 0;
-  scale: 1.15;
 }
 
 @media (min-width: 768px) {
