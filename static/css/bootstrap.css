@@ -7,45 +7,30 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
-  --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: #dc3545;
-  --bs-orange: #fd7e14;
-  --bs-yellow: #ffc107;
-  --bs-green: #198754;
-  --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
-  --bs-white: #fff;
-  --bs-gray: #6c757d;
-  --bs-gray-dark: #343a40;
-  --bs-primary: #0d6efd;
-  --bs-secondary: #6c757d;
-  --bs-success: #198754;
-  --bs-info: #0dcaf0;
-  --bs-warning: #ffc107;
-  --bs-danger: #dc3545;
-  --bs-light: #f8f9fa;
-  --bs-dark: #212529;
-  /* CSS HEX */
-  --custom-silver: #aaaaaaff;
-  --tea-rose-red: #ecc9c9ff;
-  --melon: #fbc3b0ff;
-  --salmon-pink: #ff9b9bff;
-  --melon-2: #e5a3a3ff;
-  --soft-bg: #af312a;
-  --hard-bg: #b7b5ac;
-  --black-text: #0f0f0f;
+ 
+  /* Herencia del "tema" original de Bootstrap */
 
+  --black-text: #0f0f0f;
   --bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
 
-  /* Sistema de colores */
+  /* Sistema de colores por país */
 
-  --background-body: #fff9df;
-  --legibilidad: filter: brigthness(90%);
+  /* Argentina */
+
+--background-body: #fff9df;
+--texto-azul-pleno: hsl(183, 40%, 44%);
+--texto-amarillo-pleno: hsl(45, 85%, 61%);
+--color-enfasis: hsl(120, 16%, 70%);
+--legibilidad: brightness(75%);
+
+  /* Chile */
+
+--texto-azul-transparente-chi: hsl(0, 100%, 81%); /* a transparent red */
+--texto-azul-pleno-chi: hsl(240, 100%, 44%); /* a solid blue */
+--texto-amarillo-pleno-chi: hsl(0, 100%, 61%); /* a solid red */
+--color-enfasis-chi: hsl(240, 100%, 30%); /* a darker blue */
+
 }
 
 *,
