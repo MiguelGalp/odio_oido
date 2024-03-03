@@ -77,8 +77,8 @@ Contribuciones:
 
 Para más información:
 
-Roadmap: https://github.com/users/MiguelGalp/projects/1 (pedir acceso si te interesa participar)
-Repositorio: https://github.com/
+**Roadmap**: https://github.com/users/MiguelGalp/projects/1 (pedir acceso si te interesa participar)
+
 
 ## Misión, visión y valores
 
