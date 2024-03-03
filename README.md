@@ -27,9 +27,9 @@
 
 ## ¿Qué solución da el MVP?
 
-Odio oído en su versión MVP actual construye un índice de probabilidad para la toxicidad en Twitter a partir de trackear grupos de usuarios adheridos a tópicos LDA **de segunda generación**: si el modelo LDA devuelve en primera instancia tópicos como "crisis en la argentina" (al analizar el dataset de tweets), nuestro modelo observa el grupo "**debates** (sobre) la crisis en la argentina" o "**polarización** (alrededor de) la crisis en la argentina". 
+*Odio oído*, en su versión MVP actual, construye un índice de probabilidad para la toxicidad en Twitter a partir de trackear grupos de usuarios adheridos a tópicos LDA **de segunda generación**: si el modelo LDA devuelve en primera instancia tópicos como "crisis en la argentina", nuestro modelo observa el grupo "**debates** (sobre) la crisis en la argentina" o "**polarización** (alrededor de) la crisis en la argentina". 
 
-Al normalizar el trackeo de interacciones por número de seguidores dentro de lo que finalmente son tópicos variados de segunda generaciçon (tópicos que siempre representan los principales temas sociales de cada país --crisis en la argentina, el rol del Estado en Chile), el MVP propone que la temperatura del discurso es un posible indicador de la probabilidad de cruzarse como usuario "general" con toxicidad en Twitter. 
+Al normalizar el trackeo de interacciones por número de seguidores, el MVP indicaría la probabilidad de un usuario "general" se encuentre con toxicidad. 
 
 Este enfoque, además, permite:
 
@@ -41,45 +41,44 @@ Este enfoque, además, permite:
 
 EN DOS PASOS:
 
-1. (Offline), un script (query.py) scrapea Twitter para alimentar la base de datos de la app con información actualizada cada media hora (ver) con los niveles de interacción. Los datos son organizados dentro de un modelo de tipo [LDA (Latend Dirichlet Allocation)](https://es.wikipedia.org/wiki/Latent_Dirichlet_Allocation).
-En ***Odio oído*** se utilizan para la organización de los datos los tópicos descubiertos por LDA para conformar "dominios": áreas temáticas que agrupan usuarios alrededor de, por ejemplo, el tópico "crisis en la argentina". El modelo también está entrenado para detectar la toxicidad misma como tópico, por lo que el resultado de su aplicación al dataset (tweets de usuarios) es la conformación de grupos que, además de dominios, definen un campo discursivo **prevalentemente tóxico**
+1. (Offline)
 
-2. (Online). Una vez preparada la data en la base de datos, la app genera la **temperatura del discurso**, obtiendo un parcial de las interacciones por grupo/dominio que es normalizado según el número de seguidores. ***Odio oído*** sostiene que esa temperatura, al ser representativa de dominios con prevalencia de toxicidad que contienen debates centrales a la sociedad, tiene al menos una relación indirecta con la toxicidad general de Twitter.
+- Un script (query.py) extrae información de Twitter para alimentar la base de datos de la app con información actualizada cada X minutos.
+- Los datos se organizan con un modelo LDA de dominios de segunda generación.
+- Se controla la adherencia de los dominios a la toxicidad. 
 
-El data flow online se puede representar de la siguiente manera:
+2. (Online). 
 
-A(Carga de datos) --> B(Cálculo del engagement por tweet)
+- Se calcula la temperatura del discuso por dominio, normalizada por número de seguidores y ciclo de vida (relevancia temporal de cada tweet)
+- Se visualiza la información (un dashborad en desarrollo)
+- Se almacenan los resultados
 
-B --> C(Cálculo del engagement total y promedio por grupo)
+Próximamente:
 
-C --> D(Cálculo del engagement promedio global)
-
-D --> E(Visualización de resultados)
-
-E --> F(Almacenamiento de resultados)
-
-(Muy pronto): la app llega al indicador general de toxicidad a través de la aplicación de pesos relativos a los parciales por grupo/dominio, según los grados de actividad. Si, por ejemplo, el grupo/dominio más activo es el de "política argentina" el total crudo es multiplicado por un índice X. Si, en cambio, el grupo/dominio más activo es el de "crisis en la Argentina", el factor de multiplicación es > X.
+- Indicador general de toxicidad mediante pesos relativos a la actividad de cada grupo/dominio.
 
 ## ¿Cómo contribuir al primer release?
 
-****Odio oído**** se encuentra en pleno desarrollo. Apuntamos hacia un primer release (0.0.1) en el mes de junio. 
+Objetivo: Crear un dashboard de toxicidad en Twitter con:
 
-El roadmap detallado se encuentra en [este enlace](https://github.com/users/MiguelGalp/projects/1) (un proyecto GitHub, pedinos acceso si te interesa participar). 
-
-El objetivo de ese primer release es crear un *dashboard* de toxicidad en Twitter, con:
-
-- Índice de probabilidad (lo que actualmente muestra el MPV)
+- Índice de probabilidad
 - Causa principal de toxicidad
-- Picos de toxicidad (para permitir correlaciones a eventos externos)
-- Contenido tóxico (visualización a modo de ejemplo de tweets tóxicos)
+- Picos de toxicidad
+- Contenido tóxico
 
-En términos generales las contribuciones al proyecto estarán dividas entre:
+Contribuciones:
 
-1. Calidad y ampliación de los datos: la app necesita comprobar y actualizar los datos con los que se mide la toxicidad.
+- Calidad y ampliación de datos: verificar y actualizar datos para medir la toxicidad.
+- Frontend: sistema de diseño, layout responsive, dashboard.
+- Producto: implementación de data (ya disponible en back):
+    Picos de toxicidad
+    Grupo/Dominio más tóxico
+    Contenido tóxico específico
 
-2. Frontend: sistema de diseño, layout responsive, dashboard. 
+Para más información:
 
-3. Producto: implementación de data (ya disponible en back): a. Picos de toxicidad. b. Grupo/Dominio más tóxico. c. Contenido tóxico específico. 
+Roadmap: https://github.com/users/MiguelGalp/projects/1 (pedir acceso si te interesa participar)
+Repositorio: https://github.com/
 
 ## Misión, visión y valores
 
