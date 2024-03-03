@@ -1,5 +1,5 @@
 <div align="center" width="100%"> 
-<h1>PROYECTO <u>ODIO OÍDO</u></h1> 
+<h1>PROYECTO ODIO OÍDO</h1> 
   <picture> <img width="33%" alt="Un plato vacío" src="static/public/listeningTwitter.jpeg"> </picture> 
 
 ---
