@@ -2,8 +2,6 @@
 <h1>PROYECTO ODIO OÍDO</h1> 
   <picture> <img width="33%" alt="Un plato vacío" src="static/public/listeningTwitter.jpeg"> </picture> 
 
----
-
 <h1>UNA MEDIDA DE TOXICIDAD EN TWITTER, POR PAÍS. 24/7</h1><h3>Sumate al proyecto para dar un indicador fiable y ayudar en el uso responsable de las redes sociales.</h3> 
 </div> 
 
