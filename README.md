@@ -16,6 +16,7 @@
 - [Misión, visión y valores](#misión-visión-y-valores)
 - [Comunidad](#comunidad)
 - [Licencias](#licencias)
+- [Links de interés](#links-de-interés)
 
 ---
 
