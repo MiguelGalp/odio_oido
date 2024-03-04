@@ -10,11 +10,10 @@
             style="--tw-translate-x: 35px; @media (min-width: 768px) { --tw-translate-x: 35px; } @media (min-width: 1024px) { --tw-translate-x: 100px; } @media (min-width: 1280px) { --tw-translate-x: 130px; }"
             x-data
             x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">    
-            <div class="w-full md:w-1/12 md:ml-2/12 text-center avatars-positions"
-                style="margin-top: -4px; position: relative; right: 4px;">
-                <img id="avatar_1" src="./static/public/Argentina.png" alt="MG" width="28" height="28" />
-                <br><br>
-                <img id="avatar_2" src="./static/public/Chile.png" alt="LA" width="28" height="28" />
+            <div class="w-full md:w-1/12 md:ml-2/12 -mt-3 ml-16 mr-6 bg-white bg-clip-border border border-solid border-gray-200 rounded-md text-center cursor-pointer font-extrabold"
+                style="height: 82px;">
+                <div id="argentina" class="mt-4">.AR</div>              
+                <div id="chile">.CH</div>
             </div>
             <div class="w-full md:w-4/12 lg:w-4/12 xl:w-4/12" style="max-width: 250px;"> <!-- COLUMNA DASHBOARD -->
                 <div class="mb-1">
@@ -23,7 +22,7 @@
                         {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
                         {% set time_diff = now - last_total_increase.timestamp %}
                         {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                        <div class="rounded-lg" style="width: 75%;"><mark class="ml-3 rounded-md">{{
+                        <div class="rounded-lg" style="width: 75%;"><mark class="ml-3 rounded-md text-xs">{{
                                 minutes_diff }} minutos atrás</mark>
                         </div>
                         <div class="text-right mr-20 mt-1"> <!-- VER POSICION PARA MOBILE Y EN ERROR-->
@@ -58,7 +57,7 @@
                 </div>
             </div>
             <div class="w-full md:w-3/12 mx-1">
-                <div class="-mt-4 text-center mr-8 relative right-4" style="letter-spacing: 0%;">
+                <div class="-mt-5 text-center relative right-8" style="letter-spacing: 0%;">
                     <div class="text-uppercase inline mr-20 relative right-1 top-3 font-extrabold"
                         style="font-size: 20px;">
                         ODIO <div class="inline" style="opacity: 40%;">OÍDO:</div>
@@ -84,8 +83,8 @@
 {% block scripts %}
 {{ super() }}
 <script>
-    document.getElementById('avatar_2').addEventListener('click', function () {
-        console.log('Avatar 2 clicked');
+    document.getElementById('chile').addEventListener('click', function () {
+        console.log('Chile clicked');
         // Change the hero image source
         document.getElementById('hero').src = "./static/public/Chile.png";
 
@@ -110,7 +109,7 @@
 
     });
 
-    document.getElementById('avatar_1').addEventListener('click', function () {
+    document.getElementById('argentina').addEventListener('click', function () {
         // Change the hero image source
         document.getElementById('hero').src = "./static/public/Argentina.png";
 
