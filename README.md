@@ -27,7 +27,7 @@
 
 *Odio oído*, en su versión MVP actual, construye un índice de probabilidad para la toxicidad en Twitter a partir de trackear grupos de usuarios adheridos a tópicos LDA **de segunda generación**: si el modelo LDA devuelve en primera instancia tópicos como "crisis en la argentina", nuestro modelo observa el grupo "**debates** (sobre) la crisis en la argentina" o "**polarización** (alrededor de) la crisis en la argentina". 
 
-Al normalizar el trackeo de interacciones por número de seguidores, el MVP indicaría la probabilidad de un usuario "general" se encuentre con toxicidad. 
+Al normalizar el trackeo de interacciones por número de seguidores, el MVP indica (en relación indirecta) la probabilidad de que un usuario "general" se encuentre con toxicidad. 
 
 Este enfoque, además, permite:
 
