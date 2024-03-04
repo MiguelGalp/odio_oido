@@ -49,7 +49,7 @@ EN DOS PASOS:
 2. (Online). 
 
 - Se calcula la temperatura del discuso por dominio, normalizada por número de seguidores y ciclo de vida (relevancia temporal de cada tweet)
-- Se visualiza la información (un dashborad en desarrollo)
+- Se visualiza la información (un dashboard en desarrollo)
 - Se almacenan los resultados
 
 Próximamente:
