@@ -1,5 +1,6 @@
-# ODIO-OIDO -- EL SCRIPT NO FUNCIONA DESDE IPs EN RENDER O FLIGHT X BLOQUEO DE TWITTER
+# ODIO-OIDO -- EL SCRIPT NO FUNCIONA DESDE IPs "OFICIALES" (COMO RENDER O FLIGHT) X BLOQUEO DE TWITTER
 # FETCH DE LA DATA DE INTERACCON DE USUARIOS "CRUDOS" 
+# VER FRECUENCIA DE CRON WORKER PARA OPTIMIZAR ÍNDICE EN "TIEMPO REAL" 
 
 from flask import Flask, jsonify
 from flask_sqlalchemy import SQLAlchemy
@@ -60,15 +61,15 @@ except Exception as e:
 async def fetch_tweets_and_update_engagement():
     api = API()  # or API("path-to.db") - default is `accounts.db`
     # Add your accounts
-    await api.pool.add_account("Poli637021", "Caniggia0", "mgalperinverto@newhaven.edu", "204460")
-    await api.pool.add_account("Lionelli112500", "Caniggia0", "l86345637@gmail.com", "748631")
+    await api.pool.add_account("Ver-Cuentas-Para-Scrapear")
+    await api.pool.add_account("Ver-Cuentas-Para-Scrapear")
     await api.pool.login_all()
 
     with app.app_context():
         # Initialize total_increase
         total_increase = 0
         # Initialize hate_words
-        hate_words = ["culo", "cogido", "bocona", "grasa", "mersa", "trucha", "Chorros", "régimen", "ano", "ignorancia", "reposera", "narco", "pija", "cogiendo", "orto", "verga", "v3rga"]  # Replace with actual words
+        hate_words = ["Ver-Lista-De-Palabras-Tóxicas"]  # Replace with actual words
         hate_tweet = None
         try:
             # List of users for whom you want to track engagement
