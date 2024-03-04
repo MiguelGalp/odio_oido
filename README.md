@@ -23,7 +23,7 @@
 
 ***Odio oído*** surge como un desprendimiento de la iniciativa "*Ahora*" de la ONG [Atlanticx](wwww.atlanticx.org), dedicada a la innovación en artes. Se trata de un impulso de tipo laboratorio (investigación y desarrollo) que busca ampliar las bases de diálogo entre las artes y la realidad contemporánea a partir de generar y accesibiliar datos relevantes al campo "arte + ciencia y tecnología". Más información sobre "*Ahora*" en este enlace. 
 
-## ¿Qué solución da el MVP?
+## ¿Qué *solución* aporta el MVP?
 
 *Odio oído*, en su versión MVP actual, construye un índice de probabilidad para la toxicidad en Twitter a partir de trackear grupos de usuarios adheridos a tópicos LDA **de segunda generación**: si el modelo LDA devuelve en primera instancia tópicos como "crisis en la argentina", nuestro modelo observa el grupo "**debates** (sobre) la crisis en la argentina" o "**polarización** (alrededor de) la crisis en la argentina". 
 
