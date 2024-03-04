@@ -106,3 +106,8 @@ Este proyecto se desarrolla con la participación y el apoyo de FrontendCafé. E
 
 Este repositorio y el contenido de la web de ****Odio oído**** se publican bajo licencia Atribución-NoComercial-CompartirIgual 4.0 Internacional (CC BY-NC-SA 4.0).
 
+## Links de interés
+
+[Paper que inspiró el proyecto](https://arxiv.org/pdf/2303.14603.pdf)
+[Correlación entre seguidores e interacción](https://www.kaggle.com/code/chitaxiang/instagram-influencer-data-analysis)
+
