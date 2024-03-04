@@ -85,12 +85,7 @@
 <script>
     document.getElementById('chile').addEventListener('click', function () {
         console.log('Chile clicked');
-        // Change the hero image source
-        document.getElementById('hero').src = "./static/public/Chile.png";
-
-        // Change the color of the hero text
-
-
+        
         // Make an AJAX request to the new route
         fetch('/api/total_engagement_chile')
             .then(response => response.json())
@@ -103,7 +98,7 @@
                 engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
 
                 // Update the content of the percentage div
-                var percentageDiv = document.querySelector('.d-flex.align-items-center');
+                var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
                 percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
             });
 
@@ -128,7 +123,7 @@
                 engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
 
                 // Update the content of the percentage div
-                var percentageDiv = document.querySelector('.d-flex.align-items-center');
+                var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
                 percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
             });
 
