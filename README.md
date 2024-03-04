@@ -7,7 +7,7 @@
 
 ---
 
-## Índice de Contenidos
+## Índice de contenidos
 
 - [Origen](#Origen)
 - [Qué solución da la app](#Qué-solución-da-la-app)
