@@ -1,89 +1,86 @@
-{% extends "bootstrap/base.html" %}
+{% extends "base.html" %}
 
 {% block title %}Odio oído: versión MVP para desarrollo{% endblock %}
 
-{% block styles %}
-{{ super() }}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/customCSS.css') }}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-{% endblock %}
-
-
 {% block content %}
 
-<div class="container">
-    <div class="row custom-position-content">
-        <!-- /* Re-tooling hacia sistema de componentes */ -->
-        <div class="col-12 col-md-1 offset-md-2 text-center avatars-positions"
-            style="margin-top: -4px; position: relative; right: 4px;">
-            <img id="avatar_1" src="./static/public/Argentina.png" alt="MG" width="28" height="28" />
-            <br>
-            <br>
-            <img id="avatar_2" src="./static/public/Chile.png" alt="LA" width="28" height="28" />
-        </div>
-        <div class="col-12 col-md-4 col-lg-4 col-xl-4 custom-margin-top" style="max-width: 250px;">
-            <div class="row mb-1">
-                <div class="d-flex justify-content-between" style="width: 100%;">
-                    {% if last_total_increase %}
-                    {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
-                    {% set time_diff = now - last_total_increase.timestamp %}
-                    {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                    <div class="rounded-3" style="width: 50%;"><mark class="ms-3 rounded-2">{{
-                            minutes_diff }} minutos
-                            atrás</mark>
-                    </div>
-                    <div class="text-end" style="width: 50%; position: relative; bottom: 1px; right: 110px;">
-                        <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon"
-                                src="./static/public/github-logo.png" alt="GitHub" width="12" height="12" /></a>
-                    </div>
-                    {% else %}
-                    <div class="rounded-3" style="width: 50%"><mark class="ms-3 rounded-2">estamos viendo que
-                            pasa...</mark>
-                    </div>
-                    <div class="text-end" style="width: 50%; position: relative; bottom: 5px;">
-                        <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon"
-                                src="./static/public/github-logo.png" alt="GitHub" width="12" height="12" /></a>
-                    </div>
-                    {% endif %}
-                </div>
+<div class="flex items-center justify-center min-h-screen"> <!-- Full viewport height and centering utilities -->
+    <div class="w-full max-w-screen-xl px-4 lg:px-8 mx-auto"> <!-- Horizontal centering and max width -->
+        <div class="flex flex-wrap items-center justify-center custom-position-content"
+            style="--tw-translate-x: 35px; @media (min-width: 768px) { --tw-translate-x: 35px; } @media (min-width: 1024px) { --tw-translate-x: 100px; } @media (min-width: 1280px) { --tw-translate-x: 130px; }"
+            x-data
+            x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">
+            <!-- Converted to Tailwind; kept custom and inline styles -->
+            <div class="w-full md:w-1/12 md:ml-2/12 text-center avatars-positions"
+                style="margin-top: -4px; position: relative; right: 4px;">
+                <img id="avatar_1" src="./static/public/Argentina.png" alt="MG" width="28" height="28" />
+                <br><br>
+                <img id="avatar_2" src="./static/public/Chile.png" alt="LA" width="28" height="28" />
             </div>
-            <div class="card position-background" style="height: 86px;">
-                <div class="card-body p-5" style="background-color: var(--background-body);">
-                    <div class="p-0" style="background-color: var(--texto-azul-pleno); opacity: 39%; border-radius: 0.5rem; margin-top: -8px; margin-bottom:-8px;">
-                        <div
-                            style="height: 40px; width: {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%; background-color: #000; opacity: 30%;">
+            <div class="w-full md:w-4/12 lg:w-4/12 xl:w-4/12 custom-margin-top" style="max-width: 250px;">
+                <div class="mb-1">
+                    <div class="flex justify-between" style="width: 100%;">
+                        <!-- Template logic retained -->
+                        {% if last_total_increase %}
+                        {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
+                        {% set time_diff = now - last_total_increase.timestamp %}
+                        {% set minutes_diff = time_diff.total_seconds() // 60 %}
+                        <div class="rounded-lg" style="width: 50%;"><mark class="ml-3 rounded-md">{{
+                                minutes_diff }} minutos atrás</mark>
+                        </div>
+                        <div class="text-right" style="width: 50%; position: relative; bottom: 1px; right: 110px;">
+                            <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon"
+                                    src="./static/public/github-logo.png" alt="GitHub" width="12" height="12" /></a>
+                        </div>
+                        {% else %}
+                        <div class="rounded-lg" style="width: 50%"><mark class="ml-3 rounded-md">estamos viendo que
+                                pasa...</mark>
+                        </div>
+                        <div class="text-right" style="width: 50%; position: relative; bottom: 5px;">
+                            <a href="https://github.com/MiguelGalp/opiodelospueblos"><img id="github_icon"
+                                    src="./static/public/github-logo.png" alt="GitHub" width="12" height="12" /></a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="relative flex flex-col min-w-0 break-words bg-white bg-clip-border border border-solid border-gray-200 rounded-md"
+                    style="height: 86px;">
+                    <div class="card-body p-5" style="background-color: var(--background-body);">
+                        <div class="p-0"
+                            style="background-color: var(--texto-azul-pleno); opacity: 39%; border-radius: 0.5rem; margin-top: -8px; margin-bottom:-8px;">
+                            <div
+                                style="height: 40px; width: {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%; background-color: #000; opacity: 30%;">
+                            </div>
                         </div>
                     </div>
-
+                </div>
+                <div class="flex justify-between" style="margin-top: 3px; margin-left: 30px;">
+                    <div class="flex items-center"
+                        style="filter: var(--legibilidad); font-size: 24px; font-weight: 900; color: var(--texto-amarillo-pleno); width: 50%; position: relative; bottom: 59px; left: 50px; z-index: 2;">
+                        {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%
+                    </div>
                 </div>
             </div>
-            <div class="d-flex justify-content-between" style="margin-top: 3px; margin-left: 30px; ">
-                <div class="d-flex align-items-center" style="filter: var(--legibilidad); font-size: 24px; font-weight: 900; color: var(--texto-amarillo-pleno); width: 50%; position: relative; bottom: 59px; left: 50px; z-index: 2;">
-                    {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%
+            <div class="w-full md:w-3/12 mx-1" style="filter: brightness(90%);">
+                <div class="mt-1" style="letter-spacing: 0%;">
+                    <div class="text-uppercase inline"
+                        style="font-size: 20px; font-weight: 900; color: rgba(169, 198, 180, 0.7);">
+                        ODIO <div class="inline" style="color: rgba(250, 196, 111, 1);">OÍDO:</div>
+                    </div>
+                    <div class="text-uppercase"
+                        style="font-size: 28px; font-weight: 900; margin-top: -4px; color: var(--texto-azul-pleno);">
+                        TOXICIDAD <div class="inline" style="color: var(--texto-amarillo-pleno);">EN</div>
+                    </div>
+                    <p class="text-uppercase"
+                        style="font-size: 44px; font-weight: 900; margin-top: -7px; color: var(--texto-azul-pleno); opacity: 39%; position: relative; right: 1px;">
+                        TWITTER
+                    </p>
                 </div>
             </div>
-        </div>
-        <div class="col-12 col-md-3 mx-1" style="filter: brightness(90%);">
-            <div class="mt-1" style="letter-spacing: 0%;">
-                <div class="text-uppercase d-inline" style="font-size: 20px; font-weight: 900; color: rgba(169, 198, 180, 0.7);">
-                    ODIO <div class="d-inline" style="color: rgba(250, 196, 111, 1);">OÍDO:</div>
-                  </div>
-                <div class="text-uppercase" style="font-size: 28px; font-weight: 900; margin-top: -4px; color: var(--texto-azul-pleno);">
-                    TOXICIDAD <div class="d-inline" style="color: var(--texto-amarillo-pleno);">EN</div>
-                </div>
-                <p class="text-uppercase" style="font-size: 44px; font-weight: 900; margin-top: -7px; color: var(--texto-azul-pleno); opacity: 39%; position: relative; right: 1px;">
-                    TWITTER
-                </p>
+            <div class="w-full md:w-2/12 text-center hidden">
+                <img id="hero" src="./static/public/Argentina.png" alt="MG" class="pic-size negative-margin" />
             </div>
-
         </div>
-        <div class="col-12 col-md-2 text-center hidden">
-            <img id="hero" src="./static/public/Argentina.png" alt="MG" class="pic-size negative-margin" />
-        </div>
-
-
-
     </div>
 </div>
 {% endblock %}
