@@ -4,12 +4,13 @@
   "description": "<div align=\"center\" width=\"100%\">  <h1>PROYECTO ODIO OÍDO</h1>    <picture> <img width=\"33%\" alt=\"Un plato vacío\" src=\"static/public/listeningTwitter.jpeg\"> </picture>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"npx tailwindcss -i ./static/css/input.css -o ./static/css/output.css --watch\" \"flask run\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "@tailwindcss/typography": "^0.5.10",
     "tailwindcss": "^3.4.1"
   }
