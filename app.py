@@ -129,18 +129,13 @@ from datetime import datetime, timedelta
 
 def get_current_engagement(max_possible_engagement, groups_to_consider):
     try:
-        # Define el número de seguidores de cada grupo (tags: complejo, arquitectura, mejora)
+        # Define el número de seguidores de cada grupo tóxico. Categorías de PERSPECTIVE API DE GOOGLE.
         group_followers = {
-            '#AmplificaLoPeor': 31400 + 1700000,
-            '#AnticipaLoPeor': 6100000 + 2600000,
-            '#EsCondescendiente': 366500 + 95200,
-            '#CuestionaLoIncuestionable' : 875400 + 3300000,
-            '#Trollea' : 362900 + 76100,
-            '#Descontextualiza' : 130000 + 153900,
-            '#TeInsulta' : 362600 + 76100,
-            '#TeMiente' : 2800000 + 345100,
-            '#TeInvisibiliza' : 174200 + 470800,
-            '#TeAmenaza' : 1200000 + 349000
+            '#ToxicidadGeneral': 6100000 + 2600000 + 176000 + 471500,
+            '#Provocaciones': 130500 + 159000 + 2800000 + 345000,
+            '#Ataques': 76400 + 366300 + 352200 + 1200000,
+            '#Amenazas' : 377000 + 96000 + 875300 + 3300000,
+            '#Insultos' : 1400000 + 156000 + 32400 + 1700000,
         }
 
         # Inicializa el diccionario que guarda las interacciones 
@@ -205,17 +200,12 @@ def engagement_by_groups_route():
 
     # Define número de seguidores del grupo default
     all_group_followers = {
-        '#AmplificaLoPeor': 31400 + 1700000,
-        '#AnticipaLoPeor': 6100000 + 2600000,
-        '#EsCondescendiente': 366500 + 95200,
-        '#CuestionaLoIncuestionable' : 875400 + 3300000,
-        '#Trollea' : 362900 + 76100,
-        '#Descontextualiza' : 130000 + 153900,
-        '#TeInsulta' : 362600 + 76100,
-        '#TeMiente' : 2800000 + 345100,
-        '#TeInvisibiliza' : 174200 + 470800,
-        '#TeAmenaza' : 1200000 + 349000
-    }
+            '#ToxicidadGeneral': 6100000 + 2600000 + 176000 + 471500,
+            '#Provocaciones': 130500 + 159000 + 2800000 + 345000,
+            '#Ataques': 76400 + 366300 + 352200 + 1200000,
+            '#Amenazas' : 377000 + 96000 + 875300 + 3300000,
+            '#Insultos' : 1400000 + 156000 + 32400 + 1700000,
+        }
 
     # Toma solo los seguidores de los grupos del default
     group_followers = {group: all_group_followers[group] for group in groups}
