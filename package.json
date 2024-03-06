@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+  "devDependencies": {
     "@tailwindcss/typography": "^0.5.10",
     "tailwindcss": "^3.4.1"
   }
