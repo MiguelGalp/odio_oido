@@ -127,18 +127,36 @@ def calculate_normalized_engagement(total_engagement, num_tweets, followers, tim
 
 from datetime import datetime, timedelta
 
-def get_current_engagement(max_possible_engagement, groups_to_consider):
+def get_current_engagement(max_possible_engagement, groups_to_consider, country='default'):
     try:
-        # Define el número de seguidores de cada grupo tóxico. Categorías de PERSPECTIVE API DE GOOGLE.
-        group_followers = {
-            '#ToxicidadGeneral': 6100000 + 2600000 + 176000 + 471500,
-            '#Provocaciones': 130500 + 159000 + 2800000 + 345000,
-            '#Ataques': 76400 + 366300 + 352200 + 1200000,
-            '#Amenazas' : 377000 + 96000 + 875300 + 3300000,
-            '#Insultos' : 1400000 + 156000 + 32400 + 1700000,
-        }
+        # Adjust group followers based on the country
+        if country == 'Argentina':
+            group_followers = {
+                '#ToxicidadGeneral': 6100000 + 2600000 + 176000 + 471500,
+                '#Provocaciones': 130500 + 159000 + 2800000 + 345000,
+                '#Ataques': 76400 + 366300 + 352200 + 1200000,
+                '#Amenazas': 377000 + 96000 + 875300 + 3300000,
+                '#Insultos': 1400000 + 156000 + 32400 + 1700000,
+            }
+        elif country == 'Chile':
+            group_followers = {
+                '#ToxicidadGeneral': 25100,
+                '#Provocaciones': 142500,
+                '#Ataques': 310200,
+                '#Amenazas': 68200,
+                '#Insultos': 66700,
+            }
+        else:
+            # Default or global values
+            group_followers = {
+                '#ToxicidadGeneral': 6100000 + 2600000 + 176000 + 471500,
+                '#Provocaciones': 130500 + 159000 + 2800000 + 345000,
+                '#Ataques': 76400 + 366300 + 352200 + 1200000,
+                '#Amenazas': 377000 + 96000 + 875300 + 3300000,
+                '#Insultos': 1400000 + 156000 + 32400 + 1700000,
+            }
 
-        # Inicializa el diccionario que guarda las interacciones 
+        # Initialize the dictionary to store engagements
         group_engagements = {group: 0 for group in groups_to_consider}
 
         # Calcula temperatura de todos los grupos
@@ -180,13 +198,13 @@ def get_current_engagement(max_possible_engagement, groups_to_consider):
 @app.route('/api/total_engagement_argentina', methods=['GET'])
 def total_engagement_argentina_route():
     max_possible_engagement = 100000.0
-    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups)
+    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups, country='Argentina')
     return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
 
 @app.route('/api/total_engagement_chile', methods=['GET'])
 def total_engagement_chile_route():
-    max_possible_engagement = 100000.0  # el máximo posible (tags: pregunta, investigación...)
-    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_chile)
+    max_possible_engagement = 100000.0
+    group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_chile, country='Chile')
     return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
 
 
