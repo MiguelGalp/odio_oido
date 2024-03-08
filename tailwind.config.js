@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+
+const plugin = require('tailwindcss/plugin');
+
+
 module.exports = {
   content: ["./templates/*.html"],
   theme: {
@@ -21,7 +25,28 @@ module.exports = {
       'xxxl': '1400px',
       // ... other custom screen sizes
     },
+    textUnderlineOffset: {
+      '3': '2px', // Customize the thickness here
+    },
   },
-  plugins: [],
+  plugins: [
+    plugin(function({ addUtilities }) {
+      const newUtilities = {
+        '.underline-thick': {
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            left: '38%', // Adjust this to move the underline to the right
+            bottom: '2.5px',
+            height: '2px',
+            width: '28%', // Adjust this to change the length of the underline
+            backgroundColor: 'currentColor',
+          },
+        },
+      };
+      addUtilities(newUtilities, ['responsive', 'hover']);
+    }),
+  ],
 }
 

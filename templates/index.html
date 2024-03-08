@@ -10,10 +10,9 @@
             style="--tw-translate-x: 35px; @media (min-width: 768px) { --tw-translate-x: 35px; } @media (min-width: 1024px) { --tw-translate-x: 100px; } @media (min-width: 1280px) { --tw-translate-x: 130px; }"
             x-data
             x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">    
-            <div class="w-1/3 md:w-1/12 md:ml-2/12 mt-3 md:-mt-3 sm:-ml-4 md:ml-16 mr-6 bg-white bg-clip-border border border-solid border-gray-200 rounded-md text-center cursor-pointer font-extrabold order-3 md:order-none"
-                style="height: 82px;">
-                <div id="argentina" class="mt-4">.AR</div>              
-                <div id="chile">.CH</div>
+            <div class="w-1/3 md:w-1/12 md:ml-2/12 mt-3 md:-mt-3 sm:-ml-4 md:ml-16 mr-6 bg-white bg-clip-border border border-solid border-gray-200 rounded-md text-center cursor-pointer font-extrabold order-3 md:order-none" style="height: 82px;">
+                <div id="argentina" class="mt-4 tracking-wide underline-thick"><span class="relative right-[1px]">.</span>AR</div>
+                <div id="chile" class="tracking-wide"><span class="relative right-[1px]">.</span>CH</div>
             </div>
             <div class="w-full md:w-4/12 lg:w-4/12 xl:w-4/12 mt-4 md:mt-0 order-2 md:order-none" style="max-width: 250px;"> <!-- COLUMNA DASHBOARD -->
                 <div class="mb-1">
@@ -56,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full md:w-3/12 mx-1 mt-4 md:mt-0 order-1 md:order-none scale-125 md:scale-100">
+            <div class="w-full md:w-3/12 -ml-1 mt-4 md:mt-0 order-1 md:order-none scale-125 md:scale-100">
                 <div class="-mt-5 text-center" style="letter-spacing: 0%;">
                     <div class="text-uppercase inline mr-20 relative right-1 top-3 font-extrabold"
                         style="font-size: 20px;">
@@ -83,9 +82,28 @@
 {% block scripts %}
 {{ super() }}
 <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        
+        function removeUnderline() {
+        document.getElementById('argentina').classList.remove('underline-thick');
+        document.getElementById('chile').classList.remove('underline-thick');
+    }
+
+    // Function to add the underline to the selected country
+    function addUnderline(selectedId) {
+        document.getElementById(selectedId).classList.add('underline-thick');
+    }
+
+    // Initially set Argentina as selected
+    addUnderline('argentina');
+
     document.getElementById('chile').addEventListener('click', function () {
         console.log('Chile clicked');
         
+        // Remove underline from both and then add it to Chile
+        removeUnderline();
+        addUnderline('chile');
+
         // Make an AJAX request to the new route
         fetch('/api/total_engagement_chile')
             .then(response => response.json())
@@ -101,15 +119,17 @@
                 var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
                 percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
             });
-
     });
 
     document.getElementById('argentina').addEventListener('click', function () {
+        console.log('Argentina clicked');
+        
+        // Remove underline from both and then add it to Argentina
+        removeUnderline();
+        addUnderline('argentina');
+
         // Change the hero image source
         document.getElementById('hero').src = "./static/public/Argentina.png";
-
-        // Change the color of the hero text
-
 
         // Make an AJAX request to the new route
         fetch('/api/total_engagement_argentina')
@@ -126,7 +146,7 @@
                 var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
                 percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
             });
-
     });
+});
 </script>
 {% endblock %}
