@@ -10,8 +10,8 @@
             style="--tw-translate-x: 35px; @media (min-width: 768px) { --tw-translate-x: 35px; } @media (min-width: 1024px) { --tw-translate-x: 100px; } @media (min-width: 1280px) { --tw-translate-x: 130px; }"
             x-data
             x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">    
-            <div class="w-full md:w-1/12 lg:ml-2/12 ml-2 md:ml-16 md:mr-6 mt-4 md:mt-0 bg-white md:bg-clip-border md:border md:border-solid md:border-gray-200 md:rounded-md md:text-center cursor-pointer font-black order-3 md:order-none flex flex-row md:flex-col items-center md:justify-center space-x-2 md:space-x-0">
-                <div id="argentina" class="tracking-wide underline-thick mr-2 text-custom-28 opacity-40 md:opacity-100 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>AR</div>
+            <div class="w-full md:w-1/12 lg:ml-2/12 md:h-[81px] ml-2 md:ml-16 md:mr-6 mt-4 md:-mt-2 bg-white md:bg-clip-border md:border md:border-solid md:border-gray-200 md:rounded-md md:text-center cursor-pointer font-black order-3 md:order-none flex flex-row md:flex-col items-center md:justify-center space-x-2 md:space-x-0">
+                <div id="argentina" class="tracking-wide underline-thick text-custom-28 opacity-40 md:opacity-100 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>AR</div>
                 <div id="chile" class="tracking-wide text-custom-28 opacity-40 md:opacity-100 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>CH</div>
             </div>                                 
             <div class="w-auto md:w-4/12 lg:w-4/12 xl:w-4/12 md:max-w-[250px] -mt-4 md:mt-0 order-2 md:order-none md:h-auto flex flex-col"> <!-- COLUMNA DASHBOARD -->
@@ -24,7 +24,7 @@
                         <div class="rounded-md w-full md:w-9/12"><mark class="ml-3 text-[10px] md:text-[12px] p-0 inline-block"><span class="relative z-50">{{
                             minutes_diff }} minutos atrás</span></mark>
                         </div>
-                        <div class="hidden md:block text-right mr-36 md:mr-20 mt-[7.5px] md:mt-1 relative right-10 md:right-0"> 
+                        <div class="hidden md:block text-right mr-36 md:mr-20 mt-[7.5px] md:mt-[5px] relative right-16 md:right-6"> 
                             <a href="https://github.com/MiguelGalp/opiodelospueblos">
                                 <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub" class="w-7 md:w-4" />
                             </a>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <!-- COMPONENTE ÍNDICE-->
-                <div class="hidden relative md:flex flex-col md:h-auto md:max-w-60 break-words bg-white bg-clip-border border border-solid border-gray-200 rounded-md order-1 md:order-2 md:mb-0">
+                <div class="hidden md:mt-1 relative md:flex flex-col md:h-auto md:max-w-60 break-words bg-white bg-clip-border border border-solid border-gray-200 rounded-md order-1 md:order-2 md:mb-0">
                     <div class="card-body p-5" style="background-color: var(--background-body);">
                         <div class="p-0">
                             <div class="h-[90px] md:h-[40px]"
@@ -57,15 +57,15 @@
                     </div>
                 </div>
             </div>            
-            <div class="w-full flex items-center md:w-3/12 md:-ml-1 md:mt-0 order-1 md:order-none md:h-auto pt-[8vh] md:pt-0">
-                <div class="md:-mt-5 md:text-center space-y-0">
+            <div class="w-full flex items-center md:w-3/12 md:ml-2 md:mt-0 order-1 md:order-none md:h-auto pt-[8vh] md:pt-0">
+                <div class="md:-mt-3 md:text-center space-y-0">
                     <div class="text-uppercase inline md:mr-20 relative md:right-1 md:top-2 font-black text-[24px] md:text-custom-20 leading-none">
                         ODIO <div class="inline" style="opacity: 38%;">OÍDO:</div>
                     </div>
                     <div class="text-uppercase font-black text-custom-20 md:text-custom-28 md:-mt-[4px] leading-none">
                         TOXICIDAD <div class="inline">EN</div>
                     </div>
-                    <p class="text-uppercase font-black relative md:right-1 text-[56px] md:text-custom-44 leading-none tracking-tight md:tracking-normal"
+                    <p class="text-uppercase font-black relative bottom-1 text-[56px] md:text-custom-44 leading-none tracking-tight md:tracking-normal"
                         style="opacity: 38%;">  <!-- CLASES NO TAILWIND-->
                         TWITTER
                     </p>
