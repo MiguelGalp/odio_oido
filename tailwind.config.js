@@ -2,31 +2,40 @@
 
 const plugin = require('tailwindcss/plugin');
 
-
 module.exports = {
   content: ["./templates/*.html"],
   theme: {
-    extend: {},
-    fontFamily: {
-      sans: ['Geist', 'sans-serif'],
-    },
-    colors: {
-      'orange': '#bc5215',
-      'red': '#af312a',
-      'gray': '#e1dfd1',
-      // ... other custom colors from your CSS
-    },
-    screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '992px',
-      'xl': '1024px',
-      'xxl': '1200px',
-      'xxxl': '1400px',
-      // ... other custom screen sizes
-    },
-    textUnderlineOffset: {
-      '3': '2px', // Customize the thickness here
+    extend: {
+      fontFamily: {
+        sans: ['Geist', 'sans-serif'],
+      },
+      colors: {
+        'orange': '#bc5215',
+        'red': '#af312a',
+        'gray': '#e1dfd1',
+        // ... other custom colors
+      },
+      screens: {
+        'sm': '640px',
+        'md': '768px',
+        'lg': '992px',
+        'xl': '1024px',
+        'xxl': '1200px',
+        'xxxl': '1400px',
+        // ... other custom screen sizes
+      },
+      textUnderlineOffset: {
+        '3': '2px',
+      },
+      fontSize: {
+        'custom-20': '20px',
+        'custom-24': '24px',
+        'custom-28': '28px',
+        'custom-44': '44px',
+      },
+      translate: {
+        '-178': '-178px',
+      },
     },
   },
   plugins: [
@@ -49,4 +58,3 @@ module.exports = {
     }),
   ],
 }
-
