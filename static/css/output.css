@@ -1102,6 +1102,18 @@ video {
     order: 0;
   }
 
+  .md\:m-4 {
+    margin: 1rem;
+  }
+
+  .md\:m-2 {
+    margin: 0.5rem;
+  }
+
+  .md\:-m-2 {
+    margin: -0.5rem;
+  }
+
   .md\:-mt-3 {
     margin-top: -0.75rem;
   }
@@ -1192,6 +1204,10 @@ video {
 
   .md\:h-auto {
     height: auto;
+  }
+
+  .md\:min-h-screen {
+    min-height: 100vh;
   }
 
   .md\:w-1\/12 {
