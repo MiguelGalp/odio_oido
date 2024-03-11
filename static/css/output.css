@@ -674,6 +674,10 @@ video {
   top: 1rem;
 }
 
+.top-2 {
+  top: 0.5rem;
+}
+
 .z-10 {
   z-index: 10;
 }
@@ -1106,6 +1110,11 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .pt-\[8vh\] {
