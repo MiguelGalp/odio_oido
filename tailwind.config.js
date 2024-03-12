@@ -33,6 +33,7 @@ module.exports = {
         'custom-28': '28px',
         'custom-32': '32px',
         'custom-36': '36px',
+        'custom-40': '40px',
         'custom-44': '44px',
       },
       translate: {
