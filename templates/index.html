@@ -4,44 +4,58 @@
 
 {% block content %}
 
-<div class="my-12 mx-4 md:-m-2 flex md:items-center md:justify-center min-h-[46rem] md:min-h-screen border border-solid border-gray-200 rounded-md md:border-0"> <!-- Full viewport height and centering utilities -->
-    <div class="w-full max-w-screen-xl px-8 md:px-4 mx-auto py-10 md:py-0"> <!-- Horizontal centering and max width -->
-        <div class="flex flex-wrap md:items-center md:justify-center md:flex-nowrap"
+<div
+    class="my-12 mx-4 md:-m-2 flex md:items-center md:justify-center min-h-[46rem] md:min-h-screen">
+    <!-- Full viewport height and centering utilities -->
+    <div class="w-full max-w-screen-xl px-5 md:px-4 py-6 md:py-0"> <!-- Horizontal centering and max width -->
+        <div class="flex flex-wrap px-0 md:items-center md:justify-center md:flex-nowrap"
             style="--tw-translate-x: 35px; @media (min-width: 768px) { --tw-translate-x: 35px; } @media (min-width: 1024px) { --tw-translate-x: 100px; } @media (min-width: 1280px) { --tw-translate-x: 130px; }"
             x-data
-            x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">    
-            <div class="w-full md:w-1/12 lg:ml-2/12 md:h-[81px] ml-2 md:ml-16 md:mr-6 mt-8 md:-mt-3 bg-white md:bg-clip-border md:border md:border-solid md:border-gray-200 md:rounded-md md:text-center cursor-pointer font-black order-3 md:order-none flex flex-row md:flex-col items-center md:justify-center space-x-2 md:space-x-0">
-                <div id="argentina" class="tracking-wide underline-thick text-custom-20 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>AR</div>
-                <div id="chile" class="tracking-wide text-custom-20 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>CH</div>
-            </div>                                 
-            <div class="w-full md:w-4/12 lg:w-4/12 xl:w-4/12 md:max-w-[250px] -mt-10 md:mt-2 order-2 md:order-none md:h-auto flex flex-col"> <!-- COLUMNA DASHBOARD -->
+            x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">
+            <div
+                class="w-full p-2 h-16 w-16 bg-[rgb(253,255,10)] md:bg-transparent rounded-full md:p-0 md:w-1/12 md:h-[81px] ml-2 lg:ml-2/12 md:ml-16 md:mr-6 mt-8 md:-mt-3 bg-white md:bg-clip-border md:border md:border-solid md:border-gray-200 md:rounded-md md:text-center cursor-pointer font-black order-3 md:order-none flex flex-row md:flex-col items-center md:justify-center space-x-2 md:space-x-0">
+                <div id="argentina"
+                    class="tracking-wide underline-thick text-custom-20 md:text-[16px] flex items-center"><span
+                        class="relative right-[1px]">.</span>AR</div>
+                <div id="chile" class="tracking-wide text-custom-20 md:text-[16px] flex items-center"><span
+                        class="relative right-[1px]">.</span>CH</div>
+            </div>
+            <div
+                class="w-full md:w-4/12 lg:w-4/12 xl:w-4/12 md:max-w-[250px] -mt-10 md:mt-2 order-2 md:order-none md:h-auto flex flex-col">
+                <!-- COLUMNA DASHBOARD -->
                 <div class="-mt-16 md:mt-5 order-2 md:order-1 relative bottom-20 right-3 md:right-0 md:bottom-0">
                     <div class="flex justify-between ml-[2px] md:ml-0">
                         {% if last_total_increase %}
                         {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
                         {% set time_diff = now - last_total_increase.timestamp %}
                         {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                        <div class="rounded-md w-full md:w-9/12"><mark class="ml-3 text-[12px] md:text-[12px] p-0 inline-block"><span class="relative z-50">{{
-                            minutes_diff }} minutos atrás</span></mark>
+                        <div class="rounded-md w-full md:w-9/12"><mark
+                                class="ml-3 text-[12px] md:text-[12px] p-0 inline-block"><span class="relative z-50">{{
+                                    minutes_diff }} minutos atrás</span></mark>
                         </div>
-                        <div class="hidden md:block text-right mr-36 md:mr-20 mt-[7.5px] md:mt-[5px] relative right-16 md:right-6"> 
+                        <div
+                            class="hidden md:block text-right mr-36 md:mr-20 mt-[7.5px] md:mt-[5px] relative right-16 md:right-6">
                             <a href="https://github.com/MiguelGalp/opiodelospueblos">
-                                <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub" class="w-7 md:w-4" />
+                                <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub"
+                                    class="w-7 md:w-4" />
                             </a>
-                        </div>         
+                        </div>
                         {% else %}
-                        <div class="" style="width: 50%"><mark class="ml-3 text-custom-20 md:text-[12px] p-1 inline-block">algo pasa...</mark>
+                        <div class="" style="width: 50%"><mark
+                                class="ml-3 text-custom-20 md:text-[12px] p-1 inline-block">algo pasa...</mark>
                         </div>
-                        <div class="text-right mr-20 mt-1"> 
+                        <div class="text-right mr-20 mt-1">
                             <a href="https://github.com/MiguelGalp/opiodelospueblos">
-                                <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub" class="w-10 md:w-4" />
+                                <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub"
+                                    class="w-10 md:w-4" />
                             </a>
-                        </div>  
+                        </div>
                         {% endif %}
                     </div>
                 </div>
                 <!-- COMPONENTE ÍNDICE-->
-                <div class="hidden md:mt-1 relative md:flex flex-col md:h-auto md:max-w-60 break-words bg-white bg-clip-border border border-solid border-gray-200 rounded-md order-1 md:order-2 md:mb-0">
+                <div
+                    class="hidden md:mt-1 relative md:flex flex-col md:h-auto md:max-w-60 break-words bg-white bg-clip-border border border-solid border-gray-200 rounded-md order-1 md:order-2 md:mb-0">
                     <div class="card-body p-5" style="background-color: var(--background-body);">
                         <div class="p-0">
                             <div class="h-[90px] md:h-[40px]"
@@ -51,24 +65,31 @@
                     </div>
                 </div>
                 <div class="flex justify-between order-3 mt-[92px] md:mt-[20px] md:ml-[30px]">
-                    <div class="flex justify-center md:justify-start items-center font-black text-[48px] md:text-custom-32 w-full md:w-50 relative left-[1px] md:bottom-[85px] md:left-[45px] z-10 md:bg-transparent md:p-0 md:rounded-none bg-black bg-opacity-30 py-[90px] rounded-md border md:border-0 md:bg-clip-border md:border-solid md:border-gray-200"
+                    <div class="flex justify-center md:justify-start items-center font-black text-[48px] md:text-custom-32 w-4/5 md:w-50 relative left-[5px] md:bottom-[85px] md:left-[45px] z-10 md:bg-transparent md:p-0 md:rounded-none bg-black bg-opacity-30 py-[90px] rounded-lg border md:border-0 md:bg-clip-border md:border-solid md:border-gray-200"
                         style="filter: var(--legibilidad);">
                         {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%
                     </div>
-                </div>                                                                                                                                
-            </div>            
-            <div class="w-full flex items-center md:w-3/12 md:ml-2 md:mt-0 order-1 md:order-none md:h-auto pt-[8vh] md:pt-0">
+                </div>
+            </div>
+            <div
+                class="w-full flex items-center md:w-3/12 md:ml-2 md:mt-0 order-1 md:order-none md:h-auto pt-[8vh] md:pt-0">
                 <div class="-mt-3 md:-mt-3 md:text-center space-y-0 relative top-3 md:top-0 md:left-0">
-                    <div class="antialiased [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] text-uppercase inline tracking-tighter md:mr-20 relative top-[-24px] md:right-1 md:top-1 font-black text-[48px] md:text-custom-20 leading-none">
-                        ODIO <div class="inline" style="opacity: 38%;">OÍDO:</div>
+                    <div
+                        class="antialiased [text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] text-uppercase inline tracking-tight md:mr-20 relative top-[-24px] md:left-3 md:top-2 font-black text-[48px] md:text-custom-20 leading-none">
+                        ODIO <span
+                            class="relative bottom-[2.5px] tracking-[-1rem] md:tracking-[-.25rem] right-1 md:right-0">:</span>
+                        <div class="[text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] inline ml-0 md:ml-[2px] relative left-1 md:left-0" style="opacity: 38%;">OÍDO</div>
                     </div>
-                    <div class="antialiased [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] text-uppercase font-black text-custom-36 tracking-tight md:tracking-normal md:text-custom-28 relative bottom-8 md:bottom-[-1px] leading-none">
+                    <div
+                        class="antialiased [text-shadow:_0_1px_0_rgb(0_0_0_/_100%)] text-uppercase font-black text-custom-40 tracking-tighter md:tracking-tight md:text-custom-28 relative left-[1px] md:left-[-20px] bottom-[31px] md:bottom-[-1px] leading-none">
                         TOXICIDAD <div class="inline">EN</div>
                     </div>
-                    <p class="antialiased [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] text-uppercase font-black relative top-[-40px] md:top-[-6px] text-[56px] md:text-custom-44 leading-none tracking-tight md:tracking-normal"
-                        style="opacity: 38%;">  <!-- CLASES NO TAILWIND-->
-                        TWITTER
-                    </p>
+                    <div class="flex">
+                        <div class="antialiased [text-shadow:_0_1px_0_rgb(0_0_0_/_40%)] text-uppercase font-black opacity-30 relative top-[-40px] md:top-[-6px] text-[60px] md:text-custom-44 leading-none tracking-tight md:tracking-tight">
+                            TWITTER
+                        </div>
+                        <div class="[text-shadow:_0_2px_0_rgb(253_255_10_/_100%)] inline opacity-100 text-[rgb(253,255,10)] relative bottom-3 left-1 md:bottom-[-3px]" style="font-size: 60px; line-height: 0;">_</div>
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -80,67 +101,67 @@
 {{ super() }}
 <script>
     document.addEventListener('DOMContentLoaded', (event) => {
-        
+
         function removeUnderline() {
-        document.getElementById('argentina').classList.remove('underline-thick');
-        document.getElementById('chile').classList.remove('underline-thick');
-    }
+            document.getElementById('argentina').classList.remove('underline-thick');
+            document.getElementById('chile').classList.remove('underline-thick');
+        }
 
-    // Function to add the underline to the selected country
-    function addUnderline(selectedId) {
-        document.getElementById(selectedId).classList.add('underline-thick');
-    }
+        // Function to add the underline to the selected country
+        function addUnderline(selectedId) {
+            document.getElementById(selectedId).classList.add('underline-thick');
+        }
 
-    // Initially set Argentina as selected
-    addUnderline('argentina');
-
-    document.getElementById('chile').addEventListener('click', function () {
-        console.log('Chile clicked');
-        
-        // Remove underline from both and then add it to Chile
-        removeUnderline();
-        addUnderline('chile');
-
-        // Make an AJAX request to the new route
-        fetch('/api/total_engagement_chile')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                console.log(data.total_engagement);
-
-                // Update the width of the engagement bar
-                var engagementBar = document.querySelector('.card-body .p-0 div');
-                engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-
-                // Update the content of the percentage div
-                var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
-                percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-            });
-    });
-
-    document.getElementById('argentina').addEventListener('click', function () {
-        console.log('Argentina clicked');
-        
-        // Remove underline from both and then add it to Argentina
-        removeUnderline();
+        // Initially set Argentina as selected
         addUnderline('argentina');
 
-        // Make an AJAX request to the new route
-        fetch('/api/total_engagement_argentina')
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                console.log(data.total_engagement);
+        document.getElementById('chile').addEventListener('click', function () {
+            console.log('Chile clicked');
 
-                // Update the width of the engagement bar
-                var engagementBar = document.querySelector('.card-body .p-0 div');
-                engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+            // Remove underline from both and then add it to Chile
+            removeUnderline();
+            addUnderline('chile');
 
-                // Update the content of the percentage div
-                var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
-                percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
-            });
+            // Make an AJAX request to the new route
+            fetch('/api/total_engagement_chile')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    console.log(data.total_engagement);
+
+                    // Update the width of the engagement bar
+                    var engagementBar = document.querySelector('.card-body .p-0 div');
+                    engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+
+                    // Update the content of the percentage div
+                    var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
+                    percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                });
+        });
+
+        document.getElementById('argentina').addEventListener('click', function () {
+            console.log('Argentina clicked');
+
+            // Remove underline from both and then add it to Argentina
+            removeUnderline();
+            addUnderline('argentina');
+
+            // Make an AJAX request to the new route
+            fetch('/api/total_engagement_argentina')
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    console.log(data.total_engagement);
+
+                    // Update the width of the engagement bar
+                    var engagementBar = document.querySelector('.card-body .p-0 div');
+                    engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+
+                    // Update the content of the percentage div
+                    var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
+                    percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                });
+        });
     });
-});
 </script>
 {% endblock %}

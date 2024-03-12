@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .custom-underscore {
+      opacity: 1 !important; /* Force the underscore to be fully opaque */
+      color: black !important; /* Set the color of the underscore to black */
+    }
+  }
