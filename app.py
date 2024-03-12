@@ -140,11 +140,11 @@ def get_current_engagement(max_possible_engagement, groups_to_consider, country=
             }
         elif country == 'Chile':
             group_followers = {
-                '#ToxicidadGeneral': 25100,
-                '#Provocaciones': 142500,
-                '#Ataques': 310200,
-                '#Amenazas': 68200,
-                '#Insultos': 66700,
+                '#ToxicidadGeneral': 25100 + 74200,
+                '#Provocaciones': 142500 + 78300,
+                '#Ataques': 310200 + 93600,
+                '#Amenazas': 68200 + 103000,
+                '#Insultos': 66700 + 42000,
             }
         else:
             # Default or global values
