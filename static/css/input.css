@@ -7,4 +7,10 @@
       opacity: 1 !important; /* Force the underscore to be fully opaque */
       color: black !important; /* Set the color of the underscore to black */
     }
+    @media (max-width: 320px) {
+        .custom-font-size {
+          transform: scale(0.75) !important;
+          right: 35px;
+        }
+      }
   }
