@@ -10,10 +10,7 @@ module.exports = {
         sans: ['Geist', 'sans-serif'],
       },
       colors: {
-        'orange': '#bc5215',
-        'red': '#af312a',
-        'gray': '#e1dfd1',
-        // ... other custom colors
+        
       },
       screens: {
         'sm': '640px',

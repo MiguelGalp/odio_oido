@@ -9,10 +9,15 @@
 </head>
 <body>
     
+    <!-- Main content block -->
     {% block content %}{% endblock content %}    
-    
+        
+    <!-- Footer included -->
     {% include 'footer.html' %}
-    
+
+    <!-- Footer included -->
+    {% include 'speech.html' %}
+    <!-- Scripts block -->
     {% block scripts %}
     {% endblock scripts %}
 </body>
