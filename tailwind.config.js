@@ -49,12 +49,27 @@ module.exports = {
           '&::after': {
             content: '""',
             position: 'absolute',
-            left: '38%', // Adjust this to move the underline to the right
+            left: '20%', // Adjust this to move the underline to the right
             bottom: '2.5px',
-            height: '2px',
-            width: '28%', // Adjust this to change the length of the underline
+            height: '3px',
+            width: '58%', // Adjust this to change the length of the underline
             backgroundColor: 'currentColor',
+            zIndex: '10',
           },
+        },
+        '.bg-switch-mobile': {
+          position: 'relative',
+          '&::after': {
+          content: '""',
+          position: 'absolute',
+          backgroundColor: 'rgb(253,255,10)',
+          height: '64px',
+          width: '64px',
+          borderRadius: '9999px',
+          zIndex: '-2',
+          bottom: 'calc(100% - 45px)',
+          left: 'calc(50% - 32px + 2px)'
+          }
         },
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
