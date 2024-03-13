@@ -64,16 +64,20 @@ module.exports = {
         '.bg-switch-mobile': {
           position: 'relative',
           '&::after': {
-          content: '""',
-          position: 'absolute',
-          backgroundColor: 'rgb(253,255,10)',
-          height: '64px',
-          width: '64px',
-          borderRadius: '9999px',
-          zIndex: '-2',
-          bottom: 'calc(100% - 45px)',
-          left: 'calc(50% - 32px + 2px)'
-          }
+            content: '""',
+            position: 'absolute',
+            backgroundColor: 'rgb(253,255,10)',
+            height: '64px',
+            width: '64px',
+            borderRadius: '9999px',
+            zIndex: '-2',
+            bottom: 'calc(100% - 45px)',
+            left: 'calc(50% - 32px + 2px)',
+          },
+        },
+        '.speech-bubble-text': {
+          transform: 'perspective(500px) rotateY(10deg) rotateX(5deg) skew(-20deg, 5deg)',
+          transformOrigin: 'left bottom' /* Adjust the origin of transformation if needed */
         },
       };
       addUtilities(newUtilities, ['responsive', 'hover']);
