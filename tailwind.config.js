@@ -28,6 +28,7 @@ module.exports = {
         '3': '2px',
       },
       fontSize: {
+        'custom-16': '16px',
         'custom-20': '20px',
         'custom-24': '24px',
         'custom-28': '28px',
@@ -35,6 +36,9 @@ module.exports = {
         'custom-36': '36px',
         'custom-40': '40px',
         'custom-44': '44px',
+        'custom-48': '48px',
+        'custom-52': '52px',
+        'custom-56': '56px',
       },
       translate: {
         '-178': '-178px',
