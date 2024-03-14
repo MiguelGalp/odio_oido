@@ -1201,6 +1201,14 @@ video {
     top: 5px;
   }
 
+  .md\:bottom-\[7vh\] {
+    bottom: 7vh;
+  }
+
+  .md\:bottom-\[5vh\] {
+    bottom: 5vh;
+  }
+
   .md\:order-1 {
     order: 1;
   }
