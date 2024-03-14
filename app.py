@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, request, abort, Response
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
-from flask_babelex import format_datetime
 import pytz 
 import os
 import ast
@@ -140,11 +139,11 @@ def get_current_engagement(max_possible_engagement, groups_to_consider, country=
             }
         elif country == 'Chile':
             group_followers = {
-                '#ToxicidadGeneral': 25100 + 74200,
-                '#Provocaciones': 142500 + 78300,
-                '#Ataques': 310200 + 93600,
-                '#Amenazas': 68200 + 103000,
-                '#Insultos': 66700 + 42000,
+                '#ToxicidadGeneral': 25100 + 74200 + 38900,
+                '#Provocaciones': 142500 + 78300 + 54000,
+                '#Ataques': 310200 + 93600 + 43500,
+                '#Amenazas': 68200 + 103000 + 509600,
+                '#Insultos': 66700 + 42000 + 47700,
             }
         else:
             # Default or global values
