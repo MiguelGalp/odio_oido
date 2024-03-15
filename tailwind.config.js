@@ -10,7 +10,11 @@ module.exports = {
         sans: ['Geist', 'sans-serif'],
       },
       colors: {
-        
+        fondo: '#f0f0f0',
+        tarjeta: '#f8fafc',
+        texto_light: '#a0a0a0',
+        text_dark: '#000',
+        enfasis: '#000'
       },
       screens: {
         'sm': '640px',
