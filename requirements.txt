@@ -1,7 +1,7 @@
 Gunicorn
 amqp==5.1.1
 APScheduler==3.10.4
-Authlib==0.15.6
+authlib>=1.0
 flask_babelex==0.9.4
 billiard==4.1.0
 blinker==1.6.3
@@ -36,7 +36,6 @@ psycopg2-binary
 pycparser==2.21
 python-dateutil==2.8.2
 python-dotenv==0.21.1
-python-twitter-v2==0.8.1
 pytz==2023.3.post1
 regex==2023.10.3
 requests==2.31.0

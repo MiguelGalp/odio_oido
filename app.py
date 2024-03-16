@@ -4,13 +4,16 @@ from dotenv import load_dotenv
 import pytz 
 import os
 import ast
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for, session, redirect
 from flask_babelex import format_datetime
 from flask_bootstrap import Bootstrap
 from datetime import datetime, timezone, timedelta
 from dateutil.parser import parse
 from collections import OrderedDict
 from functools import wraps
+from urllib.parse import quote_plus, urlencode
+
+from authlib.integrations.flask_client import OAuth
 import json
 import uuid
 
@@ -41,6 +44,9 @@ for group, users in front_chile.items():
 
 
 app = Flask(__name__, template_folder='templates')
+
+app.secret_key = os.environ.get("APP_SECRET_KEY")
+
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL').replace("postgres://", "postgresql://")
 db = SQLAlchemy(app)
 Bootstrap(app)
@@ -75,25 +81,61 @@ try:
 except Exception as e:
     print(f"Database error: {str(e)}")
 
-def check_auth(username, password):
-    # Auth check
-    return username == 'admin' and password == 'secret'
+    # 👆 We're continuing from the steps above. Append this to your server.py file.
 
-def authenticate():
-    # Sends a 401 response that enables basic auth
-    return Response(
-    'Could not verify your access level for that URL.\n'
-    'You have to login with proper credentials', 401,
-    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+oauth = OAuth(app)
 
-def requires_auth(f):
-    @wraps(f)
-    def decorated(*args, **kwargs):
-        auth = request.authorization
-        if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
-        return f(*args, **kwargs)
-    return decorated
+oauth.register(
+    "auth0",
+    client_id=os.environ.get("AUTH0_CLIENT_ID"),
+    client_secret=os.environ.get("AUTH0_CLIENT_SECRET"),
+    client_kwargs={
+        "scope": "openid profile email",
+    },
+    server_metadata_url=f'https://{os.environ.get("AUTH0_DOMAIN")}/.well-known/openid-configuration'
+)
+
+@app.route("/login")
+def login():
+    return oauth.auth0.authorize_redirect(
+        redirect_uri=url_for("callback", _external=True)
+    )
+
+@app.route("/callback", methods=["GET", "POST"])
+def callback():
+    token = oauth.auth0.authorize_access_token()
+
+    session["user"] = token
+
+    # Corrected user info endpoint URL
+    user_info_endpoint = "https://dev-3klm8ed6qtx4zj6v.us.auth0.com/userinfo"
+    user_info_response = oauth.auth0.get(user_info_endpoint)
+    print("Userinfo Response:", user_info_response.text)  # Debug print
+
+    user_info = user_info_response.json()
+    session["user_info"] = user_info
+    return redirect(url_for('index'))
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(
+        "https://" + os.environ.get("AUTH0_DOMAIN")
+        + "/v2/logout?"
+        + urlencode(
+            {
+                "returnTo": url_for("index", _external=True),
+                "client_id": os.environ.get("AUTH0_CLIENT_ID"),
+            },
+            quote_via=quote_plus,
+        )
+    )
+
+@app.context_processor
+def inject_user_info():
+    user_info = session.get("user_info", None)  # Retrieve user_info from session
+    return dict(user_info=user_info)
 
 def calculate_engagement(tweet):
     likes = tweet.likes
@@ -320,7 +362,7 @@ def index():
     else:
         hate_tweet_content = None
 
-    return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, total_engagement=total_engagement, max_engagement_group=max_engagement_group, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase, min=min)
+    return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, total_engagement=total_engagement, max_engagement_group=max_engagement_group, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase, min=min, session=session.get('user'), pretty=json.dumps(session.get('user'), indent=4))
 
 
 

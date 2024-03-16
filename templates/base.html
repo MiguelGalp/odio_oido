@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,19 +8,20 @@
     <link href="/static/css/output.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
+
 <body>
-    
-    <!-- Main content block -->
-    {% block content %}{% endblock content %}    
-        
-    <!-- Footer included -->
-    {% include 'footer.html' %}
+    <main class="relative min-h-screen">
 
-    <!-- Footer included -->
-    {% include 'speech.html' %}
+        <!-- Main content block -->
+        {% block content %}{% endblock content %}
 
+        <!-- Footer included -->
+        {% include 'footer.html' %}
+
+    </main>
     <!-- Scripts block -->
     {% block scripts %}
     {% endblock scripts %}
 </body>
+
 </html>
