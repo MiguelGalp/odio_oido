@@ -52,12 +52,12 @@ db = SQLAlchemy(app)
 Bootstrap(app)
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.BigInteger, primary_key=True)  
     name = db.Column(db.String(50), unique=True, nullable=False)
     total_engagement = db.Column(db.Integer, default=0)
 class Tweet(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.BigInteger, db.ForeignKey('user.id'))  
     user = db.relationship('User', backref=db.backref('tweets', lazy=True))
     content = db.Column(db.String(280))
     likes = db.Column(db.Integer)
@@ -81,7 +81,7 @@ try:
 except Exception as e:
     print(f"Database error: {str(e)}")
 
-    # 👆 We're continuing from the steps above. Append this to your server.py file.
+# AUTH0 LOGIN
 
 oauth = OAuth(app)
 
@@ -110,7 +110,7 @@ def callback():
     # Corrected user info endpoint URL
     user_info_endpoint = "https://dev-3klm8ed6qtx4zj6v.us.auth0.com/userinfo"
     user_info_response = oauth.auth0.get(user_info_endpoint)
-    print("Userinfo Response:", user_info_response.text)  # Debug print
+    
 
     user_info = user_info_response.json()
     session["user_info"] = user_info
@@ -136,6 +136,8 @@ def logout():
 def inject_user_info():
     user_info = session.get("user_info", None)  # Retrieve user_info from session
     return dict(user_info=user_info)
+
+# MAIN
 
 def calculate_engagement(tweet):
     likes = tweet.likes
