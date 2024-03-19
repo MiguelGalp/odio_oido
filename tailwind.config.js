@@ -10,11 +10,11 @@ module.exports = {
         sans: ['Geist', 'sans-serif'],
       },
       colors: {
-        fondo: '#f0f0f0',
-        tarjeta: '#f8fafc',
-        texto_light: '#a0a0a0',
-        text_dark: '#000',
-        enfasis: '#000'
+        fondo: '#F5F5F5', // very light gray
+        tarjeta: '#E0E0E0', // light gray, a variation of the fondo color
+        texto_light: '#757575', // gray for light text
+        text_dark: '#212121', // dark gray for dark text
+        enfasis: '#85C1E9' // lighter shade of Twitter blue for emphasis
       },
       screens: {
         'sm': '640px',
