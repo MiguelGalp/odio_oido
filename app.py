@@ -246,7 +246,7 @@ def total_engagement_argentina_route():
 
 @app.route('/api/total_engagement_chile', methods=['GET'])
 def total_engagement_chile_route():
-    max_possible_engagement = 3000000.0 
+    max_possible_engagement = 1500000.0 
     group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_chile, country='Chile')
     return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
 
