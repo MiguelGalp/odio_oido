@@ -1538,16 +1538,12 @@ video {
     letter-spacing: -.25rem;
   }
 
-  .md\:tracking-tighter {
-    letter-spacing: -0.05em;
-  }
-
   .md\:tracking-tight {
     letter-spacing: -0.025em;
   }
 
-  .md\:tracking-normal {
-    letter-spacing: 0em;
+  .md\:tracking-tighter {
+    letter-spacing: -0.05em;
   }
 }
 

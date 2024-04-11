@@ -240,13 +240,13 @@ def get_current_engagement(max_possible_engagement, groups_to_consider, country=
 
 @app.route('/api/total_engagement_argentina', methods=['GET'])
 def total_engagement_argentina_route():
-    max_possible_engagement = 100000.0
+    max_possible_engagement = 500000.0
     group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups, country='Argentina')
     return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
 
 @app.route('/api/total_engagement_chile', methods=['GET'])
 def total_engagement_chile_route():
-    max_possible_engagement = 100000.0
+    max_possible_engagement = 500000.0
     group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_chile, country='Chile')
     return jsonify({'total_engagement': total_engagement, 'max_engagement_group': max_engagement_group})
 
@@ -254,7 +254,7 @@ def total_engagement_chile_route():
 @app.route('/engagement_by_groups', methods=['POST'])
 def engagement_by_groups_route():
     # Define el máximo de interacción (tags: pregunta, investigación...)
-    max_possible_engagement = 100000.0 
+    max_possible_engagement = 500000.0 
 
     # Define qué grupo es el default
     groups = request.json['front_groups']
@@ -314,7 +314,7 @@ def front_chile_route():
 @app.route('/')
 def index():
 
-    max_possible_engagement = 100000.0 
+    max_possible_engagement = 500000.0 
 
     # Obtiene las métricas de interacción actuales, las métricas de interacción totales y el grupo con mayor interacción
     group_engagements, total_engagement, max_engagement_group = get_current_engagement(max_possible_engagement, front_groups)
