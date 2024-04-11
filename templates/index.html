@@ -54,7 +54,7 @@
                     <div class="card-body p-5 bg-tarjeta">
                         <div class="p-0">
                             <div class="h-[90px] md:h-[40px]"
-                                style="width: {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%; background-color: #000; opacity: 30%;">
+                                style="width: {{ '%.2f'|format(min(total_engagement * 10000, 100)) }}%; background-color: #000; opacity: 30%;">
                             </div>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                 <div class="flex justify-between order-3 mt-[92px] md:mt-[20px] md:ml-[30px]">
                     <div class="flex justify-center md:justify-start items-center font-black text-[48px] text-text_dark md:text-custom-32 w-4/5 md:w-50 relative left-[5px] md:bottom-[85px] md:left-[45px] z-10 md:bg-transparent md:p-0 md:rounded-none bg-black bg-opacity-30 py-[90px] rounded-lg border md:border-0 md:bg-clip-border md:border-solid md:border-gray-200"
                         style="filter: var(--legibilidad);">
-                        {{ '%.2f'|format(min(total_engagement * 1000, 100)) }}%
+                        {{ '%.2f'|format(min(total_engagement * 10000, 100)) }}%
                     </div>
                 </div>
             </div>
@@ -146,11 +146,11 @@
 
                     // Update the width of the engagement bar
                     var engagementBar = document.querySelector('.card-body .p-0 div');
-                    engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                    engagementBar.style.width = (Math.min(data.total_engagement * 10000, 100)).toFixed(2) + '%';
 
                     // Update the content of the percentage div
                     var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
-                    percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                    percentageDiv.textContent = (Math.min(data.total_engagement * 10000, 100)).toFixed(2) + '%';
                 });
         });
 
@@ -172,11 +172,11 @@
 
                     // Update the width of the engagement bar
                     var engagementBar = document.querySelector('.card-body .p-0 div');
-                    engagementBar.style.width = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                    engagementBar.style.width = (Math.min(data.total_engagement * 10000, 100)).toFixed(2) + '%';
 
                     // Update the content of the percentage div
                     var percentageDiv = document.querySelector('.flex.justify-between > div[style*="filter: var(--legibilidad)"]');
-                    percentageDiv.textContent = (Math.min(data.total_engagement * 1000, 100)).toFixed(2) + '%';
+                    percentageDiv.textContent = (Math.min(data.total_engagement * 10000, 100)).toFixed(2) + '%';
                 });
         });
     });
