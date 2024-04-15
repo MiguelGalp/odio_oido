@@ -23,12 +23,13 @@ module.exports = {
         'xl': '1024px',
         'xxl': '1200px',
         'xxxl': '1400px',
-        // ... other custom screen sizes
+        'xxxxl': '1534px',
       },
       textUnderlineOffset: {
         '3': '2px',
       },
       fontSize: {
+        'custom-12': '12px',
         'custom-16': '16px',
         'custom-20': '20px',
         'custom-24': '24px',

@@ -1,0 +1,64 @@
+<!-- rectangles.html -->
+{% block rectangles %}
+
+<div class="relative z-10">
+    <!-- Your main content goes here -->
+</div>
+
+<div class="absolute inset-0 pointer-events-none">
+    <!-- Overlay container -->
+    <div class="container mx-auto px-0 h-full">
+        <div class="grid grid-cols-12 grid-rows-6 h-full">
+            <!-- Overlay rectangles with specific row positioning -->
+            <div
+                class="relative w-44 col-span-2 md:col-start-1 md:col-start-1 lg:col-start-2 xl:col-start-2 xxl:col-start-3 row-start-3 bg-[rgba(234,179,8,0.75)] h-8 -mt-10 flex items-center justify-center text-black text-custom-12">
+                <span class="z-10">PAÍSES QUE TRACKEAMOS</span>
+                <!-- Custom SVG arrow with open lines -->
+                <svg class="absolute bottom-[-20px] transform scale-y-[1.5] md:rotate-[-15deg] lg:rotate-[-15deg] md:-left-3 lg:-left-2 md:top-10 lg:top-10 xl:-left-2 xl:rotate-[15deg] xl:top-10 xxl:-left-2 xxl:top-12  xxxl:left-6 xxxl:top-12 xxxxl:left-16 text-black w-10 h-10 z-50"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="2" x2="12" y2="17"></line>
+                    <!-- Adjusted polyline points to align with the new main line end -->
+                    <polyline points="15 14 12 17 9 14"></polyline>
+                </svg>
+            </div>
+            <div
+                class="relative w-44 mt-6 col-span-2 md:col-start-4 lg:col-start-4 xl:col-start-4 xxl:col-start-5 row-start-4 bg-[rgba(239,68,68,0.75)] h-8 flex items-center justify-center text-black text-custom-12">
+                <!-- Custom SVG arrow with open lines -->
+                <svg class="absolute bottom-[40px] transform scale-y-[1.5] md:rotate-[-195deg] lg:rotate-[-195deg] md:-left-2 lg:-left-2 text-black w-10 h-10 z-50"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="12" y1="2" x2="12" y2="12"></line>
+                    <!-- Adjusted polyline points for a wider angle -->
+                    <polyline points="14 8 12 12 10 8"></polyline>
+                </svg>
+                <span class="z-10">RIESGO ACTUAL</span>
+            </div>
+            <div
+                class="relative w-44 col-span-2 ml-6 md:ml-28 lg:ml-28 xl:ml-24 xxl:ml-12 xxxl:ml-16 md:col-start-5 lg:col-start-5 xl:col-start-6 xxl:col-start-6 row-start-3 -mt-6 bg-[rgba(249,115,22,0.75)] h-8 flex items-center justify-center text-black text-custom-12">
+                <span class="z-10">¿QUÉ ES LO QUE MEDIMOS?</span>
+                <!-- Custom SVG arrow with open lines and 2/3 length -->
+                <svg class="absolute bottom-[-20px] transform scale-y-[1.5] md:rotate-[-15deg] lg:rotate-[-15deg] md:left-40 lg:left-40 md:top-6 lg:top-6 md:rotate-[-35deg] lg:rotate-[-35deg] xl:left-20 xl:rotate-[-35deg] xl:top-10 xxl:left-36 xxl:rotate-[-35deg] xxl:top-10 xxxl:rotate-[-35deg] xxxl:left-36 xxxl:top-8 xxxl:rotate-[-55deg]  text-black w-10 h-10 z-50"
+                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <!-- 2/3 length main line -->
+                    <line x1="12" y1="2" x2="12" y2="17"></line>
+                    <!-- Adjusted polyline points to align with the new main line end -->
+                    <polyline points="15 14 12 17 9 14"></polyline>
+                </svg>
+            </div>
+            <!-- More rectangles as needed -->
+        </div>
+    </div>
+</div>
+
+<!-- Fixed rectangle related to the footer -->
+<div class="fixed bottom-0 left-1/2 w-full">
+    <div class="relative h-8 bg-[rgba(22,163,74,0.75)] w-44 -translate-x-1/2 mb-12 flex items-center justify-center text-black text-custom-12" style="transform: translateX(-50%);">
+        <span class="z-10">LOGUEATE PARA + INFO</span>
+        <svg class="absolute bottom-[40px] transform scale-y-[1.5] md:rotate-[225deg] md:left-40  text-black w-10 h-10 z-50"
+        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="2" x2="12" y2="12"></line>
+        <!-- Adjusted polyline points for a wider angle -->
+        <polyline points="14 8 12 12 10 8"></polyline>
+    </svg></div>
+</div>
+
+{% endblock %}

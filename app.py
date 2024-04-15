@@ -114,7 +114,7 @@ def callback():
 
     user_info = user_info_response.json()
     session["user_info"] = user_info
-    return redirect(url_for('index'))
+    return redirect(url_for('dashboard'))
 
 
 @app.route("/logout")
@@ -367,7 +367,12 @@ def index():
     return render_template('index.html', timedelta=timedelta, hate_tweet_content=hate_tweet_content, datetime=datetime, pytz=pytz, total_engagement=total_engagement, max_engagement_group=max_engagement_group, peak_occurrences=peak_occurrences, engagement_level=engagement_level, last_total_increase=last_total_increase, min=min, session=session.get('user'), pretty=json.dumps(session.get('user'), indent=4))
 
 
-
-
+@app.route('/dashboard')
+def dashboard():
+    if 'user' not in session:
+        # If the user is not logged in, redirect to the login page
+        return redirect(url_for('login'))
+    # Your dashboard logic here
+    return render_template('dashboard.html')
 
 

@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Odio oído: versión MVP para desarrollo{% endblock %}
+
+
+{% block content %}
+<div class="my-12 mx-4 md:-m-2 flex md:items-center md:justify-center min-h-[46rem] md:min-h-[90vh] bg-fondo z-20">
+    <!-- Full viewport height and centering utilities -->
+    <div class="w-full max-w-screen-xl px-5 md:pl-4 md:mr-36 py-6 md:py-0"> <!-- Horizontal centering and max width -->
+        <div class="flex flex-wrap px-0 md:items-center md:justify-center md:flex-nowrap"
+            style="--tw-translate-x: 35px; @media (min-width: 768px) { --tw-translate-x: 35px; } @media (min-width: 1024px) { --tw-translate-x: 100px; } @media (min-width: 1280px) { --tw-translate-x: 130px; }"
+            x-data
+            x-init="$el.style.transform = `translateX(${getComputedStyle($el).getPropertyValue('--tw-translate-x')})`">
+            <h1>WTF</h1>
+            <p>This is an dashboard in the making</p>    
+        </div>
+        
+    </div>
+</div>
+
+{% endblock %}

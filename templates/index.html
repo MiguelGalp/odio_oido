@@ -15,39 +15,29 @@
                 <div id="argentina" class="tracking-wide underline-thick text-custom-20 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>AR</div>
                 <div id="chile" class="tracking-wide text-custom-20 md:text-[16px] flex items-center"><span class="relative right-[1px]">.</span>CH</div>
             </div>            
-            <div
-                class="w-full md:w-4/12 lg:w-4/12 xl:w-4/12 md:max-w-[250px] -mt-10 md:mt-2 order-2 md:order-none md:h-auto flex flex-col">
+            <div class="w-full md:w-4/12 md:max-w-[250px] -mt-10 md:mt-2 order-2 md:order-none md:h-auto flex flex-col">
                 <!-- COLUMNA DASHBOARD -->
                 <div class="-mt-16 md:mt-5 order-2 md:order-1 relative bottom-20 right-3 md:right-0 md:bottom-0">
                     <div class="flex justify-between ml-[2px] md:ml-0">
-                        {% if last_total_increase %}
-                        {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
-                        {% set time_diff = now - last_total_increase.timestamp %}
-                        {% set minutes_diff = time_diff.total_seconds() // 60 %}
-                        <div class="rounded-md w-full md:w-9/12"><mark
-                                class="ml-3 text-[12px] md:text-[12px] px-1 inline-block bg-enfasis text-text_dark"><span class="relative z-50">{{
-                                    minutes_diff }} minutos atrás</span></mark>
+                      {% if last_total_increase %}
+                      {% set now = datetime.now(pytz.timezone('America/Montevideo')) - timedelta(minutes=180) %}
+                      {% set time_diff = now - last_total_increase.timestamp %}
+                      {% set minutes_diff = (time_diff.total_seconds() // 60)|int %}
+                        <div class="rounded-md w-full md:minw-9/12">
+                          <mark class="text-ellipsis overflow-hidden ml-3 text-[12px] md:text-[12px] px-1 inline-block bg-enfasis text-text_dark">
+                            <div style="display: flex; flex-shrink: 0; flex-grow: 0;">
+                              <span class="relative z-50">{{ minutes_diff }} minutos atrás</span>
+                            </div>
+                          </mark>
                         </div>
-                        <div
-                            class="hidden md:block text-right mr-36 md:mr-20 mt-[7.5px] md:mt-[5px] relative right-16 md:right-6">
-                            <a href="https://github.com/MiguelGalp/opiodelospueblos">
-                                <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub"
-                                    class="w-7 md:w-4" />
-                            </a>
-                        </div>
-                        {% else %}
-                        <div class="" style="width: 50%"><mark
-                                class="ml-3 text-custom-20 md:text-[12px] p-1 inline-block">algo pasa...</mark>
-                        </div>
-                        <div class="text-right mr-20 mt-1">
-                            <a href="https://github.com/MiguelGalp/opiodelospueblos">
-                                <img id="github_icon" src="./static/public/github-logo.png" alt="GitHub"
-                                    class="w-10 md:w-4" />
-                            </a>
-                        </div>
-                        {% endif %}
+                        <div class="hidden md:block text-right mr-36 md:mr-20 lg:mr-28 mt-[7px] md:mt-[1.5px]">
+                          </div>
+                      {% else %}
+                        <div class="ml-3 text-custom-20 md:text-[12px] p-1 inline-block">algo pasa...</div>  <div class="text-right mr-20 mt-1">
+                          </div>
+                      {% endif %}
                     </div>
-                </div>
+                  </div>
                 <!-- COMPONENTE ÍNDICE-->
                 <div
                     class="hidden md:mt-1 relative md:flex flex-col md:h-auto md:max-w-60 break-words bg-gray-50 bg-clip-border border border-solid border-gray-200 rounded-md order-1 md:order-2 md:mb-0">
