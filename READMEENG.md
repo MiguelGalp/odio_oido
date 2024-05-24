@@ -23,8 +23,6 @@
 
 ---
 
-## Origen
-
 ## Origin
 
 ***Odio oído*** Directly translated to "Hate Ear" originates as an offshoot of the "*Ahora*" (Now) initiative by the NGO [Atlanticx](wwww.atlanticx.org), dedicated to innovation in the arts. It is a laboratory-type project (research and development) that aims to expand the bases of dialogue between the arts and contemporary reality by generating and making relevant data accessible in the field of "art + science and technology". More information about "*Ahora*" can be found at this link.
